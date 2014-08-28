@@ -5,6 +5,7 @@ a = u''
 b = U"\\u2041"
 c = ur'''blah
 foo'''
+d = u'.' u'.'
 import sys
 """
 
@@ -14,6 +15,7 @@ a = six.u('')
 b = six.u("\\u2041")
 c = six.u(r'''blah
 foo''')
+d = six.u('.' '.')
 import sys
 """
 
@@ -25,6 +27,7 @@ a = ''
 b = "\\u2041"
 c = r'''blah
 foo'''
+d = '.' '.'
 import sys
 """
 
