@@ -5,6 +5,7 @@ a = u''
 b = U"\\u2041"
 c = ur'''blah
 foo'''
+import sys
 """
 
 UNICODE_LITERALS_six = """\
@@ -13,6 +14,7 @@ a = six.u('')
 b = six.u("\\u2041")
 c = six.u(r'''blah
 foo''')
+import sys
 """
 
 UNICODE_LITERALS_compat = UNICODE_LITERALS
@@ -23,6 +25,7 @@ a = ''
 b = "\\u2041"
 c = r'''blah
 foo'''
+import sys
 """
 
 def test_unicode_six():
