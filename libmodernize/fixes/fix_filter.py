@@ -15,7 +15,7 @@ class FixFilter(fixer_base.BaseFix):
         trailer< '('
             arglist< (
                 not(argument<any '=' any>) any ','
-                not(argument<any '=' any>) any
+                not(argument<any '=' any>) any [',']
             ) >
         ')' >
     >
