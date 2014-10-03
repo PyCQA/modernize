@@ -1,8 +1,8 @@
 # coding: utf-8
 """Fixer for __metaclass__ = X -> (six.with_metaclass(X)) methods.
 
-   The various forms of classdef (inherits nothing, inherits once, inherints
-   many) don't parse the same in the CST so we look at ALL classes for
+   The various forms of classdef (inherits nothing, inherits once, inherits
+   many) don't parse the same in the CST, so we look at ALL classes for
    a __metaclass__ and if we find one normalize the inherits to all be
    an arglist.
 
@@ -25,13 +25,13 @@
 #     2011, 2012, 2013 Python Software Foundation. All rights reserved.
 
 # Author: Jack Diederich, Daniel Neuhäuser
+
 from __future__ import absolute_import
 
 # Local imports
 from lib2to3 import fixer_base
 from lib2to3.pygram import token
-from lib2to3.fixer_util import Name, syms, Node, Leaf, Call, \
-    String, Comma, parenthesize
+from lib2to3.fixer_util import Name, syms, Node, Leaf, Call, Comma
 from libmodernize import touch_import
 
 
