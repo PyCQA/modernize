@@ -3,7 +3,7 @@ Version 0.4
 
 Changes since 0.3:
 
-* Documentation has been added.
+* `Documentation`_ has been added.
 * All fixers are now idempotent, which allows modernize to safely be applied
   more than once to the same source code.
 * The option to include default fixers when ``-f`` options are used is now
@@ -38,6 +38,8 @@ Changes since 0.3:
   (Previously some fixers did output constructs that were only added in
   Python 2.6, such as the ``except ... as`` construct, but this was not
   documented.)
+
+.. _Documentation: http://python-modernize.readthedocs.org/en/latest/
 
 
 Version 0.3
