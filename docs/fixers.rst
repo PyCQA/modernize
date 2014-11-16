@@ -16,7 +16,7 @@ removed to make the code compatible with Python 2.6.
 Some fixers rely on the latest release of the `six project`_ to work
 (see `Fixers requiring six`_).
 If you wish to turn off these fixers to avoid an external dependency on ``six``,
-then use the ``--nosix`` flag.
+then use the ``--no-six`` flag.
 
 Fixers use the API defined by 2to3. For details of how this works, and how to
 implement your own fixers, see `Extending 2to3 with your own fixers, at
@@ -31,10 +31,10 @@ A default fixer will be enabled when:
 - Either no ``-f``/``--fix`` options are used, or ``-f default``/``--fix=default``
   is used, or the fixer is listed explicitly in an ``-f``/``--fix`` option; and
 - The fixer is not listed in an ``-x``/``--nofix`` option; and
-- For fixers that are dependent on the `six project`_, ``--nosix`` is *not* specified
+- For fixers that are dependent on the `six project`_, ``--no-six`` is *not* specified
   (see `Fixers requiring six`_).
 
-The ``-x``/``--nofix`` and ``--nosix`` options always override fixers specified
+The ``-x``/``--nofix`` and ``--no-six`` options always override fixers specified
 using ``-f``/``--fix``. The ``--six-unicode`` and ``--future-unicode`` options
 also disable fixers that are not applicable for those options.
 
