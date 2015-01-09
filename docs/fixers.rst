@@ -281,6 +281,27 @@ to specify the ``-f default`` or ``--fix=default`` option, e.g.::
 
     python-modernize -f default -f libmodernize.fixes.fix_open
 
+.. 2to3fixer:: classic_division
+
+   When a use of the division operator -- ``/`` -- is found, add
+   ``from __future__ import division`` and change the operator to ``//``.
+   If ``from __future__ import division`` is already present, this fixer is
+   skipped.
+
+   This is intended for use in programs where ``/`` is conventionally only used
+   for integer division, or where it is intended to do a manual pass after running
+   python-modernize to look for cases that should not have been changed to ``//``.
+   The results of division on non-integers may differ after running this fixer:
+   for example, ``3.5 / 2 == 1.75``, but ``3.5 // 2 == 1.0``.
+
+   Some objects may override the ``__div__`` method for a use other than division,
+   and thus would break when changed to use a ``__floordiv__`` method instead.
+
+   This fixer is opt-in because it may change the meaning of code as described
+   above.
+
+   .. versionadded:: 0.5
+
 .. 2to3fixer:: open
 
    When a call to :func:`open <python2:open>` is discovered, add ``from io import open`` at the top
