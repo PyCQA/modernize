@@ -1,3 +1,9 @@
+Unreleased
+==========
+
+Changes since 0.4:
+* Updated the ``dict_six`` fixer to support ``six.viewitems()`` and friends.
+
 Version 0.4
 ===========
 

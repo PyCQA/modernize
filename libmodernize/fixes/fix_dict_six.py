@@ -10,9 +10,7 @@ import libmodernize
 class FixDictSix(fix_dict.FixDict):
 
     def transform_iter(self, method_name, node, base):
-        """Call six.iteritems() and friends."""
-        if method_name.startswith(u'view'):
-            method_name = u'iter' + method_name[4:]
+        """Call six.(iter|view)items() and friends."""
         libmodernize.touch_import(None, u'six', node)
         new_node = [n.clone() for n in base]
         new_node[0].prefix = u''
