@@ -5,7 +5,7 @@ from lib2to3.pytree import Leaf, Node
 from lib2to3.pygram import python_symbols as syms
 from lib2to3.pgen2 import token
 
-__version__ = '0.3'
+__version__ = '0.4'
 
 def check_future_import(node):
     """If this is a future import, return set of symbols that are imported,
@@ -38,7 +38,7 @@ def check_future_import(node):
         return set([node.value])
     elif node.type == token.NAME:
         return set([node.value])
-    else:
+    else:  # pragma: no cover
         assert 0, "strange import"
 
 def add_future(node, symbol):
