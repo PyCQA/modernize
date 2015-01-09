@@ -18,7 +18,7 @@ x.view{type}()
 """, """\
 from __future__ import absolute_import
 import six
-six.iter{type}(x)
+six.view{type}(x)
 """)
 
 DICT_PLAIN = ("""\

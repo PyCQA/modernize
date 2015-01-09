@@ -4,6 +4,7 @@ Unreleased
 Changes since 0.4:
 
 * Added the opt-in classic_division fixer.
+* Updated the ``dict_six`` fixer to support ``six.viewitems()`` and friends.
 
 Version 0.4
 ===========

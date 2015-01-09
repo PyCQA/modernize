@@ -65,7 +65,7 @@ version of ``six`` is installed.
 
        list(x.values())
        six.itervalues(x)
-       six.itervalues(x)
+       six.viewvalues(x)
 
    Care is taken to only call ``list()`` when not in an iterating context
    (e.g. not the iterable for a ``for`` loop).
