@@ -281,6 +281,16 @@ to specify the ``-f default`` or ``--fix=default`` option, e.g.::
 
     python-modernize -f default -f libmodernize.fixes.fix_open
 
+.. 2to3fixer:: classic_division
+
+   When a use of the division operator -- ``/`` -- is found, add
+   ``from __future__ import division`` and change the operator to ``//``.
+   This fixer is opt-in because some objects may override the ``__div__`` method
+   for a use other than division and thus would break when suddenly changed to
+   use a ``__floordiv__`` method instead.
+
+   .. versionadded:: 0.5
+
 .. 2to3fixer:: open
 
    When a call to :func:`open <python2:open>` is discovered, add ``from io import open`` at the top
