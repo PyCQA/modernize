@@ -18,7 +18,7 @@ single file::
 It does not guarantee, but it attempts to spit out a codebase compatible
 with Python 2.6+ or Python 3. The code that it generates has a runtime
 dependency on `six <https://pypi.python.org/pypi/six>`_, unless the
-``--no-six`` option is used. Version 1.8.0 or later of ``six`` is
+``--no-six`` option is used. Version 1.9.0 or later of ``six`` is
 recommended. Some of the fixers output code that is not compatible with
 Python 2.5 or lower.
 
