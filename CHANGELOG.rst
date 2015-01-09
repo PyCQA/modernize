@@ -1,3 +1,10 @@
+Unreleased
+==========
+
+Changes since 0.4:
+
+* Added the opt-in classic_division fixer.
+
 Version 0.4
 ===========
 
