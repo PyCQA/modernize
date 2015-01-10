@@ -300,7 +300,7 @@ to specify the ``-f default`` or ``--fix=default`` option, e.g.::
    This fixer is opt-in because it may change the meaning of code as described
    above.
 
-   .. versionadded:: 0.5
+   .. versionadded:: 1.0
 
 .. 2to3fixer:: open
 
