@@ -8,8 +8,8 @@ Changes since 0.4:
 * Documentation corrections.
 
 
-Version 0.4
-===========
+Version 0.4 (2014-10-14)
+========================
 
 Changes since 0.3:
 
@@ -52,8 +52,8 @@ Changes since 0.3:
 .. _Documentation: http://python-modernize.readthedocs.org/en/latest/
 
 
-Version 0.3
-===========
+Version 0.3 (2014-08-12)
+========================
 
 Changes since 0.2:
 
