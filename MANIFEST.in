@@ -1,0 +1,2 @@
+include CHANGELOG.rst LICENSE README.rst
+global-exclude *~ *.pyc
