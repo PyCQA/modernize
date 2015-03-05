@@ -1,17 +1,15 @@
 Unreleased
 ==========
 
-Changes since 0.4:
-
 * Added the opt-in classic_division fixer.
 * Updated the ``dict_six`` fixer to support ``six.viewitems()`` and friends.
 * Documentation corrections.
 
 
-Version 0.4 (2014-10-14)
-========================
+Version 0.4
+===========
 
-Changes since 0.3:
+Released 2014-10-14.
 
 * `Documentation`_ has been added.
 * All fixers are now idempotent, which allows modernize to safely be applied
@@ -52,10 +50,10 @@ Changes since 0.3:
 .. _Documentation: http://python-modernize.readthedocs.org/en/latest/
 
 
-Version 0.3 (2014-08-12)
-========================
+Version 0.3
+===========
 
-Changes since 0.2:
+Released 2014-08-12.
 
 * New fixer for ``raise E, V, T``, changed to ``six.reraise(E, V, T)``.
 * New fixer for metaclasses, using ``six.with_metaclass``.
