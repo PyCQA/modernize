@@ -17,6 +17,7 @@ setup(
     version=version,
     url='https://github.com/python-modernize/python-modernize',
     packages=['libmodernize', 'libmodernize.fixes'],
+    py_modules=['modernize'],
     description='A hack on top of 2to3 for modernizing code for '
                 'hybrid codebases.',
     long_description=readme,
