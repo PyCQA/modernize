@@ -112,11 +112,12 @@ print("abc")
 """)
 
 FUTURE_IMPORT_PAREN = ("""\
-from __future__ import (print_function, division)
-print("abc")
+from __future__ import (absolute_import, division, print_function)
+unicode("abc")
 """, """\
-from __future__ import (print_function, division)
-print("abc")
+from __future__ import (absolute_import, division, print_function)
+import six
+six.text_type("abc")
 """
 )
 
