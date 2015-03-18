@@ -12,3 +12,4 @@ install:
   - pip install 'six >= 1.9.0'
 after_success:
   coveralls
+sudo: false
