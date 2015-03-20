@@ -27,6 +27,14 @@ x.{type}()
 list(x.{type}())
 """)
 
+DICT_IN_LOOP = ("""\
+for k in x.items():
+    pass
+""", """\
+for k in x.items():
+    pass
+""")
+
 
 def check_all_types(input, output):
     for type_ in TYPES:
@@ -40,3 +48,6 @@ def test_dict_view():
 
 def test_dict_plain():
     check_all_types(*DICT_PLAIN)
+
+def test_dict_in_loop():
+    check_on_input(*DICT_IN_LOOP)
