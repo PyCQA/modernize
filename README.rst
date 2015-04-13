@@ -5,7 +5,8 @@
       | '  \/ _ \/ _` / -_) '_| ' \| |_ / -_)
       |_|_|_\___/\__,_\___|_| |_||_|_/__\___|
 
-This library is a very thin wrapper around ``lib2to3`` to utilize it
+This library is a very thin wrapper around `lib2to3
+<https://github.com/python/cpython/tree/master/Lib/lib2to3>`_ to utilize it
 to make Python 2 code more modern with the intention of eventually
 porting it over to Python 3.
 
