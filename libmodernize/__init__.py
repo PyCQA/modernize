@@ -60,6 +60,11 @@ def add_future(node, symbol):
 
     import_ = fixer_util.FromImport('__future__',
                                     [Leaf(token.NAME, symbol, prefix=" ")])
+
+    # Place after any comments or whitespace. (copyright, shebang etc.)
+    import_.prefix = node.prefix
+    node.prefix = ''
+
     children = [import_, fixer_util.Newline()]
     root.insert_child(idx, Node(syms.simple_stmt, children))
 
