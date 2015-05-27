@@ -30,14 +30,14 @@ import foo
 """)
 
 DOCSTRING = ("""\
-\"\"\"
+\"""
 Docstring
-\"\"\"
+\"""
 import foo
 """, """\
-\"\"\"
+\"""
 Docstring
-\"\"\"
+\"""
 from __future__ import absolute_import
 import foo
 """)
@@ -53,15 +53,15 @@ import foo
 
 DOCSTING_AND_SHEBANG = ("""\
 #!/usr/bin/env python
-\"\"\"
+\"""
 Docstring
-\"\"\"
+\"""
 import foo
 """, """\
 #!/usr/bin/env python
-\"\"\"
+\"""
 Docstring
-\"\"\"
+\"""
 from __future__ import absolute_import
 import foo
 """)
@@ -84,6 +84,27 @@ import foo
 from __future__ import absolute_import
 import foo
 """)
+
+
+COPYRIGHT_AND_DOCSTRING = ("""\
+#
+# Copyright notice
+#
+
+\"""Docstring\"""
+
+import foo
+""", """\
+#
+# Copyright notice
+#
+
+\"""Docstring\"""
+
+from __future__ import absolute_import
+import foo
+""")
+
 
 def test_no_imports():
     check_on_input(*NO_IMPORTS)
@@ -108,3 +129,6 @@ def test_import_with_docstring_and_shebang():
 
 def test_import_with_copyright_and_shebang():
     check_on_input(*COPYRIGHT_AND_SHEBANG)
+
+def test_import_with_copyright_and_docstring():
+    check_on_input(*COPYRIGHT_AND_DOCSTRING)
