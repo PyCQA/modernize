@@ -60,6 +60,12 @@ def add_future(node, symbol):
 
     import_ = fixer_util.FromImport('__future__',
                                     [Leaf(token.NAME, symbol, prefix=" ")])
+
+    # If we're inserting as the first element, ensure any shebang prefix is maintained.
+    if idx == 0 and node.prefix.startswith('#!'):
+        import_.prefix = node.prefix
+        node.prefix = ''
+
     children = [import_, fixer_util.Newline()]
     root.insert_child(idx, Node(syms.simple_stmt, children))
 
