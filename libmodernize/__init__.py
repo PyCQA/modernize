@@ -19,8 +19,15 @@ def check_future_import(node):
             node.children[1].type == token.NAME and
             node.children[1].value == u'__future__'):
         return set()
-    node = node.children[3]
+
+    if node.children[3].type == token.LPAR:
+        # from __future__ import (..
+        node = node.children[4]
+    else:
+        # from __future__ import ...
+        node = node.children[3]
     # now node is the import_as_name[s]
+
     # print(python_grammar.number2symbol[node.type])
     if node.type == syms.import_as_names:
         result = set()

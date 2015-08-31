@@ -111,8 +111,22 @@ from __future__ import print_function as pf, division as dv
 print("abc")
 """)
 
+FUTURE_IMPORT_PAREN = ("""\
+from __future__ import (absolute_import, division, print_function)
+unicode("abc")
+""", """\
+from __future__ import (absolute_import, division, print_function)
+import six
+six.text_type("abc")
+"""
+)
+
 def test_future_import_as():
     check_on_input(*FUTURE_IMPORT_AS)
 
 def test_future_import_as_multiple():
     check_on_input(*FUTURE_IMPORT_AS_MULTIPLE)
+
+def test_future_import_paren():
+    check_on_input(*FUTURE_IMPORT_PAREN)
+
