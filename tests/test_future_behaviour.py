@@ -129,3 +129,4 @@ def test_future_import_as_multiple():
 
 def test_future_import_paren():
     check_on_input(*FUTURE_IMPORT_PAREN)
+
