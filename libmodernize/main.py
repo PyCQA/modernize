@@ -71,9 +71,9 @@ def actual_main(args=None):
                       "(only useful for Python 2.6+).")
     parser.add_option("--no-six", action="store_true", default=False,
                       help="Exclude fixes that depend on the six package.")
-    parser.add_option("-U", "--unix-line-endings", action="store_true", default=None,
+    parser.add_option("-U", "--unix-line-endings", action="store_true", default=False,
                       help="Write files with Unix (LF) line endings.")
-    parser.add_option("-W", "--windows-line-endings", action="store_true", default=None,
+    parser.add_option("-W", "--windows-line-endings", action="store_true", default=False,
                       help="Write files with Windows (CRLF) line endings.")
 
     fixer_pkg = 'libmodernize.fixes'
