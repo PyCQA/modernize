@@ -36,6 +36,12 @@ def main(args=None):
     parser = optparse.OptionParser(usage=usage,
                                    version="modernize %s" % __version__)
     parser.formatter.format_usage = format_usage
+    parser.add_option("-v", "--verbose", action="store_true",
+                      help="Show more verbose logging.")
+    parser.add_option("--no-diffs", action="store_true",
+                      help="Don't show diffs of the refactoring.")
+    parser.add_option("-l", "--list-fixes", action="store_true",
+                      help="List available transformations.")
     parser.add_option("-d", "--doctests_only", action="store_true",
                       help="Fix up doctests only.")
     parser.add_option("-f", "--fix", action="append", default=[],
@@ -44,14 +50,8 @@ def main(args=None):
                       type="int", help="Run 2to3 concurrently.")
     parser.add_option("-x", "--nofix", action="append", default=[],
                       help="Prevent a fixer from being run.")
-    parser.add_option("-l", "--list-fixes", action="store_true",
-                      help="List available transformations.")
     parser.add_option("-p", "--print-function", action="store_true",
                       help="Modify the grammar so that print() is a function.")
-    parser.add_option("-v", "--verbose", action="store_true",
-                      help="Show more verbose logging.")
-    parser.add_option("--no-diffs", action="store_true",
-                      help="Don't show diffs of the refactoring.")
     parser.add_option("-w", "--write", action="store_true",
                       help="Write back modified files.")
     parser.add_option("-n", "--nobackups", action="store_true", default=False,
