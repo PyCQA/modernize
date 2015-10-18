@@ -8,6 +8,7 @@ Python           _              _
 from __future__ import absolute_import, print_function
 
 import sys
+import os
 import logging
 import optparse
 
@@ -28,6 +29,13 @@ def format_usage(usage):
     return usage
 
 def main(args=None):
+    old_os_linesep = os.linesep
+    try:
+        return actual_main(args)
+    finally:
+        os.linesep = old_os_linesep
+
+def actual_main(args=None):
     """Main program.
 
     Returns a suggested exit status (0, 1, 2).
@@ -63,6 +71,10 @@ def main(args=None):
                       "(only useful for Python 2.6+).")
     parser.add_option("--no-six", action="store_true", default=False,
                       help="Exclude fixes that depend on the six package.")
+    parser.add_option("-U", "--unix-line-endings", action="store_true", default=None,
+                      help="Write files with Unix (LF) line endings.")
+    parser.add_option("-W", "--windows-line-endings", action="store_true", default=None,
+                      help="Write files with Windows (CRLF) line endings.")
 
     fixer_pkg = 'libmodernize.fixes'
     avail_fixes = set(refactor.get_fixers_from_package(fixer_pkg))
@@ -93,6 +105,14 @@ def main(args=None):
             return 2
     if options.print_function:
         flags["print_function"] = True
+
+    if options.unix_line_endings and options.windows_line_endings:
+        print("-U/--unix-line-endings and -W/--windows-line-endings options conflict.")
+        return 2
+    if options.unix_line_endings:
+        os.linesep = '\n'
+    if options.windows_line_endings:
+        os.linesep = '\r\n'
 
     # Set up logging handler
     level = logging.DEBUG if options.verbose else logging.INFO
