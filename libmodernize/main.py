@@ -33,7 +33,8 @@ def main(args=None):
     try:
         return actual_main(args)
     finally:
-        os.linesep = old_os_linesep
+        if sys.version_info < (3, 0):
+            os.linesep = old_os_linesep
 
 def actual_main(args=None):
     """Main program.
@@ -110,9 +111,9 @@ def actual_main(args=None):
         print("-U/--unix-line-endings and -W/--windows-line-endings options conflict.")
         return 2
     if options.unix_line_endings:
-        os.linesep = '\n'
+        fix_line_endings('\n')
     if options.windows_line_endings:
-        os.linesep = '\r\n'
+        fix_line_endings('\r\n')
 
     # Set up logging handler
     level = logging.DEBUG if options.verbose else logging.INFO
@@ -165,3 +166,12 @@ def actual_main(args=None):
 
     # Return error status (0 if rt.errors is zero)
     return int(bool(rt.errors))
+
+def fix_line_endings(linesep):
+    if sys.version_info < (3, 0):
+        os.linesep = linesep
+    else:
+        def _to_system_newlines(s):
+            return s.replace(os.linesep, linesep)
+
+        refactor._to_system_newlines = _to_system_newlines
