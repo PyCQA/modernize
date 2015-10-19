@@ -19,18 +19,29 @@ from libmodernize import __version__
 from libmodernize.fixes import lib2to3_fix_names, six_fix_names, opt_in_fix_names
 
 
+PY3K = sys.version_info >= (3, 0)
+if not PY3K:
+    LF = '\n'
+    CRLF = '\r\n'
+    CR = '\r'
+else:
+    LF = bytes('\n', encoding='ascii')
+    CRLF = bytes('\r\n', encoding='ascii')
+    CR = bytes('\r', encoding='ascii')
+
+
 class LFPreservingRefactoringTool(StdoutRefactoringTool):
     """ https://github.com/python-modernize/python-modernize/issues/121 """
     def write_file(self, new_text, filename, old_text, encoding):
         # detect linefeeds
-        lineends = {'\n':0, '\r\n':0, '\r':0}
+        lineends = {LF:0, CRLF:0, CR:0}
         for line in open(filename, 'rb'):
-            if line.endswith('\r\n'):
-                lineends['\r\n'] += 1
-            elif line.endswith('\n'):
-                lineends['\n'] += 1
-            elif line.endswith('\r'):
-                lineends['\r'] += 1
+            if line.endswith(CRLF):
+                lineends[CRLF] += 1
+            elif line.endswith(LF):
+                lineends[LF] += 1
+            elif line.endswith(CR):
+                lineends[CR] += 1
         super(LFPreservingRefactoringTool, self).write_file(
             new_text, filename, old_text, encoding)
         # detect if line ends are consistent in source file
