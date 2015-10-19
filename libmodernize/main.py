@@ -34,14 +34,16 @@ class LFPreservingRefactoringTool(StdoutRefactoringTool):
     """ https://github.com/python-modernize/python-modernize/issues/121 """
     def write_file(self, new_text, filename, old_text, encoding):
         # detect linefeeds
+        oldfile = open(filename, 'rb')
         lineends = {LF:0, CRLF:0, CR:0}
-        for line in open(filename, 'rb'):
+        for line in oldfile:
             if line.endswith(CRLF):
                 lineends[CRLF] += 1
             elif line.endswith(LF):
                 lineends[LF] += 1
             elif line.endswith(CR):
                 lineends[CR] += 1
+        oldfile.close()
         super(LFPreservingRefactoringTool, self).write_file(
             new_text, filename, old_text, encoding)
         # detect if line ends are consistent in source file
@@ -52,8 +54,9 @@ class LFPreservingRefactoringTool(StdoutRefactoringTool):
                 # rereading new file is easier that writing new_text
                 # correct encoding in Python 2 and 3 compatible way
                 lines = []
-                for line in open(filename, 'rb'):
-                    lines.append(line.rstrip(CRLF))
+                with open(filename, 'rb') as newfile:
+                    for line in newfile:
+                        lines.append(line.rstrip(CRLF))
                 with open(filename, 'wb') as f:
                     for line in lines:
                         f.write(line + newline)
