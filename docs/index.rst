@@ -51,6 +51,16 @@ A note about handling text literals
   mark bytestrings with ``b''`` and native strings in ``str('')``
   or something similar that survives the transformation.
 
+Line endings
+============
+
+Normally, changed files are written with the usual line endings for the platform
+that python-modernize is run on (LF for Unix / Mac OS X, or CRLF for Windows).
+
+The ``--unix-line-endings`` option writes Unix line endings regardless of
+the curent platform. Similarly, the ``--windows-line-endings`` option
+writes Windows line endings regardless of the current platform.
+
 Indices and tables
 //////////////////
 
