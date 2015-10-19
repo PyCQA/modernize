@@ -31,7 +31,7 @@ class LFPreservingRefactoringTool(StdoutRefactoringTool):
                 lineends['\n'] += 1
             elif line.endswith('\r'):
                 lineends['\r'] += 1
-            lines.append(line.rstrip(\r\n))
+            lines.append(line.rstrip('\r\n'))
         super(LFPreservingRefactoringTool, self).write_file(
             new_text, filename, old_text, encoding)
         # detect if line ends are consistent in source file
