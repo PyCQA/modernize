@@ -4,6 +4,9 @@ import io
 import os.path
 import tempfile
 import shutil
+import sys
+
+PY3 = sys.version_info[0] >= 3
 
 from libmodernize.main import main as modernize_main
 
@@ -18,6 +21,10 @@ def check_on_input(input_content, expected_content, extra_flags = [],
     matches expected_content. Then, runs modernize again with any extra arguments,
     and asserts that the second run makes no changes.
     """
+    if not PY3 and isinstance(input_content, bytes):
+        # Allow native strings as input on Python 2
+        input_content = input_content.decode('ascii')
+
     tmpdirname = tempfile.mkdtemp()
     try:
         test_input_name = os.path.join(tmpdirname, "input.py")
