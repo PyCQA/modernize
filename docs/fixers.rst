@@ -39,6 +39,17 @@ using ``-f``/``--fix``. The ``--six-unicode`` and ``--future-unicode`` options
 also disable fixers that are not applicable for those options.
 
 
+Options affecting all fixers
+----------------------------
+
+Normally, output files are written with the usual line endings for the platform
+that python-modernize is run on (LF for Unix / Mac OS X, or CRLF for Windows).
+
+The ``--unix-line-endings`` option writes Unix line endings regardless of the
+curent platform. Similarly, the ``--windows-line-endings`` option writes Windows
+line endings regardless of the current platform.
+
+
 Fixers requiring six
 ++++++++++++++++++++
 

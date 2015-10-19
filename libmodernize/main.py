@@ -8,6 +8,7 @@ Python           _              _
 from __future__ import absolute_import, print_function
 
 import sys
+import os
 import logging
 import optparse
 
@@ -63,6 +64,10 @@ def main(args=None):
                       "(only useful for Python 2.6+).")
     parser.add_option("--no-six", action="store_true", default=False,
                       help="Exclude fixes that depend on the six package.")
+    parser.add_option("--unix-line-endings", action="store_true", default=False,
+                      help="Write files with Unix (LF) line endings.")
+    parser.add_option("--windows-line-endings", action="store_true", default=False,
+                      help="Write files with Windows (CRLF) line endings.")
 
     fixer_pkg = 'libmodernize.fixes'
     avail_fixes = set(refactor.get_fixers_from_package(fixer_pkg))
@@ -93,6 +98,15 @@ def main(args=None):
             return 2
     if options.print_function:
         flags["print_function"] = True
+
+    if options.unix_line_endings and options.windows_line_endings:
+        print("--unix-line-endings and --windows-line-endings options conflict.")
+        return 2
+    linesep = None
+    if options.unix_line_endings:
+        linesep = '\n'
+    if options.windows_line_endings:
+        linesep = '\r\n'
 
     # Set up logging handler
     level = logging.DEBUG if options.verbose else logging.INFO
@@ -125,6 +139,26 @@ def main(args=None):
     else:
         requested = default_fixes
     fixer_names = requested.difference(unwanted_fixes)
+
+    parameters = (fixer_names, flags, explicit, options, refactor_stdin, args)
+    if linesep is None or linesep == os.linesep:
+        return do_refactoring(*parameters)
+    else:
+        if not hasattr(refactor, '_to_system_newlines'):
+            print("Cannot override newline mode due to a change in lib2to3.")
+            return 2
+
+        old_to_system_newlines = refactor._to_system_newlines
+        def _to_system_newlines(s):
+            return s.replace('\r', '').replace('\n', linesep)
+        refactor._to_system_newlines = _to_system_newlines
+        try:
+            return do_refactoring(*parameters)
+        finally:
+            refactor._to_system_newlines = old_to_system_newlines
+
+
+def do_refactoring(fixer_names, flags, explicit, options, refactor_stdin, args):
     rt = StdoutRefactoringTool(sorted(fixer_names), flags, sorted(explicit),
                                options.nobackups, not options.no_diffs)
 
