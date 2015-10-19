@@ -17,6 +17,35 @@ from lib2to3 import refactor
 from libmodernize import __version__
 from libmodernize.fixes import lib2to3_fix_names, six_fix_names, opt_in_fix_names
 
+
+class LFPreservingRefactoringTool(StdoutRefactoringTool):
+    """ https://github.com/python-modernize/python-modernize/issues/121 """
+    def write_file(self, new_text, filename, old_text, encoding):
+        # detect linefeeds
+        lineends = {'\n':0, '\r\n':0, '\r':0}
+        lines = []
+        for line in open(filename, 'rb'):
+            if line.endswith('\r\n'):
+                lineends['\r\n'] += 1
+            elif line.endswith('\n'):
+                lineends['\n'] += 1
+            elif line.endswith('\r'):
+                lineends['\r'] += 1
+            lines.append(line.rstrip(\r\n))
+        super(LFPreservingRefactoringTool, self).write_file(
+            new_text, filename, old_text, encoding)
+        # detect if line ends are consistent in source file
+        if sum([bool(lineends[x]) for x in lineends]) == 1:
+            # detect if line ends are different from system-specific
+            newline = [x for x in lineends if lineends[x] != 0][0]
+            if os.linesep != newline:
+                with open(filename, 'wb') as f:
+                    for line in lines:
+                        f.write(line)
+                self.log_debug('fixed %s linefeeds back to %s',
+                    filename, newline)
+
+
 usage = __doc__ + """\
  %s
 
@@ -125,7 +154,7 @@ def main(args=None):
     else:
         requested = default_fixes
     fixer_names = requested.difference(unwanted_fixes)
-    rt = StdoutRefactoringTool(sorted(fixer_names), flags, sorted(explicit),
+    rt = LFPreservingRefactoringTool(sorted(fixer_names), flags, sorted(explicit),
                                options.nobackups, not options.no_diffs)
 
     # Refactor all files and directories passed as arguments
