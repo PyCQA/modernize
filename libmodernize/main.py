@@ -19,16 +19,9 @@ from libmodernize import __version__
 from libmodernize.fixes import lib2to3_fix_names, six_fix_names, opt_in_fix_names
 
 
-PY3K = sys.version_info >= (3, 0)
-if not PY3K:
-    LF = '\n'
-    CRLF = '\r\n'
-    CR = '\r'
-else:
-    LF = bytes('\n', encoding='ascii')
-    CRLF = bytes('\r\n', encoding='ascii')
-    CR = bytes('\r', encoding='ascii')
-
+LF = b'\n'
+CRLF = b'\r\n'
+CR = b'\r'
 
 class LFPreservingRefactoringTool(StdoutRefactoringTool):
     """ https://github.com/python-modernize/python-modernize/issues/121 """
