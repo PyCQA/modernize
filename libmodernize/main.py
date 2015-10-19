@@ -24,7 +24,6 @@ class LFPreservingRefactoringTool(StdoutRefactoringTool):
     def write_file(self, new_text, filename, old_text, encoding):
         # detect linefeeds
         lineends = {'\n':0, '\r\n':0, '\r':0}
-        lines = []
         for line in open(filename, 'rb'):
             if line.endswith('\r\n'):
                 lineends['\r\n'] += 1
@@ -32,7 +31,6 @@ class LFPreservingRefactoringTool(StdoutRefactoringTool):
                 lineends['\n'] += 1
             elif line.endswith('\r'):
                 lineends['\r'] += 1
-            lines.append(line.rstrip('\r\n'))
         super(LFPreservingRefactoringTool, self).write_file(
             new_text, filename, old_text, encoding)
         # detect if line ends are consistent in source file
@@ -41,8 +39,8 @@ class LFPreservingRefactoringTool(StdoutRefactoringTool):
             newline = [x for x in lineends if lineends[x] != 0][0]
             if os.linesep != newline:
                 with open(filename, 'wb') as f:
-                    for line in lines:
-                        f.write(line)
+                    for line in new_text.splitlines():
+                        f.write(line + newline)
                 self.log_debug('fixed %s linefeeds back to %s',
                     filename, newline)
 
