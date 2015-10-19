@@ -21,9 +21,9 @@ from libmodernize.fixes import lib2to3_fix_names, six_fix_names, opt_in_fix_name
 
 class LineEndingsRefactoringTool(StdoutRefactoringTool):
     '''2to3 refactoring tool that rewrites files with specified line endings'''
-    def __init__(self, *args, newline=None, **kwargs):
+    def __init__(self, *args, **kwargs):
+        self.newline = kwargs.pop('newline', None)
         super(LineEndingsRefactoringTool, self).__init__(*args, **kwargs)
-        self.newline = newline
 
     def write_file(self, new_text, filename, old_text, encoding):
         super(LineEndingsRefactoringTool, self).write_file(new_text, filename,
