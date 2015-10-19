@@ -29,13 +29,11 @@ def check_on_input(input_content, expected_content, extra_flags=[], mode="t"):
             if ret != 0:
                 raise AssertionError("didn't expect to fail (returned %r)" % (ret,))
 
-            output_content = expected_content[:0]  # same string type
             with open(test_input_name, "r" + mode) as output_file:
                 if mode == "b":
-                    output_file = getattr(output_file, 'buffer', output_file)
-                for line in output_file:
-                    if line:
-                        output_content += line
+                    output_content = output_file.read()
+                else:
+                    output_content = "".join([line for line in output_file if line])
 
             if output_content != expected_content:
                 raise AssertionError("%s\nInput:\n%s\nOutput:\n%s\nExpecting:\n%s" %
