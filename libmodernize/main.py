@@ -49,8 +49,13 @@ class LFPreservingRefactoringTool(StdoutRefactoringTool):
             # detect if line ends are different from system-specific
             newline = [x for x in lineends if lineends[x] != 0][0]
             if os.linesep != newline:
+                # rereading new file is easier that writing new_text
+                # correct encoding in Python 2 and 3 compatible way
+                lines = []
+                for line in open(filename, 'rb'):
+                    lines.append(line.rstrip(CRLF))
                 with open(filename, 'wb') as f:
-                    for line in new_text.splitlines():
+                    for line in lines:
                         f.write(line + newline)
                 self.log_debug('fixed %s linefeeds back to %s',
                     filename, newline)
