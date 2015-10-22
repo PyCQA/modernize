@@ -166,7 +166,7 @@ def main(args=None):
         requested = default_fixes
     fixer_names = requested.difference(unwanted_fixes)
     rt = LFPreservingRefactoringTool(sorted(fixer_names), flags, sorted(explicit),
-                               options.nobackups, not options.no_diffs)
+                                     options.nobackups, not options.no_diffs)
 
     # Refactor all files and directories passed as arguments
     if not rt.errors:
