@@ -3,6 +3,7 @@ Unreleased
 
 * Added the opt-in classic_division fixer.
 * Updated the ``dict_six`` fixer to support ``six.viewitems()`` and friends.
+* New fixer for ``unichr``, changed to ``six.unichr``.
 * Documentation corrections.
 
 
