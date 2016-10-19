@@ -181,6 +181,18 @@ version of ``six`` is installed.
    Changes all reference of :func:`unicode <python2:unicode>` to
    :data:`six.text_type`.
 
+.. 2to3fixer:: urllib_six
+
+   Changes::
+
+       from urllib import quote_plus
+       quote_plus('hello world')
+
+   to::
+
+       from six.moves.urllib.parse import quote_plus
+       quote_plus('hello world')
+
 .. 2to3fixer:: xrange_six
 
    Changes::
