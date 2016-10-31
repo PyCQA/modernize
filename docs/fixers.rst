@@ -193,7 +193,7 @@ version of ``six`` is installed.
        from six.moves.urllib.parse import quote_plus
        quote_plus('hello world')
 
-.. 2to3fixer:: unichr_type
+.. 2to3fixer:: unichr
 
    Changes all reference of :func:`unichr <python2:unichr>` to
    :data:`six.unichr`.

@@ -3,15 +3,15 @@ from __future__ import absolute_import
 from utils import check_on_input
 
 
-UNICHR_TYPE_REF = ("""\
-isinstance(u'a', unichr)
+UNICHR_METHOD_REF = ("""\
+converter = unichr
 """, """\
 from __future__ import absolute_import
 from six import unichr
-isinstance(u'a', unichr)
+converter = unichr
 """)
 
-UNICHR_TYPE_CALL = ("""\
+UNICHR_METHOD_CALL = ("""\
 unichr(42)
 """, """\
 from __future__ import absolute_import
@@ -25,12 +25,13 @@ foobar.unichr(42)
 foobar.unichr(42)
 """)
 
-def test_unichr_type_ref():
-    check_on_input(*UNICHR_TYPE_REF)
+
+def test_unichr_method_ref():
+    check_on_input(*UNICHR_METHOD_REF)
 
 
-def test_unichr_type_call():
-    check_on_input(*UNICHR_TYPE_CALL)
+def test_unichr_method_call():
+    check_on_input(*UNICHR_METHOD_CALL)
 
 
 def test_unichr_user_call():

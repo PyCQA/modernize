@@ -6,7 +6,7 @@ from lib2to3.fixer_util import is_probably_builtin
 import libmodernize
 
 
-class FixUnichrType(fixer_base.ConditionalFix):
+class FixUnichr(fixer_base.ConditionalFix):
     BM_compatible = True
 
     skip_on = 'six.moves.unichr'
