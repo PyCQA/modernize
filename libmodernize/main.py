@@ -147,9 +147,9 @@ def main(args=None):
         rt.summarize()
 
     # Return error status (0 if rt.errors is zero)
-    result = bool(rt.errors)
+    return_code = int(bool(rt.errors))
     # If we are enforcing python 3 compatibility, return a non-zero exit code if we had to modify
     # any files.
-    if options.enforce:
-        result = result or bool(rt.files)
-    return int(result)
+    if options.enforce and rt.files:
+        return_code |= 2
+    return return_code
