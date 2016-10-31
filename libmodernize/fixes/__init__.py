@@ -40,6 +40,7 @@ six_fix_names = set([
     'libmodernize.fixes.fix_unicode',
     'libmodernize.fixes.fix_unicode_type',
     'libmodernize.fixes.fix_urllib_six',
+    'libmodernize.fixes.fix_unichr',
     'libmodernize.fixes.fix_xrange_six',
     'libmodernize.fixes.fix_zip',
 ])
