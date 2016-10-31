@@ -63,6 +63,9 @@ def main(args=None):
                       "(only useful for Python 2.6+).")
     parser.add_option("--no-six", action="store_true", default=False,
                       help="Exclude fixes that depend on the six package.")
+    parser.add_option("--enforce", action="store_true", default=False,
+                      help="Returns non-zero exit code of any fixers had to be applied.  "
+                           "Useful for enforcing Python 3 compatibility.")
 
     fixer_pkg = 'libmodernize.fixes'
     avail_fixes = set(refactor.get_fixers_from_package(fixer_pkg))
@@ -144,4 +147,9 @@ def main(args=None):
         rt.summarize()
 
     # Return error status (0 if rt.errors is zero)
-    return int(bool(rt.errors))
+    result = bool(rt.errors)
+    # If we are enforcing python 3 compatibility, return a non-zero exit code if we had to modify
+    # any files.
+    if options.enforce:
+        result = result or bool(rt.files)
+    return int(result)
