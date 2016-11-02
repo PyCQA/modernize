@@ -37,7 +37,9 @@ class B(six.with_metaclass(Meta, object)):
 
 
 def test_no_six():
-    check_on_input(NO_SIX_SAMPLE, NO_SIX_SAMPLE, extra_flags=['--no-six'])
+    check_on_input(NO_SIX_SAMPLE, NO_SIX_SAMPLE,
+                   extra_flags=['--no-six'],
+                   expected_return_code=0)
 
 
 def test_enforce():
