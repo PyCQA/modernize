@@ -7,7 +7,8 @@ import shutil
 from libmodernize.main import main as modernize_main
 
 
-def check_on_input(input_content, expected_content, extra_flags = []):
+def check_on_input(input_content, expected_content, extra_flags = [],
+                   expected_return_code = None):
     """
     Check that input_content is fixed to expected_content, idempotently.
 
@@ -22,8 +23,13 @@ def check_on_input(input_content, expected_content, extra_flags = []):
         with open(test_input_name, "wt") as input_file:
             input_file.write(input_content)
 
-        def _check(this_input_content, which_check):
-            modernize_main(extra_flags + ["-w", test_input_name])
+        def _check(this_input_content, which_check, check_return_code=True):
+            return_code = modernize_main(extra_flags + ["-w", test_input_name])
+
+            if check_return_code and expected_return_code is not None:
+                if expected_return_code != return_code:
+                    raise AssertionError("Actual return code: %s\nExpected return code: %s" %
+                                         (return_code, expected_return_code))
 
             output_content = ""
             with open(test_input_name, "rt") as output_file:
@@ -37,6 +43,6 @@ def check_on_input(input_content, expected_content, extra_flags = []):
 
         _check(input_content, "output check failed")
         if input_content != expected_content:
-            _check(expected_content, "idempotence check failed")
+            _check(expected_content, "idempotence check failed", check_return_code=False)
     finally:
         shutil.rmtree(tmpdirname)
