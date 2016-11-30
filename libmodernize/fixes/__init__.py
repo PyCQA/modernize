@@ -15,6 +15,7 @@ lib2to3_fix_names = set([
     'lib2to3.fixes.fix_operator',
     'lib2to3.fixes.fix_paren',
     'lib2to3.fixes.fix_reduce',
+    'lib2to3.fixes.fix_renames',
     'lib2to3.fixes.fix_repr',
     'lib2to3.fixes.fix_set_literal',
     'lib2to3.fixes.fix_standarderror',
