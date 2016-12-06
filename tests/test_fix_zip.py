@@ -19,6 +19,14 @@ from six.moves import zip
 list(zip(x))
 """)
 
+ZIP_DICT_CONTEXT = ("""\
+dict(zip(x))
+""", """\
+from __future__ import absolute_import
+from six.moves import zip
+dict(zip(x))
+""")
+
 ZIP_CALL_2_ARGS = ("""\
 zip(x, y)
 zip(w, z)
@@ -61,4 +69,7 @@ def test_zip_call_star_args():
     check_on_input(*ZIP_CALL_STAR_ARGS)
 
 def test_zip_iterator_context():
+    check_on_input(*ZIP_ITERATOR_CONTEXT)
+
+def test_zip_dict_context():
     check_on_input(*ZIP_ITERATOR_CONTEXT)

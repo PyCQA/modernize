@@ -7,6 +7,21 @@ from lib2to3.pgen2 import token
 
 __version__ = '0.5'
 
+_fixed_p1 = """
+power<
+    ( 'iter' | 'list' | 'tuple' | 'sorted' | 'set' | 'sum' | 'dict' |
+      'any' | 'all' | 'enumerate' | (any* trailer< '.' 'join' >) )
+    trailer< '(' node=any ')' >
+    any*
+>
+"""
+
+
+def monkey_patch_fixer_util():
+    fixer_util.p1 = _fixed_p1
+    fixer_util.pats_built = False
+
+
 def check_future_import(node):
     """If this is a future import, return set of symbols that are imported,
     else return None."""

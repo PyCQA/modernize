@@ -13,8 +13,8 @@ import optparse
 
 from lib2to3.main import warn, StdoutRefactoringTool
 from lib2to3 import refactor
-
-from libmodernize import __version__
+from libmodernize import __version__, monkey_patch_fixer_util
+monkey_patch_fixer_util()
 from libmodernize.fixes import lib2to3_fix_names, six_fix_names, opt_in_fix_names
 
 usage = __doc__ + """\
