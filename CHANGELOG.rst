@@ -43,7 +43,7 @@ Released 2014-10-14.
   similar fixers from ``lib2to3``.
 * Fixed a bug where ``fix_raise_six`` was adding an incorrect import
   statement.
-* Support for targetting Python 2.5 or lower has been officially dropped.
+* Support for targeting Python 2.5 or lower has been officially dropped.
   (Previously some fixers did output constructs that were only added in
   Python 2.6, such as the ``except ... as`` construct, but this was not
   documented.)
