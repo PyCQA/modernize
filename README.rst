@@ -23,17 +23,17 @@ dependency on `six <https://pypi.python.org/pypi/six>`_, unless the
 recommended. Some of the fixers output code that is not compatible with
 Python 2.5 or lower.
 
-**Documentation:** `python-modernize.rtfd.org
-<http://python-modernize.readthedocs.org/en/latest/>`_.
+**Documentation:** `python-modernize.readthedocs.io
+<https://python-modernize.readthedocs.io/>`_.
 
 See the ``LICENSE`` file for the license of ``python-modernize``.
 Using this tool does not affect licensing of the modernized code.
 
-.. image:: https://readthedocs.org/projects/python-modernize/badge/?version=latest
+.. image:: https://readthedocs.org/projects/python-modernize/badge/
     :target: https://readthedocs.org/projects/python-modernize/?badge=latest
     :alt: Documentation Status
 
-.. image:: https://travis-ci.org/python-modernize/python-modernize.svg?branch=master
+.. image:: https://api.travis-ci.org/python-modernize/python-modernize.svg?branch=master
     :target: https://travis-ci.org/python-modernize/python-modernize
 
 .. image:: https://coveralls.io/repos/python-modernize/python-modernize/badge.png?branch=master
