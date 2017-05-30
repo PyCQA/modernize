@@ -128,8 +128,6 @@ def main(args=None):
     else:
         requested = default_fixes
     fixer_names = requested.difference(unwanted_fixes)
-    if 'libmodernize.fixes.fix_itertools_imports_six' in fixer_names:
-        fixer_names.add('lib2to3.fixes.fix_itertools')
     rt = StdoutRefactoringTool(sorted(fixer_names), flags, sorted(explicit),
                                options.nobackups, not options.no_diffs)
 
