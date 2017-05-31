@@ -1,6 +1,7 @@
-""" Fixer for itertools.(imap|ifilter|izip) --> (map|filter|zip) and
-    itertools.ifilterfalse --> itertools.filterfalse (bugs 2360-2363)
-    imports from itertools are fixed in fix_itertools_import.py
+""" Fixer for itertools.(imap|ifilter|izip) -->
+    (six.moves.map|six.moves.filter|six.moves.zip) and
+    itertools.ifilterfalse --> six.moves.filterfalse (bugs 2360-2363)
+    imports from itertools are fixed in fix_itertools_imports_six.py
     If itertools is imported as something else (ie: import itertools as it;
     it.izip(spam, eggs)) method calls will not get fixed.
     """
