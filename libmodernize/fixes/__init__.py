@@ -33,6 +33,8 @@ six_fix_names = set([
     'libmodernize.fixes.fix_dict_six',
     'libmodernize.fixes.fix_filter',
     'libmodernize.fixes.fix_imports_six',
+    'libmodernize.fixes.fix_itertools_six',
+    'libmodernize.fixes.fix_itertools_imports_six',
     'libmodernize.fixes.fix_input_six',
     'libmodernize.fixes.fix_int_long_tuple',
     'libmodernize.fixes.fix_map',
