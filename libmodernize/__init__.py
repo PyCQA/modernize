@@ -82,10 +82,26 @@ def touch_import(package, name, node):
 
 
 def is_listcomp(node):
-    return (isinstance(node, Node) and
-             node.type == syms.atom and
-             len(node.children) >= 2 and
-             isinstance(node.children[0], Leaf) and
-             node.children[0].value == '[' and
-             isinstance(node.children[-1], Leaf) and
-             node.children[-1].value == ']')
+    def _is_listcomp(node):
+        return (isinstance(node, Node) and
+                node.type == syms.atom and
+                len(node.children) >= 2 and
+                isinstance(node.children[0], Leaf) and
+                node.children[0].value == '[' and
+                isinstance(node.children[-1], Leaf) and
+                node.children[-1].value == ']')
+
+    def _is_noop_power_node(node):
+        """https://github.com/python/cpython/pull/2235 changed the node
+        structure for fix_map / fix_filter to contain a top-level `power` node
+        """
+        return (
+            isinstance(node, Node) and
+            node.type == syms.power and
+            len(node.children) == 1
+        )
+
+    return (
+        _is_listcomp(node) or
+        _is_noop_power_node(node) and _is_listcomp(node.children[0])
+    )
