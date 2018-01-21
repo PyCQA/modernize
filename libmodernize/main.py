@@ -7,6 +7,7 @@ Python           _              _
 
 from __future__ import absolute_import, print_function
 
+import os
 import sys
 import logging
 import optparse
@@ -16,6 +17,45 @@ from lib2to3 import refactor
 
 from libmodernize import __version__
 from libmodernize.fixes import lib2to3_fix_names, six_fix_names, opt_in_fix_names
+
+
+LF = b'\n'
+CRLF = b'\r\n'
+CR = b'\r'
+
+class LFPreservingRefactoringTool(StdoutRefactoringTool):
+    """ https://github.com/python-modernize/python-modernize/issues/121 """
+    def write_file(self, new_text, filename, old_text, encoding):
+        # detect linefeeds
+        oldfile = open(filename, 'rb')
+        lineends = {LF:0, CRLF:0, CR:0}
+        for line in oldfile:
+            if line.endswith(CRLF):
+                lineends[CRLF] += 1
+            elif line.endswith(LF):
+                lineends[LF] += 1
+            elif line.endswith(CR):
+                lineends[CR] += 1
+        oldfile.close()
+        super(LFPreservingRefactoringTool, self).write_file(
+            new_text, filename, old_text, encoding)
+        # detect if line ends are consistent in source file
+        if sum([bool(lineends[x]) for x in lineends]) == 1:
+            # detect if line ends are different from system-specific
+            newline = [x for x in lineends if lineends[x] != 0][0]
+            if os.linesep != newline:
+                # rereading new file is easier that writing new_text
+                # correct encoding in Python 2 and 3 compatible way
+                lines = []
+                with open(filename, 'rb') as newfile:
+                    for line in newfile:
+                        lines.append(line.rstrip(CRLF))
+                with open(filename, 'wb') as f:
+                    for line in lines:
+                        f.write(line + newline)
+                self.log_debug('fixed %s linefeeds back to %s',
+                    filename, newline)
+
 
 usage = __doc__ + """\
  %s
@@ -128,8 +168,8 @@ def main(args=None):
     else:
         requested = default_fixes
     fixer_names = requested.difference(unwanted_fixes)
-    rt = StdoutRefactoringTool(sorted(fixer_names), flags, sorted(explicit),
-                               options.nobackups, not options.no_diffs)
+    rt = LFPreservingRefactoringTool(sorted(fixer_names), flags, sorted(explicit),
+                                     options.nobackups, not options.no_diffs)
 
     # Refactor all files and directories passed as arguments
     if not rt.errors:
