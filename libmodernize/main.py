@@ -27,6 +27,8 @@ def format_usage(usage):
     """Method that doesn't output "Usage:" prefix"""
     return usage
 
+_lib2to3_has_output_dir = hasattr(StdoutRefactoringTool([], {}, False, False, False), '_output_dir')
+
 def main(args=None):
     """Main program.
 
@@ -56,6 +58,15 @@ def main(args=None):
                       help="Write back modified files.")
     parser.add_option("-n", "--nobackups", action="store_true", default=False,
                       help="Don't write backups for modified files.")
+    parser.add_option("-o", "--output-dir", action="store", default="",
+                      help="Put output files in this directory "
+                           "instead of overwriting the input files.  Requires -n.  "
+                           "Available on Python==2.7 and Python>=3.2.")
+    parser.add_option("--add-suffix", action="store", default="",
+                      help="Append this string to all output filenames."
+                           " Requires -n if non-empty.  "
+                           "Available on Python==2.7 and Python>=3.2.  "
+                           "ex: --add-suffix='3' will generate .py3 files.")
     parser.add_option("--six-unicode", action="store_true", default=False,
                       help="Wrap unicode literals in six.u().")
     parser.add_option("--future-unicode", action="store_true", default=False,
@@ -96,6 +107,16 @@ def main(args=None):
             return 2
     if options.print_function:
         flags["print_function"] = True
+    if not _lib2to3_has_output_dir and (options.output_dir or options.add_suffix):
+        print("--output-dir and --add-suffix are not supported "
+              "with this version of Python.", file=sys.stderr)
+        return 2
+    # If we allowed these, the original files would be renamed to backup names
+    # but not replaced.
+    if options.output_dir and not options.nobackups:
+        parser.error("Can't use --output-dir/-o without -n.")
+    if options.add_suffix and not options.nobackups:
+        parser.error("Can't use --add-suffix without -n.")
 
     # Set up logging handler
     level = logging.DEBUG if options.verbose else logging.INFO
@@ -128,8 +149,11 @@ def main(args=None):
     else:
         requested = default_fixes
     fixer_names = requested.difference(unwanted_fixes)
+    newer_options = {}
+    if (options.output_dir or options.add_suffix):
+        newer_options = dict(output_dir=options.output_dir, append_suffix=options.add_suffix)
     rt = StdoutRefactoringTool(sorted(fixer_names), flags, sorted(explicit),
-                               options.nobackups, not options.no_diffs)
+                               options.nobackups, not options.no_diffs, **newer_options)
 
     # Refactor all files and directories passed as arguments
     if not rt.errors:
