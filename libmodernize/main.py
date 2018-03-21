@@ -80,9 +80,13 @@ def main(args=None):
     if not options.write and options.nobackups:
         parser.error("Can't use '-n' without '-w'.")
     if options.list_fixes:
-        print("Available transformations for the -f/--fix option:")
-        for fixname in sorted(avail_fixes):
-            print(fixname)
+        print("Available transformations for the -f/--fix and -x/--nofix options:")
+        if avail_fixes:
+            for fixname in sorted(avail_fixes):
+                print("    {}  ({})".format(fixname, fixname.split(".fix_", 1)[1]))
+        else:
+            print("    (None)")
+        print()
         if not args:
             return 0
     if not args:
@@ -102,7 +106,21 @@ def main(args=None):
     logging.basicConfig(format='%(name)s: %(message)s', level=level)
 
     # Initialize the refactoring tool
-    unwanted_fixes = set(options.nofix)
+    unwanted_fixes = set()
+    splitfixes = []
+    for fix in options.nofix:
+        splitfixes.extend(fix.split(','))
+    for fix in splitfixes:
+        matched = None
+        for tgt in avail_fixes:
+            if tgt == fix or tgt.endswith(".fix_{}".format(fix)):
+                matched = tgt
+                unwanted_fixes.add(matched)
+        if matched is None:
+            print("Error: fix '{}' was not found".format(fix),
+                  file=sys.stderr)
+            return 2
+
     default_fixes = avail_fixes.difference(opt_in_fix_names)
 
     # Remove unicode fixers depending on command line options
@@ -116,18 +134,43 @@ def main(args=None):
 
     if options.no_six:
         unwanted_fixes.update(six_fix_names)
+
     explicit = set()
     if options.fix:
         default_present = False
+        splitfixes = []
         for fix in options.fix:
+            splitfixes.extend(fix.split(','))
+        for fix in splitfixes:
             if fix == "default":
                 default_present = True
             else:
-                explicit.add(fix)
+                matched = None
+                for tgt in avail_fixes:
+                    if tgt == fix or tgt.endswith(".fix_{}".format(fix)):
+                        matched = tgt
+                        explicit.add(matched)
+                if matched is None:
+                    print("Error: fix '{}' was not found".format(fix),
+                          file=sys.stderr)
+                    return 2
         requested = default_fixes.union(explicit) if default_present else explicit
     else:
         requested = default_fixes
     fixer_names = requested.difference(unwanted_fixes)
+    print(" Loading the following fixers:")
+    if fixer_names:
+        for fixname in sorted(fixer_names):
+            print("    {}  ({})".format(fixname, fixname.split(".fix_", 1)[1]))
+    else:
+        print("    (None)")
+    print(" Applying the following explicit transformations:")
+    if explicit:
+        for fixname in sorted(explicit):
+            print("    {}  ({})".format(fixname, fixname.split(".fix_", 1)[1]))
+    else:
+        print("    (None)")
+    print()
     rt = StdoutRefactoringTool(sorted(fixer_names), flags, sorted(explicit),
                                options.nobackups, not options.no_diffs)
 
