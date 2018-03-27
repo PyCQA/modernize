@@ -77,7 +77,6 @@ def add_future(node, symbol):
 
 
 def touch_import(package, name, node):
-    add_future(node, 'absolute_import')
     fixer_util.touch_import(package, name, node)
 
 
