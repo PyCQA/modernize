@@ -81,11 +81,8 @@ def main(args=None):
         parser.error("Can't use '-n' without '-w'.")
     if options.list_fixes:
         print("Available transformations for the -f/--fix and -x/--nofix options:")
-        if avail_fixes:
-            for fixname in sorted(avail_fixes):
-                print("    {}  ({})".format(fixname, fixname.split(".fix_", 1)[1]))
-        else:
-            print("    (None)")
+        for fixname in sorted(avail_fixes):
+            print("    {}  ({})".format(fixname, fixname.split(".fix_", 1)[1]))
         print()
         if not args:
             return 0
@@ -157,7 +154,9 @@ def main(args=None):
         requested = default_fixes.union(explicit) if default_present else explicit
     else:
         requested = default_fixes
-    fixer_names = requested.difference(unwanted_fixes)
+    fixer_names = requested.difference(unwanted_fixes)  # Filter out unwanted fixers
+    explicit = explicit.intersection(fixer_names)  # Filter `explicit` fixers vs remaining fixers
+
     print(" Loading the following fixers:")
     if fixer_names:
         for fixname in sorted(fixer_names):
@@ -171,10 +170,10 @@ def main(args=None):
     else:
         print("    (None)")
     print()
-    rt = StdoutRefactoringTool(sorted(fixer_names), flags, sorted(explicit),
-                               options.nobackups, not options.no_diffs)
 
     # Refactor all files and directories passed as arguments
+    rt = StdoutRefactoringTool(sorted(fixer_names), flags, sorted(explicit),
+                               options.nobackups, not options.no_diffs)
     if not rt.errors:
         if refactor_stdin:
             rt.refactor_stdin()
