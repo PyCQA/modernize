@@ -6,7 +6,6 @@ from utils import check_on_input
 OPEN = ("""\
 {0}('some/path')
 """, """\
-from __future__ import absolute_import
 from io import open
 open('some/path')
 """)
