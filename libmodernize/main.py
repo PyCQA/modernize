@@ -113,7 +113,8 @@ def main(args=None):
             if tgt == fix or tgt.endswith(".fix_{}".format(fix)):
                 matched = tgt
                 unwanted_fixes.add(matched)
-        if matched is None:
+                break
+        else:
             print("Error: fix '{}' was not found".format(fix),
                   file=sys.stderr)
             return 2
@@ -147,7 +148,8 @@ def main(args=None):
                     if tgt == fix or tgt.endswith(".fix_{}".format(fix)):
                         matched = tgt
                         explicit.add(matched)
-                if matched is None:
+                        break
+                else:
                     print("Error: fix '{}' was not found".format(fix),
                           file=sys.stderr)
                     return 2
