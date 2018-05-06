@@ -21,6 +21,15 @@ then use the ``--no-six`` flag.
 Fixers use the API defined by 2to3. For details of how this works, and how to
 implement your own fixers, see `Extending 2to3 with your own fixers, at
 python3porting.com <http://python3porting.com/fixers.html>`_.
+``python-modernize`` will try to load fixers whose full dotted-path is specified
+as a ``-f`` argument, but will fail if they are not found. By default, fixers
+will not be found in the current directory; use ``--fixers-here`` to make
+``python-modernize`` look for them there, or see the `Python tutorial on
+modules <https://docs.python.org/3/tutorial/modules.html>`_ (in particular,
+the parts on the `search path
+<https://docs.python.org/3/tutorial/modules.html#the-module-search-path>`_
+and `packages <https://docs.python.org/3/tutorial/modules.html#packages>`_)
+for more info on how Python finds modules.
 
 
 Default

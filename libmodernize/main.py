@@ -10,6 +10,7 @@ from __future__ import absolute_import, print_function
 import sys
 import logging
 import optparse
+import os
 
 from lib2to3.main import warn, StdoutRefactoringTool
 from lib2to3 import refactor
@@ -23,9 +24,11 @@ usage = __doc__ + """\
 Usage: modernize [options] file|dir ...
 """ % __version__
 
+
 def format_usage(usage):
     """Method that doesn't output "Usage:" prefix"""
     return usage
+
 
 def main(args=None):
     """Main program.
@@ -41,11 +44,13 @@ def main(args=None):
     parser.add_option("--no-diffs", action="store_true",
                       help="Don't show diffs of the refactoring.")
     parser.add_option("-l", "--list-fixes", action="store_true",
-                      help="List available transformations.")
+                      help="List standard transformations.")
     parser.add_option("-d", "--doctests_only", action="store_true",
                       help="Fix up doctests only.")
     parser.add_option("-f", "--fix", action="append", default=[],
                       help="Each FIX specifies a transformation; '-f default' includes default fixers.")
+    parser.add_option("--fixers-here", action="store_true",
+                      help="Add current working directory to python path (so fixers can be found)")
     parser.add_option("-j", "--processes", action="store", default=1,
                       type="int", help="Run 2to3 concurrently.")
     parser.add_option("-x", "--nofix", action="append", default=[],
@@ -80,7 +85,7 @@ def main(args=None):
     if not options.write and options.nobackups:
         parser.error("Can't use '-n' without '-w'.")
     if options.list_fixes:
-        print("Available transformations for the -f/--fix and -x/--nofix options:")
+        print("Standard transformations available for the -f/--fix and -x/--nofix options:")
         for fixname in sorted(avail_fixes):
             print("    {}  ({})".format(fixname, fixname.split(".fix_", 1)[1]))
         print()
@@ -97,6 +102,8 @@ def main(args=None):
             return 2
     if options.print_function:
         flags["print_function"] = True
+    if options.fixers_here:
+        sys.path.append(os.getcwd())
 
     # Set up logging handler
     level = logging.DEBUG if options.verbose else logging.INFO
@@ -113,7 +120,8 @@ def main(args=None):
             if tgt == fix or tgt.endswith(".fix_{}".format(fix)):
                 matched = tgt
                 unwanted_fixes.add(matched)
-        if matched is None:
+                break
+        else:
             print("Error: fix '{}' was not found".format(fix),
                   file=sys.stderr)
             return 2
@@ -147,10 +155,10 @@ def main(args=None):
                     if tgt == fix or tgt.endswith(".fix_{}".format(fix)):
                         matched = tgt
                         explicit.add(matched)
-                if matched is None:
-                    print("Error: fix '{}' was not found".format(fix),
-                          file=sys.stderr)
-                    return 2
+                        break
+                else:
+                    # A non-standard fix -- trust user to have supplied path
+                    explicit.add(fix)
         requested = default_fixes.union(explicit) if default_present else explicit
     else:
         requested = default_fixes
