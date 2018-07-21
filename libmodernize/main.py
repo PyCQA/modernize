@@ -165,19 +165,19 @@ def main(args=None):
     fixer_names = requested.difference(unwanted_fixes)  # Filter out unwanted fixers
     explicit = explicit.intersection(fixer_names)  # Filter `explicit` fixers vs remaining fixers
 
-    print(" Loading the following fixers:")
+    print(" Loading the following fixers:", file=sys.stderr)
     if fixer_names:
         for fixname in sorted(fixer_names):
-            print("    {}  ({})".format(fixname, fixname.split(".fix_", 1)[1]))
+            print("    {}  ({})".format(fixname, fixname.split(".fix_", 1)[1]), file=sys.stderr)
     else:
-        print("    (None)")
-    print(" Applying the following explicit transformations:")
+        print("    (None)", file=sys.stderr)
+    print(" Applying the following explicit transformations:", file=sys.stderr)
     if explicit:
         for fixname in sorted(explicit):
-            print("    {}  ({})".format(fixname, fixname.split(".fix_", 1)[1]))
+            print("    {}  ({})".format(fixname, fixname.split(".fix_", 1)[1]), file=sys.stderr)
     else:
-        print("    (None)")
-    print()
+        print("    (None)", file=sys.stderr)
+    print(file=sys.stderr)
 
     # Refactor all files and directories passed as arguments
     rt = StdoutRefactoringTool(sorted(fixer_names), flags, sorted(explicit),
