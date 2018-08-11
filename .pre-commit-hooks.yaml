@@ -1,0 +1,7 @@
+-   id: python-modernize
+    name: python-modernize
+    description: Modernizes Python code for eventual Python 3 migration.
+    entry: python-modernize
+    args: [--write, --fix=default, --nobackups]
+    language: python
+    types: [python]
