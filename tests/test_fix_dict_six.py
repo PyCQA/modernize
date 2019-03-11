@@ -35,6 +35,14 @@ for k in x.items():
     pass
 """)
 
+CHAINED_CALLS = ("""\
+(x + y).foo().iter{type}().bar()
+""", """\
+from __future__ import absolute_import
+import six
+six.iter{type}((x + y).foo()).bar()
+""")
+
 
 def check_all_types(input, output):
     for type_ in TYPES:
@@ -51,3 +59,6 @@ def test_dict_plain():
 
 def test_dict_in_loop():
     check_on_input(*DICT_IN_LOOP)
+
+def test_chained_calls():
+    check_all_types(*CHAINED_CALLS)
