@@ -30,11 +30,9 @@ class FixDictSix(fix_dict.FixDict):
         assert method_name[4:] in (u'keys', u'items', u'values'), repr(method)
         head = [n.clone() for n in head]
         tail = [n.clone() for n in tail]
-        special = not tail and self.in_special_context(node, isiter)
         new = pytree.Node(syms.power, head)
-        if not special:
-            new.prefix = u''
-            new = fixer_util.Call(name, [new])
+        new.prefix = u''
+        new = fixer_util.Call(name, [new])
         if tail:
             new = pytree.Node(syms.power, [new] + tail)
         new.prefix = node.prefix
