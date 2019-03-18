@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-from libmodernize.tests.utils import check_on_input
+from utils import check_on_input
 
 
 TYPES = 'keys', 'items', 'values'
@@ -45,6 +45,16 @@ for k in six.iter{type}(x):
     pass
 """)
 
+DICT_ITER_IN_LIST = ("""\
+for k in list(x.iter{type}()):
+    pass
+""", """\
+from __future__ import absolute_import
+import six
+for k in list(six.iter{type}(x)):
+    pass
+""")
+
 CHAINED_CALLS = ("""\
 (x + y).foo().iter{type}().bar()
 """, """\
@@ -72,6 +82,9 @@ def test_dict_in_loop():
 
 def test_dict_iter_in_loop():
     check_all_types(*DICT_ITER_IN_LOOP)
+
+def test_dict_iter_in_list():
+    check_all_types(*DICT_ITER_IN_LIST)
 
 def test_chained_calls():
     check_all_types(*CHAINED_CALLS)
