@@ -279,7 +279,7 @@ Fixers with no dependencies
 
 .. 2to3fixer:: next
 
-   Changes all method calls to ``x.next()`` to ``next(x)``.
+   Changes all method calls from ``x.next()`` to ``next(x)``.
 
 .. 2to3fixer:: print
 
