@@ -3,7 +3,7 @@ from __future__ import absolute_import
 import sys
 import unittest
 
-from libmodernize.tests.utils import check_on_input
+from utils import check_on_input
 
 
 SHA_NEW = ("""\
@@ -77,4 +77,3 @@ def test_md5_md5():
 
 def test_no_import():
     _check(NO_IMPORT)
-
