@@ -69,7 +69,7 @@ def main(args=None):
     parser.add_option("--no-six", action="store_true", default=False,
                       help="Exclude fixes that depend on the six package.")
     parser.add_option("--enforce", action="store_true", default=False,
-                      help="Returns non-zero exit code of any fixers had to be applied.  "
+                      help="Returns non-zero exit code if any fixers had to be applied.  "
                            "Useful for enforcing Python 3 compatibility.")
 
     fixer_pkg = 'libmodernize.fixes'
