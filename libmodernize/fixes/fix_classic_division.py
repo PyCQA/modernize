@@ -8,17 +8,23 @@ import libmodernize
 
 
 class FixClassicDivision(fixer_base.BaseFix):
-    _accept_type = token.SLASH
+    PATTERN = '''
+    '/=' | '/'
+    '''
 
     def start_tree(self, tree, name):
         super(FixClassicDivision, self).start_tree(tree, name)
         self.skip = "division" in tree.future_features
 
     def match(self, node):
-        return node.value == "/"
+        return node.value in ('/', '/=')
 
     def transform(self, node, results):
         if self.skip:
             return
         libmodernize.add_future(node, u'division')
-        return pytree.Leaf(token.SLASH, "//", prefix=node.prefix)
+
+        if node.value == '/':
+            return pytree.Leaf(token.DOUBLESLASH, '//', prefix=node.prefix)
+        else:
+            return pytree.Leaf(token.DOUBLESLASHEQUAL, '//=', prefix=node.prefix)
