@@ -24,9 +24,7 @@ class FixDictSix(fix_dict.FixDict):
         syms = self.syms
         method_name = method.value
         name = fixer_util.Name(u'six.' + method_name, prefix=node.prefix)
-        isiter = method_name.startswith(u'iter')
-        isview = method_name.startswith(u'view')
-        assert isiter or isview, repr(method)
+        assert method_name.startswith((u'iter', u'view')), repr(method)
         assert method_name[4:] in (u'keys', u'items', u'values'), repr(method)
         head = [n.clone() for n in head]
         tail = [n.clone() for n in tail]
