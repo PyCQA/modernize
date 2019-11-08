@@ -336,4 +336,4 @@ to specify the ``-f default`` or ``--fix=default`` option, e.g.::
 
    .. versionadded:: 0.4
 
-.. _six project: http://pythonhosted.org/six
+.. _six project: https://six.readthedocs.io/
