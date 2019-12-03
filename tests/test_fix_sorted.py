@@ -24,9 +24,9 @@ a_list.sort(key=key_function, reverse=True)
 """, """\
 from __future__ import absolute_import
 from functools import cmp_to_key
-a_list.sorted(key=cmp_to_key(cmp_function))
-a_list.sorted(key=cmp_to_key(lambda x,y: x-y))
-a_list.sorted(key=key_function, reverse=True)
+a_list.sort(key=cmp_to_key(cmp_function))
+a_list.sort(key=cmp_to_key(lambda x,y: x-y))
+a_list.sort(key=key_function, reverse=True)
 """)
 
 
