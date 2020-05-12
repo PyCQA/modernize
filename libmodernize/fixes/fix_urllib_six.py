@@ -1,8 +1,8 @@
 """Fix changes imports of urllib which are now incompatible.
-   This is a copy of Lib/lib2to3/fixes/fix_urllib.py, but modified to point to the
+   This is a copy of Lib/fissix/fixes/fix_urllib.py, but modified to point to the
    six.moves locations for new libraries instead of the Python 3 locations.
 """
-# This is a derived work of Lib/lib2to3/fixes/fix_urllib.py. That file
+# This is a derived work of Lib/fissix/fixes/fix_urllib.py. That file
 # is under the copyright of the Python Software Foundation and licensed
 # under the Python Software Foundation License 2.
 #
@@ -14,9 +14,9 @@
 # Author: Nick Edds
 
 # Local imports
-from lib2to3.fixes.fix_imports import alternates, FixImports
-from lib2to3 import fixer_base
-from lib2to3.fixer_util import (Name, Comma, FromImport, Newline,
+from fissix.fixes.fix_imports import alternates, FixImports
+from fissix import fixer_base
+from fissix.fixer_util import (Name, Comma, FromImport, Newline,
                                 find_indentation, Node, syms)
 
 MAPPING = {"urllib":  [

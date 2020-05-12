@@ -232,7 +232,7 @@ version of ``six`` is installed.
 ``2to3`` fixers
 +++++++++++++++
 
-Some `fixers from lib2to3 <https://docs.python.org/3/library/2to3.html#fixers>`_
+Some `fixers from fissix <https://docs.python.org/3/library/2to3.html#fixers>`_
 in Python's standard library are run by default unmodified as their
 transformations are Python 2 compatible.
 

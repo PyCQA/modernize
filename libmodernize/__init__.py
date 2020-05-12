@@ -1,9 +1,9 @@
 from __future__ import absolute_import
 
-from lib2to3 import fixer_util
-from lib2to3.pytree import Leaf, Node
-from lib2to3.pygram import python_symbols as syms
-from lib2to3.pgen2 import token
+from fissix import fixer_util
+from fissix.pytree import Leaf, Node
+from fissix.pygram import python_symbols as syms
+from fissix.pgen2 import token
 
 __version__ = '0.7'
 

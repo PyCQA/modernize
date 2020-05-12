@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from lib2to3.fixes import fix_import
-from lib2to3.fixer_util import syms
+from fissix.fixes import fix_import
+from fissix.fixer_util import syms
 import libmodernize
 
 

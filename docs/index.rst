@@ -14,7 +14,7 @@ Purpose of the project
 
 .. TODO Explain WHY someone would want to have their code be Python 2/3 compatible
 
-This library is a very thin wrapper around ``lib2to3`` to utilize it
+This library is a very thin wrapper around ``fissix`` to utilize it
 to make Python 2 code more modern with the intention of eventually
 porting it over to Python 3.
 

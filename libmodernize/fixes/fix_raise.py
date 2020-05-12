@@ -20,7 +20,7 @@ CAVEATS:
 # Author: Collin Winter, Armin Ronacher
 from __future__ import absolute_import
 
-from lib2to3.fixes import fix_raise
+from fissix.fixes import fix_raise
 
 class FixRaise(fix_raise.FixRaise):
     # We don't want to match 3-argument raise, with a traceback;

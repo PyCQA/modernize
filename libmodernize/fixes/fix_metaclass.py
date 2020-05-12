@@ -15,7 +15,7 @@
    This fixer also tries very hard to keep original indenting and spacing
    in all those corner cases.
 """
-# This is a derived work of Lib/lib2to3/fixes/fix_metaclass.py. That file
+# This is a derived work of Lib/fissix/fixes/fix_metaclass.py. That file
 # is under the copyright of the Python Software Foundation and licensed
 # under the Python Software Foundation License 2.
 #
@@ -29,9 +29,9 @@
 from __future__ import absolute_import
 
 # Local imports
-from lib2to3 import fixer_base
-from lib2to3.pygram import token
-from lib2to3.fixer_util import Name, syms, Node, Leaf, Call, Comma
+from fissix import fixer_base
+from fissix.pygram import token
+from fissix.fixer_util import Name, syms, Node, Leaf, Call, Comma
 from libmodernize import touch_import
 
 

@@ -5,7 +5,7 @@
     If itertools is imported as something else (ie: import itertools as it;
     it.izip(spam, eggs)) method calls will not get fixed.
     """
-# This is a derived work of Lib/lib2to3/fixes/fix_itertools_import.py. That file
+# This is a derived work of Lib/fissix/fixes/fix_itertools_import.py. That file
 # is under the copyright of the Python Software Foundation and licensed
 # under the Python Software Foundation License 2.
 #
@@ -15,8 +15,8 @@
 #     2011, 2012, 2013 Python Software Foundation. All rights reserved.
 
 # Local imports
-from lib2to3 import fixer_base
-from lib2to3.fixer_util import Name
+from fissix import fixer_base
+from fissix.fixer_util import Name
 
 import libmodernize
 

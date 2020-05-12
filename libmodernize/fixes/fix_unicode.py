@@ -1,8 +1,8 @@
 from __future__ import absolute_import
 
 import re
-from lib2to3 import fixer_base
-from lib2to3.fixer_util import Name, Call
+from fissix import fixer_base
+from fissix.fixer_util import Name, Call
 from libmodernize import touch_import
 
 _mapping = {u"unichr" : u"chr", u"unicode" : u"str"}

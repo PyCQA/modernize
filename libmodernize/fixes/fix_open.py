@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-from lib2to3 import fixer_base
+from fissix import fixer_base
 import libmodernize
 
 

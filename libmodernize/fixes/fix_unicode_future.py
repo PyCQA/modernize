@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-from lib2to3.fixes import fix_unicode
+from fissix.fixes import fix_unicode
 from libmodernize import add_future
 
 class FixUnicodeFuture(fix_unicode.FixUnicode):
