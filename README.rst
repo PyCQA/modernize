@@ -6,7 +6,7 @@
       |_|_|_\___/\__,_\___|_| |_||_|_/__\___|
 
 This library is a very thin wrapper around `fissix
-<https://github.com/python/cpython/tree/master/Lib/fissix>`_ to utilize it
+<https://github.com/jreese/fissix>`_, a fork of lib2to3, to utilize it
 to make Python 2 code more modern with the intention of eventually
 porting it over to Python 3.
 
