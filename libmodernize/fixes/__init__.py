@@ -39,6 +39,7 @@ six_fix_names = set([
     'libmodernize.fixes.fix_int_long_tuple',
     'libmodernize.fixes.fix_map',
     'libmodernize.fixes.fix_metaclass',
+    'libmodernize.fixes.fix_nonzero',
     'libmodernize.fixes.fix_raise_six',
     'libmodernize.fixes.fix_unicode',
     'libmodernize.fixes.fix_unicode_type',

@@ -181,6 +181,12 @@ version of ``six`` is installed.
    .. seealso::
       :func:`six.with_metaclass`
 
+.. 2to3fixer:: nonzero
+
+   Changes all definitions of :func:`__nonzero__ <python2:__nonzero__>` to
+   :func:`__bool__ <python3:__bool__>`, adding an alias that maintains PY2
+   compatibility.
+
 .. 2to3fixer:: raise_six
 
    Changes ``raise E, V, T`` to ``six.reraise(E, V, T)``.
