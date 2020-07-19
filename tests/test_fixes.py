@@ -1,11 +1,11 @@
 from __future__ import absolute_import
 
-from lib2to3 import refactor
+from fissix import refactor
 
 from libmodernize import fixes
 
 
-LIB2TO3_FIXES_PKG = 'lib2to3.fixes'
+FISSIX_FIXES_PKG = 'fissix.fixes'
 LIBMODERNIZE_FIXES_PKG = 'libmodernize.fixes'
 
 
@@ -22,8 +22,8 @@ def check_existence(prefix, module_names):
             raise AssertionError('{0!r} cannot be imported'.format(module_name))
 
 
-def test_lib2to3_fix_names():
-    check_existence(LIB2TO3_FIXES_PKG, fixes.lib2to3_fix_names)
+def test_fissix_fix_names():
+    check_existence(FISSIX_FIXES_PKG, fixes.fissix_fix_names)
 
 
 def test_six_fix_names():

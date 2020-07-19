@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from lib2to3.fixes import fix_print
+from fissix.fixes import fix_print
 import libmodernize
 
 

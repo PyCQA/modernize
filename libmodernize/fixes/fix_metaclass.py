@@ -29,9 +29,9 @@
 from __future__ import absolute_import
 
 # Local imports
-from lib2to3 import fixer_base
-from lib2to3.pygram import token
-from lib2to3.fixer_util import Name, syms, Node, Leaf, Call, Comma
+from fissix import fixer_base
+from fissix.pygram import token
+from fissix.fixer_util import Name, syms, Node, Leaf, Call, Comma
 from libmodernize import touch_import
 
 

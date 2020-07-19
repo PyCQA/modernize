@@ -1,31 +1,33 @@
 
-lib2to3_fix_names = set([
-    'lib2to3.fixes.fix_apply',
-    'lib2to3.fixes.fix_except',
-    'lib2to3.fixes.fix_exec',
-    'lib2to3.fixes.fix_execfile',
-    'lib2to3.fixes.fix_exitfunc',
-    'lib2to3.fixes.fix_funcattrs',
-    'lib2to3.fixes.fix_has_key',
-    'lib2to3.fixes.fix_idioms',
-    'lib2to3.fixes.fix_long',
-    'lib2to3.fixes.fix_methodattrs',
-    'lib2to3.fixes.fix_ne',
-    'lib2to3.fixes.fix_numliterals',
-    'lib2to3.fixes.fix_operator',
-    'lib2to3.fixes.fix_paren',
-    'lib2to3.fixes.fix_reduce',
-    'lib2to3.fixes.fix_renames',
-    'lib2to3.fixes.fix_repr',
-    'lib2to3.fixes.fix_set_literal',
-    'lib2to3.fixes.fix_standarderror',
-    'lib2to3.fixes.fix_sys_exc',
-    'lib2to3.fixes.fix_throw',
-    'lib2to3.fixes.fix_tuple_params',
-    'lib2to3.fixes.fix_types',
-    'lib2to3.fixes.fix_ws_comma',
-    'lib2to3.fixes.fix_xreadlines'
+fissix_fix_names = set([
+    'fissix.fixes.fix_apply',
+    'fissix.fixes.fix_except',
+    'fissix.fixes.fix_exec',
+    'fissix.fixes.fix_execfile',
+    'fissix.fixes.fix_exitfunc',
+    'fissix.fixes.fix_funcattrs',
+    'fissix.fixes.fix_has_key',
+    'fissix.fixes.fix_idioms',
+    'fissix.fixes.fix_long',
+    'fissix.fixes.fix_methodattrs',
+    'fissix.fixes.fix_ne',
+    'fissix.fixes.fix_numliterals',
+    'fissix.fixes.fix_operator',
+    'fissix.fixes.fix_paren',
+    'fissix.fixes.fix_reduce',
+    'fissix.fixes.fix_renames',
+    'fissix.fixes.fix_repr',
+    'fissix.fixes.fix_set_literal',
+    'fissix.fixes.fix_standarderror',
+    'fissix.fixes.fix_sys_exc',
+    'fissix.fixes.fix_throw',
+    'fissix.fixes.fix_tuple_params',
+    'fissix.fixes.fix_types',
+    'fissix.fixes.fix_ws_comma',
+    'fissix.fixes.fix_xreadlines'
 ])
+
+lib2to3_fix_names = fissix_fix_names
 
 # fixes that involve using six
 six_fix_names = set([

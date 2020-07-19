@@ -16,9 +16,11 @@ met:
       promote products derived from this software without specific
       prior written permission.
 
-Parts of this software package are built on lib2to3 which is
-licensed under the PSF license.  For more information refer to the
-Python license: http://docs.python.org/license.html
+Parts of this software package are built on fissix which is
+a backport of lib2to3 both licensed under the PSF license. 
+For more information refer to the
+Python license: https://docs.python.org/license.html
+and the fissix license https://github.com/jreese/fissix/blob/master/LICENSE
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
 "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT

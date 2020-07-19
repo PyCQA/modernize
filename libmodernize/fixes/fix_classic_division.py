@@ -1,8 +1,8 @@
 from __future__ import absolute_import
 
-from lib2to3 import fixer_base
-from lib2to3 import pytree
-from lib2to3.pgen2 import token
+from fissix import fixer_base
+from fissix import pytree
+from fissix.pgen2 import token
 
 import libmodernize
 

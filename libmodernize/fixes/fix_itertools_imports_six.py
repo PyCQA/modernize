@@ -10,8 +10,8 @@
 #     2011, 2012, 2013 Python Software Foundation. All rights reserved.
 
 # Local imports
-from lib2to3 import fixer_base
-from lib2to3.fixer_util import BlankLine, syms, token
+from fissix import fixer_base
+from fissix.fixer_util import BlankLine, syms, token
 
 import libmodernize
 

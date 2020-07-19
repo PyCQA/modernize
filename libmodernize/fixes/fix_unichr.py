@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-from lib2to3 import fixer_base
-from lib2to3.fixer_util import is_probably_builtin
+from fissix import fixer_base
+from fissix.fixer_util import is_probably_builtin
 
 import libmodernize
 

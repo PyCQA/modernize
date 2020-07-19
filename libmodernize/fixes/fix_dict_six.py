@@ -2,9 +2,9 @@
 from __future__ import absolute_import
 
 # Local imports
-from lib2to3 import fixer_util
-from lib2to3 import pytree
-from lib2to3.fixes import fix_dict
+from fissix import fixer_util
+from fissix import pytree
+from fissix.fixes import fix_dict
 import libmodernize
 
 
@@ -15,7 +15,7 @@ class FixDictSix(fix_dict.FixDict):
         # Make sure six is imported.
         libmodernize.touch_import(None, u'six', node)
 
-        # Copy of self.transform() from lib2to3.fix_dict with some changes to
+        # Copy of self.transform() from fissix.fix_dict with some changes to
         # use the six.* methods.
 
         head = results['head']

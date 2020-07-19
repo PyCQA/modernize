@@ -9,8 +9,8 @@
 #     2011, 2012, 2013, 2014 Python Software Foundation. All rights reserved.
 from __future__ import absolute_import
 
-from lib2to3 import fixer_base
-from lib2to3.fixer_util import Call, Name
+from fissix import fixer_base
+from fissix.fixer_util import Call, Name
 from libmodernize import touch_import
 
 

@@ -2,7 +2,7 @@
 # Licensed to PSF under a Contributor Agreement.
 from __future__ import absolute_import
 
-from lib2to3.fixes import fix_filter
+from fissix.fixes import fix_filter
 import libmodernize
 
 

@@ -2,7 +2,7 @@
 # Licensed to PSF under a Contributor Agreement.
 from __future__ import absolute_import
 
-from lib2to3.fixes import fix_map
+from fissix.fixes import fix_map
 import libmodernize
 
 class FixMap(fix_map.FixMap):

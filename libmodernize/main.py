@@ -12,11 +12,11 @@ import logging
 import optparse
 import os
 
-from lib2to3.main import warn, StdoutRefactoringTool
-from lib2to3 import refactor
+from fissix.main import warn, StdoutRefactoringTool
+from fissix import refactor
 
 from libmodernize import __version__
-from libmodernize.fixes import lib2to3_fix_names, six_fix_names, opt_in_fix_names
+from libmodernize.fixes import fissix_fix_names, six_fix_names, opt_in_fix_names
 
 usage = __doc__ + """\
  %s
@@ -74,7 +74,7 @@ def main(args=None):
 
     fixer_pkg = 'libmodernize.fixes'
     avail_fixes = set(refactor.get_fixers_from_package(fixer_pkg))
-    avail_fixes.update(lib2to3_fix_names)
+    avail_fixes.update(fissix_fix_names)
 
     # Parse command line arguments
     refactor_stdin = False
