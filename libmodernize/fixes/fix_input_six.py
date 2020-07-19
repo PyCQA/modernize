@@ -1,5 +1,5 @@
-# This is a derived work of Lib/fissix/fixes/fix_input.py and
-# Lib/fissix/fixes/fix_raw_input.py. Those files are under the
+# This is a derived work of Lib/lib2to3/fixes/fix_input.py and
+# Lib/lib2to3/fixes/fix_raw_input.py. Those files are under the
 # copyright of the Python Software Foundation and licensed under the
 # Python Software Foundation License 2.
 #

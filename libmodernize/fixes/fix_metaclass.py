@@ -15,7 +15,7 @@
    This fixer also tries very hard to keep original indenting and spacing
    in all those corner cases.
 """
-# This is a derived work of Lib/fissix/fixes/fix_metaclass.py. That file
+# This is a derived work of Lib/lib2to3/fixes/fix_metaclass.py. That file
 # is under the copyright of the Python Software Foundation and licensed
 # under the Python Software Foundation License 2.
 #

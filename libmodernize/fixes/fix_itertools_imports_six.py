@@ -1,6 +1,6 @@
 """ Fixer for imports of itertools.(imap|ifilter|izip|ifilterfalse) """
 
-# This is a derived work of Lib/fissix/fixes/fix_itertools_imports.py. That file
+# This is a derived work of Lib/lib2to3/fixes/fix_itertools_imports.py. That file
 # is under the copyright of the Python Software Foundation and licensed
 # under the Python Software Foundation License 2.
 #
