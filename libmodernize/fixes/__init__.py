@@ -27,6 +27,8 @@ fissix_fix_names = set([
     'fissix.fixes.fix_xreadlines'
 ])
 
+lib2to3_fix_names = fissix_fix_names
+
 # fixes that involve using six
 six_fix_names = set([
     'libmodernize.fixes.fix_basestring',
