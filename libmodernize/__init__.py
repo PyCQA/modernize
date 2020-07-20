@@ -5,7 +5,7 @@ from fissix.pytree import Leaf, Node
 from fissix.pygram import python_symbols as syms
 from fissix.pgen2 import token
 
-__version__ = '0.7'
+__version__ = '0.8rc1'
 
 def check_future_import(node):
     """If this is a future import, return set of symbols that are imported,
