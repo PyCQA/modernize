@@ -1,5 +1,12 @@
-Unreleased
-==========
+Version 0.8rc1
+==============
+
+Released 2020-07-20.
+
+* use fissix istead of deprecated lib2to3
+
+Version 0.5-0.7
+===============
 
 * Added the opt-in classic_division fixer.
 * Updated the ``dict_six`` fixer to support ``six.viewitems()`` and friends.
