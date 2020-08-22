@@ -3,7 +3,7 @@ Version 0.8rc1
 
 Released 2020-07-20.
 
-* use fissix istead of deprecated lib2to3
+* use fissix instead of deprecated lib2to3
 
 Version 0.5-0.7
 ===============
