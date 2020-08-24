@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 from fissix import refactor
 
 from libmodernize import fixes
@@ -14,12 +12,12 @@ def check_existence(prefix, module_names):
     dotted_prefix = prefix + '.'
     for module_name in module_names:
         if not module_name.startswith(dotted_prefix):
-            msg = '{0!r} does not start with {1!r}'.format(module_name, prefix)
+            msg = f'{module_name!r} does not start with {prefix!r}'
             raise AssertionError(msg)
         try:
             __import__(module_name)
         except ImportError:
-            raise AssertionError('{0!r} cannot be imported'.format(module_name))
+            raise AssertionError(f'{module_name!r} cannot be imported')
 
 
 def test_fissix_fix_names():
@@ -36,4 +34,4 @@ def test_fixers_importable():
         try:
             __import__(module_name)
         except ImportError:
-            raise AssertionError('{0!r} cannot be imported'.format(module_name))
+            raise AssertionError(f'{module_name!r} cannot be imported')

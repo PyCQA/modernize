@@ -1,5 +1,4 @@
 """Fixer for it.next() -> next(it)"""
-from __future__ import absolute_import
 
 # Local imports
 from fissix import fixer_base
@@ -19,5 +18,5 @@ class FixNext(fixer_base.BaseFix):
     def transform(self, node, results):
         base = results['base']
         base = [n.clone() for n in base]
-        base[0].prefix = u""
-        node.replace(Call(Name(u"next", prefix=node.prefix), base))
+        base[0].prefix = ""
+        node.replace(Call(Name("next", prefix=node.prefix), base))

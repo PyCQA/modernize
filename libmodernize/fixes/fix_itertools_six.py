@@ -38,7 +38,7 @@ class FixItertoolsSix(fixer_base.BaseFix):
         prefix = None
         func = results['func'][0]
         if ('it' in results and
-            func.value not in (u'ifilterfalse', u'izip_longest')):
+            func.value not in ('ifilterfalse', 'izip_longest')):
             dot, it = (results['dot'], results['it'])
             # Remove the 'itertools'
             prefix = it.prefix
@@ -47,7 +47,7 @@ class FixItertoolsSix(fixer_base.BaseFix):
             # function (to be consistant with the second part of the pattern)
             dot.remove()
             func.parent.replace(func)
-            libmodernize.touch_import(u'six.moves', func.value[1:], node)
+            libmodernize.touch_import('six.moves', func.value[1:], node)
 
         prefix = prefix or func.prefix
         func.replace(Name(func.value[1:], prefix=prefix))

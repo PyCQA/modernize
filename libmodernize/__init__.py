@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 from fissix import fixer_util
 from fissix.pytree import Leaf, Node
 from fissix.pygram import python_symbols as syms
@@ -17,7 +15,7 @@ def check_future_import(node):
     # now node is the import_from node
     if not (node.type == syms.import_from and
             node.children[1].type == token.NAME and
-            node.children[1].value == u'__future__'):
+            node.children[1].value == '__future__'):
         return set()
 
     if node.children[3].type == token.LPAR:
@@ -42,9 +40,9 @@ def check_future_import(node):
     elif node.type == syms.import_as_name:
         node = node.children[0]
         assert node.type == token.NAME
-        return set([node.value])
+        return {node.value}
     elif node.type == token.NAME:
-        return set([node.value])
+        return {node.value}
     else:  # pragma: no cover
         assert 0, "strange import"
 

@@ -1,4 +1,3 @@
-# coding: utf-8
 """Fixer for __metaclass__ = X -> (six.with_metaclass(X)) methods.
 
    The various forms of classdef (inherits nothing, inherits once, inherits
@@ -26,7 +25,6 @@
 
 # Author: Jack Diederich, Daniel Neuhäuser
 
-from __future__ import absolute_import
 
 # Local imports
 from fissix import fixer_base
@@ -125,7 +123,7 @@ def find_metas(cls_node):
                 # Check if the expr_node is a simple assignment.
                 left_node = expr_node.children[0]
                 if isinstance(left_node, Leaf) and \
-                        left_node.value == u'__metaclass__':
+                        left_node.value == '__metaclass__':
                     # We found an assignment to __metaclass__.
                     fixup_simple_stmt(node, i, simple_node)
                     remove_trailing_newline(simple_node)
@@ -148,7 +146,7 @@ def fixup_indent(suite):
         node = kids.pop()
         if isinstance(node, Leaf) and node.type != token.DEDENT:
             if node.prefix:
-                node.prefix = u''
+                node.prefix = ''
             return
         else:
             kids.extend(node.children[::-1])
@@ -195,26 +193,26 @@ class FixMetaclass(fixer_base.BaseFix):
             # Node(classdef, ['class', 'name', ':', suite])
             #                 0        1       2    3
             arglist = Node(syms.arglist, [])
-            node.insert_child(2, Leaf(token.RPAR, u')'))
+            node.insert_child(2, Leaf(token.RPAR, ')'))
             node.insert_child(2, arglist)
-            node.insert_child(2, Leaf(token.LPAR, u'('))
+            node.insert_child(2, Leaf(token.LPAR, '('))
         else:
             raise ValueError("Unexpected class definition")  # pragma: no cover
 
-        touch_import(None, u'six', node)
+        touch_import(None, 'six', node)
 
         metaclass = last_metaclass.children[0].children[2].clone()
-        metaclass.prefix = u''
+        metaclass.prefix = ''
 
         arguments = [metaclass]
 
         if arglist.children:
             bases = arglist.clone()
-            bases.prefix = u' '
+            bases.prefix = ' '
             arguments.extend([Comma(), bases])
 
         arglist.replace(Call(
-            Name(u'six.with_metaclass', prefix=arglist.prefix),
+            Name('six.with_metaclass', prefix=arglist.prefix),
             arguments
         ))
 
@@ -224,15 +222,15 @@ class FixMetaclass(fixer_base.BaseFix):
         if not suite.children:
             # one-liner that was just __metaclass__
             suite.remove()
-            pass_leaf = Leaf(text_type, u'pass')
+            pass_leaf = Leaf(text_type, 'pass')
             pass_leaf.prefix = last_metaclass.prefix
             node.append_child(pass_leaf)
-            node.append_child(Leaf(token.NEWLINE, u'\n'))
+            node.append_child(Leaf(token.NEWLINE, '\n'))
 
         elif len(suite.children) > 1 and \
                  (suite.children[-2].type == token.INDENT and
                   suite.children[-1].type == token.DEDENT):
             # there was only one line in the class body and it was __metaclass__
-            pass_leaf = Leaf(text_type, u'pass')
+            pass_leaf = Leaf(text_type, 'pass')
             suite.insert_child(-1, pass_leaf)
-            suite.insert_child(-1, Leaf(token.NEWLINE, u'\n'))
+            suite.insert_child(-1, Leaf(token.NEWLINE, '\n'))

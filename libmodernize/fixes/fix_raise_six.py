@@ -4,7 +4,6 @@ raise E, V, T -> six.reraise(E, V, T)
 
 """
 # Author : Markus Unterwaditzer
-from __future__ import absolute_import
 
 # Local imports
 from fissix import fixer_base
@@ -23,9 +22,9 @@ class FixRaiseSix(fixer_base.BaseFix):
         val = results["val"].clone()
         tb = results["tb"].clone()
 
-        exc.prefix = u""
-        val.prefix = tb.prefix = u" "
+        exc.prefix = ""
+        val.prefix = tb.prefix = " "
 
-        touch_import(None, u'six', node)
-        return Call(Name(u"six.reraise"), [exc, Comma(), val, Comma(), tb],
+        touch_import(None, 'six', node)
+        return Call(Name("six.reraise"), [exc, Comma(), val, Comma(), tb],
                     prefix=node.prefix)

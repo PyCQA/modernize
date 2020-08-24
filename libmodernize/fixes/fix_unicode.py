@@ -1,12 +1,10 @@
-from __future__ import absolute_import
-
 import re
 from fissix import fixer_base
 from fissix.fixer_util import Name, Call
 from libmodernize import touch_import
 
-_mapping = {u"unichr" : u"chr", u"unicode" : u"str"}
-_literal_re = re.compile(u"[uU][rR]?[\\'\\\"]")
+_mapping = {"unichr" : "chr", "unicode" : "str"}
+_literal_re = re.compile("[uU][rR]?[\\'\\\"]")
 
 class FixUnicode(fixer_base.BaseFix):
     BM_compatible = True
@@ -14,8 +12,8 @@ class FixUnicode(fixer_base.BaseFix):
 
     def transform(self, node, results):
         if _literal_re.match(node.value):
-            touch_import(None, u'six', node)
+            touch_import(None, 'six', node)
             new = node.clone()
             new.value = new.value[1:]
             new.prefix = ''
-            node.replace(Call(Name(u'six.u', prefix=node.prefix), [new]))
+            node.replace(Call(Name('six.u', prefix=node.prefix), [new]))

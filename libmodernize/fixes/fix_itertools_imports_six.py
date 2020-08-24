@@ -42,7 +42,7 @@ class FixItertoolsImportsSix(fixer_base.BaseFix):
             if member_name in ('imap', 'izip', 'ifilter',
                                'ifilterfalse', 'izip_longest'):
                 child.value = None
-                libmodernize.touch_import(u'six.moves', member_name[1:], node)
+                libmodernize.touch_import('six.moves', member_name[1:], node)
                 child.remove()
 
         # Make sure the import statement is still sane

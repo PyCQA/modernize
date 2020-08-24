@@ -1,5 +1,4 @@
-
-fissix_fix_names = set([
+fissix_fix_names = {
     'fissix.fixes.fix_apply',
     'fissix.fixes.fix_except',
     'fissix.fixes.fix_exec',
@@ -25,12 +24,12 @@ fissix_fix_names = set([
     'fissix.fixes.fix_types',
     'fissix.fixes.fix_ws_comma',
     'fissix.fixes.fix_xreadlines'
-])
+}
 
 lib2to3_fix_names = fissix_fix_names
 
 # fixes that involve using six
-six_fix_names = set([
+six_fix_names = {
     'libmodernize.fixes.fix_basestring',
     'libmodernize.fixes.fix_dict_six',
     'libmodernize.fixes.fix_filter',
@@ -48,10 +47,10 @@ six_fix_names = set([
     'libmodernize.fixes.fix_unichr',
     'libmodernize.fixes.fix_xrange_six',
     'libmodernize.fixes.fix_zip',
-])
+}
 
 # Fixes that are opt-in only.
-opt_in_fix_names = set([
+opt_in_fix_names = {
     'libmodernize.fixes.fix_classic_division',
     'libmodernize.fixes.fix_open',
-])
+}

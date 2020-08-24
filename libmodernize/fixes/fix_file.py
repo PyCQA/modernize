@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 from fissix import fixer_base
 from fissix.fixer_util import Name
 

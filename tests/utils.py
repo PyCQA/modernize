@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 import os.path
 import tempfile
 import shutil
@@ -42,7 +40,7 @@ def check_on_input(input_content, expected_content, extra_flags = [],
                                          (return_code, expected_return_code))
 
             output_content = ""
-            with open(test_input_name, "rt") as output_file:
+            with open(test_input_name) as output_file:
                 for line in output_file:
                     if line:
                         output_content += line

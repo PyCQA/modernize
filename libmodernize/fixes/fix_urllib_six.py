@@ -61,21 +61,21 @@ def build_pattern():
         for change in changes:
             new_module, members = change
             members = alternates(members)
-            yield """import_name< 'import' (module=%r
-                                  | dotted_as_names< any* module=%r any* >) >
-                  """ % (old_module, old_module)
-            yield """import_from< 'from' mod_member=%r 'import'
-                       ( member=%s | import_as_name< member=%s 'as' any > |
+            yield """import_name< 'import' (module={!r}
+                                  | dotted_as_names< any* module={!r} any* >) >
+                  """.format(old_module, old_module)
+            yield """import_from< 'from' mod_member={!r} 'import'
+                       ( member={} | import_as_name< member={} 'as' any > |
                          import_as_names< members=any*  >) >
-                  """ % (old_module, members, members)
+                  """.format(old_module, members, members)
             yield """import_from< 'from' module_star=%r 'import' star='*' >
                   """ % old_module
             yield """import_name< 'import'
                                   dotted_as_name< module_as=%r 'as' any > >
                   """ % old_module
             # bare_with_attr has a special significance for FixImports.match().
-            yield """power< bare_with_attr=%r trailer< '.' member=%s > any* >
-                  """ % (old_module, members)
+            yield """power< bare_with_attr={!r} trailer< '.' member={} > any* >
+                  """.format(old_module, members)
 
 
 class FixUrllibSix(FixImports):
@@ -137,7 +137,7 @@ class FixUrllibSix(FixImports):
                 else:
                     member_name = member.value
                     as_name = None
-                if member_name != u",":
+                if member_name != ",":
                     for change in MAPPING[mod_member.value]:
                         if member_name in change[1]:
                             if change[0] not in mod_dict:

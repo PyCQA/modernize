@@ -1,11 +1,10 @@
 """\
 Python           _              _
    _ __  ___  __| |___ _ _ _ _ (_)______
-  | '  \/ _ \/ _` / -_) '_| ' \| |_ / -_)
-  |_|_|_\___/\__,_\___|_| |_||_|_/__\___|\
+  | '  \\/ _ \\/ _` / -_) '_| ' \\| |_ / -_)
+  |_|_|_\\___/\\__,_\\___|_| |_||_|_/__\\___|\
 """
 
-from __future__ import absolute_import, print_function
 
 import sys
 import logging
@@ -117,12 +116,12 @@ def main(args=None):
     for fix in splitfixes:
         matched = None
         for tgt in avail_fixes:
-            if tgt == fix or tgt.endswith(".fix_{}".format(fix)):
+            if tgt == fix or tgt.endswith(f".fix_{fix}"):
                 matched = tgt
                 unwanted_fixes.add(matched)
                 break
         else:
-            print("Error: fix '{}' was not found".format(fix),
+            print(f"Error: fix '{fix}' was not found",
                   file=sys.stderr)
             return 2
 
@@ -152,7 +151,7 @@ def main(args=None):
             else:
                 matched = None
                 for tgt in avail_fixes:
-                    if tgt == fix or tgt.endswith(".fix_{}".format(fix)):
+                    if tgt == fix or tgt.endswith(f".fix_{fix}"):
                         matched = tgt
                         explicit.add(matched)
                         break

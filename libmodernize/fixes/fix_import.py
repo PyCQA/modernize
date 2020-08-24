@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 from fissix.fixes import fix_import
 from fissix.fixer_util import syms
 import libmodernize
@@ -21,4 +19,4 @@ class FixImport(fix_import.FixImport):
 
         # If there are any non-future imports, add absolute_import
         libmodernize.add_future(node, 'absolute_import')
-        return super(FixImport, self).transform(node, results)
+        return super().transform(node, results)

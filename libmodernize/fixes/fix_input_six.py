@@ -7,7 +7,6 @@
 #
 #     Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
 #     2011, 2012, 2013, 2014 Python Software Foundation. All rights reserved.
-from __future__ import absolute_import
 
 from fissix import fixer_base
 from fissix.fixer_util import Call, Name
@@ -29,7 +28,7 @@ class FixInputSix(fixer_base.ConditionalFix):
         if self.should_skip(node):
             return
 
-        touch_import(u'six.moves', u'input', node)
+        touch_import('six.moves', 'input', node)
         name = results['name']
         if name.value == 'raw_input':
             name.replace(Name('input', prefix=name.prefix))

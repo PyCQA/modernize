@@ -1,5 +1,4 @@
 # Tests for problem with multiple futures added to single file
-from __future__ import absolute_import
 
 import tempfile
 import os
@@ -44,14 +43,14 @@ def _check_for_multiple_futures(file_name, source_content):
     """
     counts = {}
     result_content = ""
-    with open(file_name, "rt") as input:
+    with open(file_name) as input:
         for line in input:
             if line.startswith("from __future__"):
                 counts[line] = 1 + counts.get(line, 0)
             result_content += line
     for future, how_many in counts.items():
         if how_many > 1:
-            raise Exception("The same future repeated more than once ({0} times):\n{1}\n\n* Input file:\n{2}\n\n* Output file:\n{3}\n".format(how_many, future, source_content, result_content))
+            raise Exception(f"The same future repeated more than once ({how_many} times):\n{future}\n\n* Input file:\n{source_content}\n\n* Output file:\n{result_content}\n")
     return counts
 
 def _check_on_input(file_content, extra_flags = []):
@@ -78,7 +77,7 @@ def test_two_files_on_single_run():
     # Mostly to test whether second file gets its "from future ..."
     try:
         tmpdirname = tempfile.mkdtemp()
-        input_names = [ os.path.join(tmpdirname, "input_{0}.py".format(idx))
+        input_names = [ os.path.join(tmpdirname, f"input_{idx}.py")
                         for idx in range(0,3) ]
         for input_name in input_names:
             with open(input_name, "wt") as input:
