@@ -53,7 +53,9 @@ def _check_for_multiple_futures(file_name, source_content):
     for future, how_many in counts.items():
         if how_many > 1:
             raise Exception(
-                f"The same future repeated more than once ({how_many} times):\n{future}\n\n* Input file:\n{source_content}\n\n* Output file:\n{result_content}\n"
+                f"The same future repeated more than once ({how_many} times):\n"
+                f"{future}\n\n* Input file:\n{source_content}\n\n"
+                f"* Output file:\n{result_content}\n"
             )
     return counts
 

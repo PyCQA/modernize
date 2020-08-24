@@ -32,7 +32,6 @@ class FixItertoolsImportsSix(fixer_base.BaseFix):
             children = imports.children
         for child in children[::2]:
             if child.type == token.NAME:
-                member = child.value
                 name_node = child
             elif child.type == token.STAR:
                 # Just leave the import as is.

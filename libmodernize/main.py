@@ -58,7 +58,8 @@ def main(args=None):
         "--fix",
         action="append",
         default=[],
-        help="Each FIX specifies a transformation; '-f default' includes default fixers.",
+        help="Each FIX specifies a transformation; "
+        "'-f default' includes default fixers.",
     )
     parser.add_option(
         "--fixers-here",
@@ -137,7 +138,8 @@ def main(args=None):
         parser.error("Can't use '-n' without '-w'.")
     if options.list_fixes:
         print(
-            "Standard transformations available for the -f/--fix and -x/--nofix options:"
+            "Standard transformations available for the "
+            "-f/--fix and -x/--nofix options:"
         )
         for fixname in sorted(avail_fixes):
             print("    {}  ({})".format(fixname, fixname.split(".fix_", 1)[1]))
@@ -263,8 +265,8 @@ def main(args=None):
 
     # Return error status (0 if rt.errors is zero)
     return_code = int(bool(rt.errors))
-    # If we are enforcing python 3 compatibility, return a non-zero exit code if we had to modify
-    # any files.
+    # If we are enforcing python 3 compatibility, return a non-zero exit code
+    # if we had to modify any files.
     if options.enforce and rt.files:
         return_code |= 2
     return return_code

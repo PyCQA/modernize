@@ -13,7 +13,6 @@
 
 # Author: Nick Edds
 
-from fissix import fixer_base
 from fissix.fixer_util import (
     Comma,
     FromImport,
@@ -103,7 +102,6 @@ MAPPING["urllib2"].append(MAPPING["urllib"][1])
 
 
 def build_pattern():
-    bare = set()
     for old_module, changes in MAPPING.items():
         for change in changes:
             new_module, members = change
@@ -184,11 +182,9 @@ class FixUrllibSix(FixImports):
             for member in members:
                 # we only care about the actual members
                 if member.type == syms.import_as_name:
-                    as_name = member.children[2].value
                     member_name = member.children[0].value
                 else:
                     member_name = member.value
-                    as_name = None
                 if member_name != ",":
                     for change in MAPPING[mod_member.value]:
                         if member_name in change[1]:

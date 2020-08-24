@@ -1,4 +1,6 @@
-"""Fixer for iterkeys() -> six.iterkeys(), and similarly for iteritems and itervalues."""
+"""
+Fixer for iterkeys() -> six.iterkeys(), and similarly for iteritems and itervalues.
+"""
 
 # Local imports
 from fissix import fixer_util, pytree
