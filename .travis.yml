@@ -12,3 +12,7 @@ install:
   - nvm install 14
   - pip install tox
 script: tox
+cache:
+  pip: true
+  directories:
+    - $HOME/.cache/pre-commit
