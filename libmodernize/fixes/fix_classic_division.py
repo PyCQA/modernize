@@ -1,3 +1,5 @@
+from __future__ import generator_stop
+
 from fissix import fixer_base, pytree
 from fissix.pgen2 import token
 

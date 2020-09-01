@@ -1,3 +1,5 @@
+from __future__ import generator_stop
+
 from utils import check_on_input
 
 FILE_CALL = (

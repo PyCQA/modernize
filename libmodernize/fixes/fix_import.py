@@ -1,3 +1,5 @@
+from __future__ import generator_stop
+
 from fissix.fixer_util import syms
 from fissix.fixes import fix_import
 

@@ -1,3 +1,5 @@
+from __future__ import generator_stop
+
 from fissix import fixer_base, fixer_util
 
 from libmodernize import touch_import

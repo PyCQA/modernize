@@ -18,6 +18,7 @@ CAVEATS:
    this.
 """
 # Author: Collin Winter, Armin Ronacher
+from __future__ import generator_stop
 
 from fissix.fixes import fix_raise
 

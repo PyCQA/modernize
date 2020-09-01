@@ -22,9 +22,7 @@
 #
 #     Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
 #     2011, 2012, 2013 Python Software Foundation. All rights reserved.
-
-# Author: Jack Diederich, Daniel Neuhäuser
-
+from __future__ import generator_stop
 
 # Local imports
 from fissix import fixer_base
@@ -32,6 +30,8 @@ from fissix.fixer_util import Call, Comma, Leaf, Name, Node, syms
 from fissix.pygram import token
 
 from libmodernize import touch_import
+
+# Author: Jack Diederich, Daniel Neuhäuser
 
 
 def has_metaclass(parent):

@@ -13,6 +13,7 @@
 #
 #     Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
 #     2011, 2012, 2013 Python Software Foundation. All rights reserved.
+from __future__ import generator_stop
 
 # Local imports
 from fissix import fixer_base

@@ -1,3 +1,5 @@
+from __future__ import generator_stop
+
 from utils import check_on_input
 
 URLLIB_MODULE_REFERENCE = (

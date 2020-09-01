@@ -1,6 +1,8 @@
 # Copyright 2008 Armin Ronacher.
 # Licensed to PSF under a Contributor Agreement.
 
+from __future__ import generator_stop
+
 from fissix import fixer_base
 from fissix.fixes import fix_xrange
 

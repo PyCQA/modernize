@@ -1,3 +1,5 @@
+from __future__ import generator_stop
+
 fissix_fix_names = {
     "fissix.fixes.fix_apply",
     "fissix.fixes.fix_except",

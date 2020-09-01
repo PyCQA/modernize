@@ -1,3 +1,5 @@
+from __future__ import generator_stop
+
 import re
 
 from fissix import fixer_base
