@@ -5,7 +5,7 @@ from fissix.fixer_util import Name
 class FixFile(fixer_base.BaseFix):
 
     BM_compatible = True
-    order = 'pre'
+    order = "pre"
 
     PATTERN = """
     power< name='file'

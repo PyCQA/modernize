@@ -3,15 +3,16 @@
 
 from fissix import fixer_base
 from fissix.fixes import fix_xrange
+
 from libmodernize import touch_import
 
 
 class FixXrangeSix(fixer_base.ConditionalFix, fix_xrange.FixXrange):
 
-    skip_on = 'six.moves.range'
+    skip_on = "six.moves.range"
 
     def transform(self, node, results):
         if self.should_skip(node):
             return
-        touch_import('six.moves', 'range',  node)
+        touch_import("six.moves", "range", node)
         return super().transform(node, results)

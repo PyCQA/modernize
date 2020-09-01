@@ -1,4 +1,5 @@
 from fissix import fixer_base
+
 import libmodernize
 
 
@@ -11,4 +12,4 @@ class FixOpen(fixer_base.BaseFix):
     """
 
     def transform(self, node, results):
-        libmodernize.touch_import('io', 'open', node)
+        libmodernize.touch_import("io", "open", node)

@@ -10,14 +10,15 @@
 
 from fissix import fixer_base
 from fissix.fixer_util import Call, Name
+
 from libmodernize import touch_import
 
 
 class FixInputSix(fixer_base.ConditionalFix):
 
     BM_compatible = True
-    order = 'pre'
-    skip_on = 'six.moves.input'
+    order = "pre"
+    skip_on = "six.moves.input"
 
     PATTERN = """
               power< (name='input' | name='raw_input')
@@ -28,11 +29,11 @@ class FixInputSix(fixer_base.ConditionalFix):
         if self.should_skip(node):
             return
 
-        touch_import('six.moves', 'input', node)
-        name = results['name']
-        if name.value == 'raw_input':
-            name.replace(Name('input', prefix=name.prefix))
+        touch_import("six.moves", "input", node)
+        name = results["name"]
+        if name.value == "raw_input":
+            name.replace(Name("input", prefix=name.prefix))
         else:
             new_node = node.clone()
-            new_node.prefix = ''
-            return Call(Name('eval'), [new_node], prefix=node.prefix)
+            new_node.prefix = ""
+            return Call(Name("eval"), [new_node], prefix=node.prefix)

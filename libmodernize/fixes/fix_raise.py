@@ -21,6 +21,7 @@ CAVEATS:
 
 from fissix.fixes import fix_raise
 
+
 class FixRaise(fix_raise.FixRaise):
     # We don't want to match 3-argument raise, with a traceback;
     # that is handled separately by fix_raise_six

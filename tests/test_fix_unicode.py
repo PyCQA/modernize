@@ -37,11 +37,18 @@ foo'''
 import sys
 """
 
+
 def test_unicode_six():
-    check_on_input(UNICODE_LITERALS, UNICODE_LITERALS_six, extra_flags=['--six-unicode'])
+    check_on_input(
+        UNICODE_LITERALS, UNICODE_LITERALS_six, extra_flags=["--six-unicode"]
+    )
+
 
 def test_unicode_compat():
     check_on_input(UNICODE_LITERALS, UNICODE_LITERALS_compat)
 
+
 def test_unicode_future():
-    check_on_input(UNICODE_LITERALS, UNICODE_LITERALS_future, extra_flags=['--future-unicode'])
+    check_on_input(
+        UNICODE_LITERALS, UNICODE_LITERALS_future, extra_flags=["--future-unicode"]
+    )

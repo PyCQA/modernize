@@ -1,5 +1,6 @@
-from fissix.fixes import fix_import
 from fissix.fixer_util import syms
+from fissix.fixes import fix_import
+
 import libmodernize
 
 
@@ -13,10 +14,12 @@ class FixImport(fix_import.FixImport):
         if self.skip:
             return
         # We're not interested in __future__ imports here
-        if node.type == syms.import_from \
-                and getattr(results['imp'], 'value', None) == '__future__':
+        if (
+            node.type == syms.import_from
+            and getattr(results["imp"], "value", None) == "__future__"
+        ):
             return
 
         # If there are any non-future imports, add absolute_import
-        libmodernize.add_future(node, 'absolute_import')
+        libmodernize.add_future(node, "absolute_import")
         return super().transform(node, results)

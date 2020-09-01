@@ -20,10 +20,12 @@ class FixItertoolsImportsSix(fixer_base.BaseFix):
     BM_compatible = True
     PATTERN = """
               import_from< 'from' 'itertools' 'import' imports=any >
-              """ %(locals())
+              """ % (
+        locals()
+    )
 
     def transform(self, node, results):
-        imports = results['imports']
+        imports = results["imports"]
         if imports.type == syms.import_as_name or not imports.children:
             children = [imports]
         else:
@@ -39,10 +41,15 @@ class FixItertoolsImportsSix(fixer_base.BaseFix):
                 assert child.type == syms.import_as_name
                 name_node = child.children[0]
             member_name = name_node.value
-            if member_name in ('imap', 'izip', 'ifilter',
-                               'ifilterfalse', 'izip_longest'):
+            if member_name in (
+                "imap",
+                "izip",
+                "ifilter",
+                "ifilterfalse",
+                "izip_longest",
+            ):
                 child.value = None
-                libmodernize.touch_import('six.moves', member_name[1:], node)
+                libmodernize.touch_import("six.moves", member_name[1:], node)
                 child.remove()
 
         # Make sure the import statement is still sane
@@ -58,8 +65,10 @@ class FixItertoolsImportsSix(fixer_base.BaseFix):
             children.pop().remove()
 
         # If there are no imports left, just get rid of the entire statement
-        if (not (imports.children or getattr(imports, 'value', None)) or
-            imports.parent is None):
+        if (
+            not (imports.children or getattr(imports, "value", None))
+            or imports.parent is None
+        ):
             p = node.prefix
             node = BlankLine()
             node.prefix = p
