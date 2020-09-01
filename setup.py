@@ -13,4 +13,4 @@ if not version_match:
     raise Exception("couldn't find version number")
 version = version_match.group(1)
 
-setup(version=version, test_suite="nose.collector")
+setup(version=version)
