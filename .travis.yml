@@ -1,17 +1,13 @@
 sudo: false
 language: python
-matrix:
-  include:
-    - python: "3.6"
-      env: TOXENV=py36,lint,coveralls
-    - python: "3.7"
-      env: TOXENV=py37,lint,coveralls
-    - python: "3.8"
-      env: TOXENV=py38,lint,coveralls
+python:
+  - "3.6"
+  - "3.7"
+  - "3.8"
 install:
   - nvm install 14
   - pip install tox
-script: tox
+script: tox -e py,lint,coveralls
 cache:
   pip: true
   directories:
