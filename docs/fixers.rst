@@ -19,8 +19,8 @@ If you wish to turn off these fixers to avoid an external dependency on ``six``,
 then use the ``--no-six`` flag.
 
 Fixers use the API defined by fissix. For details of how this works, and how to
-implement your own fixers, see `Creating a fixer, at
-python3porting.com <http://python3porting.com/fixers.html#creating-a-fixer>`_.
+implement your own fixers, see `Creating a fixer, at python3porting.com
+<https://web.archive.org/web/20200903114908/python3porting.com/fixers.html#creating-a-fixer>`_.
 ``python -m modernize`` will try to load fixers whose full dotted-path is specified
 as a ``-f`` argument, but will fail if they are not found. By default, fixers
 will not be found in the current directory; use ``--fixers-here`` to make

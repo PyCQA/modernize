@@ -95,9 +95,9 @@ pygments_style = "sphinx"
 # keep_warnings = False
 
 intersphinx_mapping = {
-    "python": ("http://docs.python.org/3", None),
-    "python2": ("http://docs.python.org/2", None),
-    "six": ("http://pythonhosted.org/six/", None),
+    "python": ("https://docs.python.org/3", None),
+    "python2": ("https://docs.python.org/2", None),
+    "six": ("https://six.readthedocs.io/", None),
 }
 
 

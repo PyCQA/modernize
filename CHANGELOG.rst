@@ -63,7 +63,7 @@ Released 2014-10-14.
   Python 2.6, such as the ``except ... as`` construct, but this was not
   documented.)
 
-.. _Documentation: http://modernize.readthedocs.org/en/latest/
+.. _Documentation: https://modernize.readthedocs.org/en/latest/
 
 
 Version 0.3
