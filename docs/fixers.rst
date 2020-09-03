@@ -18,9 +18,9 @@ Some fixers rely on the latest release of the `six project`_ to work
 If you wish to turn off these fixers to avoid an external dependency on ``six``,
 then use the ``--no-six`` flag.
 
-Fixers use the API defined by 2to3. For details of how this works, and how to
-implement your own fixers, see `Extending 2to3 with your own fixers, at
-python3porting.com <http://python3porting.com/fixers.html>`_.
+Fixers use the API defined by fissix. For details of how this works, and how to
+implement your own fixers, see `Creating a fixer, at
+python3porting.com <http://python3porting.com/fixers.html#creating-a-fixer>`_.
 ``python -m modernize`` will try to load fixers whose full dotted-path is specified
 as a ``-f`` argument, but will fail if they are not found. By default, fixers
 will not be found in the current directory; use ``--fixers-here`` to make
@@ -229,7 +229,7 @@ version of ``six`` is installed.
    Wrapping the use in a call to ``list()`` is done when necessary.
 
 
-``2to3`` fixers
+``fissix`` fixers
 +++++++++++++++
 
 Some `fixers from fissix <https://docs.python.org/3/library/2to3.html#fixers>`_

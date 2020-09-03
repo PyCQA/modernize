@@ -18,8 +18,8 @@ This library is a very thin wrapper around ``fissix`` to utilize it
 to make Python 2 code more modern with the intention of eventually
 porting it over to Python 3.
 
-The ``python -m modernize`` command works like `2to3
-<https://docs.python.org/3/library/2to3.html>`_. Here's how you'd rewrite a
+The ``python -m modernize`` command works like `fissix
+<https://github.com/jreese/fissix>`_. Here's how you'd rewrite a
 single file::
 
     python -m modernize -w example.py
