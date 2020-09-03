@@ -98,6 +98,7 @@ intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "python2": ("https://docs.python.org/2", None),
     "six": ("https://six.readthedocs.io/", None),
+    "fissix": ("https://fissix.readthedocs.io/", None),
 }
 
 
