@@ -1,3 +1,11 @@
+Version 0.8rc2-dev
+==================
+
+Unreleased.
+
+* add ``modernize`` console_script
+* move project to https://github.com/PyCQA/modernize/
+
 Version 0.8rc1
 ==============
 
