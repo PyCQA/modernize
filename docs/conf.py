@@ -13,14 +13,6 @@
 
 from __future__ import generator_stop
 
-import os
-import sys
-
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-sys.path.insert(0, os.path.abspath("sphinxext"))
-
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -29,7 +21,7 @@ sys.path.insert(0, os.path.abspath("sphinxext"))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ["extra_types", "sphinx.ext.intersphinx"]
+extensions = ["sphinx.ext.intersphinx"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -45,7 +37,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "modernize"
-copyright = "2014, python-modernize team"
+copyright = "2014, python-modernize team; 2020 pycqa/modernize team"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -95,9 +87,10 @@ pygments_style = "sphinx"
 # keep_warnings = False
 
 intersphinx_mapping = {
-    "python": ("http://docs.python.org/3", None),
-    "python2": ("http://docs.python.org/2", None),
-    "six": ("http://pythonhosted.org/six/", None),
+    "python": ("https://docs.python.org/3", None),
+    "python2": ("https://docs.python.org/2", None),
+    "six": ("https://six.readthedocs.io/", None),
+    "fissix": ("https://fissix.readthedocs.io/en/latest/", None),
 }
 
 
@@ -134,7 +127,7 @@ html_theme = "default"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["_static"]
+html_static_path = []
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
@@ -205,7 +198,7 @@ latex_documents = [
         "index",
         "modernize.tex",
         "modernize Documentation",
-        "python-modernize team",
+        "pycqa/modernize team",
         "manual",
     )
 ]
@@ -236,7 +229,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ("index", "modernize", "modernize Documentation", ["python-modernize team"], 1)
+    ("index", "modernize", "modernize Documentation", ["pycqa/modernize team"], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -253,7 +246,7 @@ texinfo_documents = [
         "index",
         "modernize",
         "modernize Documentation",
-        "python-modernize team",
+        "pycqa/modernize team",
         "modernize",
         "One line description of project.",
         "Miscellaneous",
