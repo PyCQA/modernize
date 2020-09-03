@@ -72,7 +72,7 @@ def main(args=None):
         action="store",
         default=1,
         type="int",
-        help="Run 2to3 concurrently.",
+        help="Run fissix concurrently.",
     )
     parser.add_option(
         "-x",

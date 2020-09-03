@@ -48,6 +48,6 @@ class FixDictSix(fix_dict.FixDict):
 
     def in_special_context(self, node, isiter):
         # Redefined from parent class to make "for x in d.items()" count as
-        # in special context; 2to3 only counts for loops as special context
+        # in special context; fissix only counts for loops as special context
         # for the iter* methods.
         return super().in_special_context(node, True)

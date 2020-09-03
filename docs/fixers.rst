@@ -18,9 +18,9 @@ Some fixers rely on the latest release of the `six project`_ to work
 If you wish to turn off these fixers to avoid an external dependency on ``six``,
 then use the ``--no-six`` flag.
 
-Fixers use the API defined by 2to3. For details of how this works, and how to
-implement your own fixers, see `Extending 2to3 with your own fixers, at
-python3porting.com <http://python3porting.com/fixers.html>`_.
+Fixers use the API defined by fissix. For details of how this works, and how to
+implement your own fixers, see `Creating a fixer, at
+python3porting.com <http://python3porting.com/fixers.html#creating-a-fixer>`_.
 ``python -m modernize`` will try to load fixers whose full dotted-path is specified
 as a ``-f`` argument, but will fail if they are not found. By default, fixers
 will not be found in the current directory; use ``--fixers-here`` to make
@@ -55,13 +55,13 @@ The `six project`_ provides the ``six`` module which contains various tidbits in
 helping to support Python 2/3 code. All ``six``-related fixers assume the latest
 version of ``six`` is installed.
 
-.. 2to3fixer:: basestring
+.. fissix_fixer:: basestring
 
    Replaces all references to :func:`basestring` with :data:`six.string_types`.
 
    .. versionadded:: 0.4
 
-.. 2to3fixer:: dict_six
+.. fissix_fixer:: dict_six
 
    Fixes various methods on the ``dict`` type for getting all keys, values, or
    items. E.g.::
@@ -79,13 +79,13 @@ version of ``six`` is installed.
    Care is taken to only call ``list()`` when not in an iterating context
    (e.g. not the iterable for a ``for`` loop).
 
-.. 2to3fixer:: filter
+.. fissix_fixer:: filter
 
    When a call to :func:`filter <python2:filter>` is discovered, ``from six.moves import filter`` is
    added to the module. Wrapping the use in a call to ``list()`` is done when
    necessary.
 
-.. 2to3fixer:: imports_six
+.. fissix_fixer:: imports_six
 
    Uses :mod:`six.moves` to fix various renamed modules, e.g.::
 
@@ -139,7 +139,7 @@ version of ``six`` is installed.
 
    .. versionadded:: 0.4
 
-.. 2to3fixer:: input_six
+.. fissix_fixer:: input_six
 
    Changes::
 
@@ -154,18 +154,18 @@ version of ``six`` is installed.
 
    .. versionadded:: 0.4
 
-.. 2to3fixer:: int_long_tuple
+.. fissix_fixer:: int_long_tuple
 
    Changes ``(int, long)`` or ``(long, int)`` to :data:`six.integer_types`.
 
    .. versionadded:: 0.4
 
-.. 2to3fixer:: map
+.. fissix_fixer:: map
 
    If a call to :func:`map <python2:map>` is discovered, ``from six.moves import map`` is added to
    the module. Wrapping the use in a call to ``list()`` is done when necessary.
 
-.. 2to3fixer:: metaclass
+.. fissix_fixer:: metaclass
 
    Changes::
 
@@ -181,16 +181,16 @@ version of ``six`` is installed.
    .. seealso::
       :func:`six.with_metaclass`
 
-.. 2to3fixer:: raise_six
+.. fissix_fixer:: raise_six
 
    Changes ``raise E, V, T`` to ``six.reraise(E, V, T)``.
 
-.. 2to3fixer:: unicode_type
+.. fissix_fixer:: unicode_type
 
    Changes all reference of :func:`unicode <python2:unicode>` to
    :data:`six.text_type`.
 
-.. 2to3fixer:: urllib_six
+.. fissix_fixer:: urllib_six
 
    Changes::
 
@@ -202,12 +202,12 @@ version of ``six`` is installed.
        from six.moves.urllib.parse import quote_plus
        quote_plus('hello world')
 
-.. 2to3fixer:: unichr
+.. fissix_fixer:: unichr
 
    Changes all reference of :func:`unichr <python2:unichr>` to
    :data:`six.unichr`.
 
-.. 2to3fixer:: xrange_six
+.. fissix_fixer:: xrange_six
 
    Changes::
 
@@ -223,70 +223,70 @@ version of ``six`` is installed.
    Care is taken not to call ``list()`` when ``range()`` is used in an iterating
    context.
 
-.. 2to3fixer:: zip
+.. fissix_fixer:: zip
 
    If :func:`zip <python2:zip>` is called, ``from six.moves import zip`` is added to the module.
    Wrapping the use in a call to ``list()`` is done when necessary.
 
 
-``2to3`` fixers
+``fissix`` fixers
 +++++++++++++++
 
 Some `fixers from fissix <https://docs.python.org/3/library/2to3.html#fixers>`_
 in Python's standard library are run by default unmodified as their
 transformations are Python 2 compatible.
 
-- :2to3fixer:`apply <python:apply>`
-- :2to3fixer:`except <python:except>`
-- :2to3fixer:`exec <python:exec>`
-- :2to3fixer:`execfile <python:execfile>`
-- :2to3fixer:`exitfunc <python:exitfunc>`
-- :2to3fixer:`funcattrs <python:funcattrs>`
-- :2to3fixer:`has_key <python:has_key>`
-- :2to3fixer:`idioms <python:idioms>`
-- :2to3fixer:`long <python:long>`
-- :2to3fixer:`methodattrs <python:methodattrs>`
-- :2to3fixer:`ne <python:ne>`
-- :2to3fixer:`numliterals <python:numliterals>`
-- :2to3fixer:`operator <python:operator>`
-- :2to3fixer:`paren <python:paren>`
-- :2to3fixer:`reduce <python:reduce>`
-- :2to3fixer:`repr <python:repr>`
-- :2to3fixer:`set_literal <python:set_literal>`
-- :2to3fixer:`standarderror <python:standarderror>`
-- :2to3fixer:`sys_exc <python:sys_exc>`
-- :2to3fixer:`throw <python:throw>`
-- :2to3fixer:`tuple_params <python:tuple_params>`
-- :2to3fixer:`types <python:types>`
-- :2to3fixer:`ws_comma <python:ws_comma>`
-- :2to3fixer:`xreadlines <python:xreadlines>`
+- :fissix_fixer:`apply <python:apply>`
+- :fissix_fixer:`except <python:except>`
+- :fissix_fixer:`exec <python:exec>`
+- :fissix_fixer:`execfile <python:execfile>`
+- :fissix_fixer:`exitfunc <python:exitfunc>`
+- :fissix_fixer:`funcattrs <python:funcattrs>`
+- :fissix_fixer:`has_key <python:has_key>`
+- :fissix_fixer:`idioms <python:idioms>`
+- :fissix_fixer:`long <python:long>`
+- :fissix_fixer:`methodattrs <python:methodattrs>`
+- :fissix_fixer:`ne <python:ne>`
+- :fissix_fixer:`numliterals <python:numliterals>`
+- :fissix_fixer:`operator <python:operator>`
+- :fissix_fixer:`paren <python:paren>`
+- :fissix_fixer:`reduce <python:reduce>`
+- :fissix_fixer:`repr <python:repr>`
+- :fissix_fixer:`set_literal <python:set_literal>`
+- :fissix_fixer:`standarderror <python:standarderror>`
+- :fissix_fixer:`sys_exc <python:sys_exc>`
+- :fissix_fixer:`throw <python:throw>`
+- :fissix_fixer:`tuple_params <python:tuple_params>`
+- :fissix_fixer:`types <python:types>`
+- :fissix_fixer:`ws_comma <python:ws_comma>`
+- :fissix_fixer:`xreadlines <python:xreadlines>`
 
 Fixers with no dependencies
 +++++++++++++++++++++++++++
 
-.. 2to3fixer:: file
+.. fissix_fixer:: file
 
    Changes all calls to :func:`file <python2:file>` to :func:`open <python2:open>`.
 
    .. versionadded:: 0.4
 
-.. 2to3fixer:: import
+.. fissix_fixer:: import
 
    Changes implicit relative imports to explicit relative imports and adds
    ``from __future__ import absolute_import``.
 
    .. versionadded:: 0.4
 
-.. 2to3fixer:: next
+.. fissix_fixer:: next
 
    Changes all method calls from ``x.next()`` to ``next(x)``.
 
-.. 2to3fixer:: print
+.. fissix_fixer:: print
 
    Changes all usage of the ``print`` statement to use the :func:`print` function
    and adds ``from __future__ import print_function``.
 
-.. 2to3fixer:: raise
+.. fissix_fixer:: raise
 
    Changes comma-based ``raise`` statements from::
 
@@ -307,7 +307,7 @@ to specify the ``-f default`` or ``--fix=default`` option, e.g.::
 
     python -m modernize -f default -f libmodernize.fixes.fix_open
 
-.. 2to3fixer:: classic_division
+.. fissix_fixer:: classic_division
 
    When a use of the division operator -- ``/`` -- is found, add
    ``from __future__ import division`` and change the operator to ``//``.
@@ -328,7 +328,7 @@ to specify the ``-f default`` or ``--fix=default`` option, e.g.::
 
    .. versionadded:: 1.0
 
-.. 2to3fixer:: open
+.. fissix_fixer:: open
 
    When a call to :func:`open <python2:open>` is discovered, add ``from io import open`` at the top
    of the module so as to use :func:`io.open` instead. This fixer is opt-in because it
