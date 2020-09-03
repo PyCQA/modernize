@@ -1,0 +1,43 @@
+name: Build
+on:
+  push:
+    branches:
+      - master
+      - gha
+    tags:
+      - v*
+  pull_request:
+
+jobs:
+  modernize:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [14.x]
+        python-version: [3.6, 3.7, 3.8]
+        os: [macOS-latest, ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Set Up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Set Up Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install
+        run: |
+          pip install tox
+      - name: Test
+        run: tox -e py${{ matrix.python-version[0] }}${{ matrix.pythos-version[2] }}
+      - name: Lint
+        run: tox -e lint
+      - name: Coveralls
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+        run: tox -e coveralls
+        continue-on-error: true
