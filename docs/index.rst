@@ -37,7 +37,7 @@ A note about handling text literals
 
 - By default modernize does not change Unicode literals at all, which means that
   you can take advantage of
-  `PEP 414 <http://legacy.python.org/dev/peps/pep-0414/>`_.
+  `PEP 414 <https://www.python.org/dev/peps/pep-0414/>`_.
   This is the simplest option if you only want to support Python 3.3 and above
   along with Python 2.
 - Alternatively, there is the ``--six-unicode`` flag which will wrap Unicode
