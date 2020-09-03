@@ -1,21 +1,24 @@
-from __future__ import absolute_import
+from __future__ import generator_stop
 
 from utils import check_on_input
 
-
-NEXT_METHOD = ("""
+NEXT_METHOD = (
+    """
 spam.next()
 """,
-"""
+    """
 next(spam)
-""")
+""",
+)
 
-NEXT_NESTED = ("""
+NEXT_NESTED = (
+    """
 eggs.spam.next()
 """,
-"""
+    """
 next(eggs.spam)
-""")
+""",
+)
 
 
 def test_next_method():

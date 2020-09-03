@@ -10,45 +10,93 @@
 #
 #     Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
 #     2011, 2012, 2013 Python Software Foundation. All rights reserved.
+from __future__ import generator_stop
+
+from fissix.fixer_util import (
+    Comma,
+    FromImport,
+    Name,
+    Newline,
+    Node,
+    find_indentation,
+    syms,
+)
+
+# Local imports
+from fissix.fixes.fix_imports import FixImports, alternates
 
 # Author: Nick Edds
 
-# Local imports
-from lib2to3.fixes.fix_imports import alternates, FixImports
-from lib2to3 import fixer_base
-from lib2to3.fixer_util import (Name, Comma, FromImport, Newline,
-                                find_indentation, Node, syms)
 
-MAPPING = {"urllib":  [
-                ("six.moves.urllib.request",
-                    ["URLopener", "FancyURLopener", "urlretrieve",
-                     "_urlopener", "urlopen", "urlcleanup",
-                     "pathname2url", "url2pathname"]),
-                ("six.moves.urllib.parse",
-                    ["quote", "quote_plus", "unquote", "unquote_plus",
-                     "urlencode", "splitattr", "splithost", "splitnport",
-                     "splitpasswd", "splitport", "splitquery", "splittag",
-                     "splittype", "splituser", "splitvalue", ]),
-                ("six.moves.urllib.error",
-                    ["ContentTooShortError"])],
-           "urllib2" : [
-                ("six.moves.urllib.request",
-                    ["urlopen", "install_opener", "build_opener",
-                     "Request", "OpenerDirector", "BaseHandler",
-                     "HTTPDefaultErrorHandler", "HTTPRedirectHandler",
-                     "HTTPCookieProcessor", "ProxyHandler",
-                     "HTTPPasswordMgr",
-                     "HTTPPasswordMgrWithDefaultRealm",
-                     "AbstractBasicAuthHandler",
-                     "HTTPBasicAuthHandler", "ProxyBasicAuthHandler",
-                     "AbstractDigestAuthHandler",
-                     "HTTPDigestAuthHandler", "ProxyDigestAuthHandler",
-                     "HTTPHandler", "HTTPSHandler", "FileHandler",
-                     "FTPHandler", "CacheFTPHandler",
-                     "UnknownHandler"]),
-                ("six.moves.urllib.error",
-                    ["URLError", "HTTPError"]),
-           ]
+MAPPING = {
+    "urllib": [
+        (
+            "six.moves.urllib.request",
+            [
+                "URLopener",
+                "FancyURLopener",
+                "urlretrieve",
+                "_urlopener",
+                "urlopen",
+                "urlcleanup",
+                "pathname2url",
+                "url2pathname",
+            ],
+        ),
+        (
+            "six.moves.urllib.parse",
+            [
+                "quote",
+                "quote_plus",
+                "unquote",
+                "unquote_plus",
+                "urlencode",
+                "splitattr",
+                "splithost",
+                "splitnport",
+                "splitpasswd",
+                "splitport",
+                "splitquery",
+                "splittag",
+                "splittype",
+                "splituser",
+                "splitvalue",
+            ],
+        ),
+        ("six.moves.urllib.error", ["ContentTooShortError"]),
+    ],
+    "urllib2": [
+        (
+            "six.moves.urllib.request",
+            [
+                "urlopen",
+                "install_opener",
+                "build_opener",
+                "Request",
+                "OpenerDirector",
+                "BaseHandler",
+                "HTTPDefaultErrorHandler",
+                "HTTPRedirectHandler",
+                "HTTPCookieProcessor",
+                "ProxyHandler",
+                "HTTPPasswordMgr",
+                "HTTPPasswordMgrWithDefaultRealm",
+                "AbstractBasicAuthHandler",
+                "HTTPBasicAuthHandler",
+                "ProxyBasicAuthHandler",
+                "AbstractDigestAuthHandler",
+                "HTTPDigestAuthHandler",
+                "ProxyDigestAuthHandler",
+                "HTTPHandler",
+                "HTTPSHandler",
+                "FileHandler",
+                "FTPHandler",
+                "CacheFTPHandler",
+                "UnknownHandler",
+            ],
+        ),
+        ("six.moves.urllib.error", ["URLError", "HTTPError"]),
+    ],
 }
 
 # Duplicate the url parsing functions for urllib2.
@@ -56,37 +104,41 @@ MAPPING["urllib2"].append(MAPPING["urllib"][1])
 
 
 def build_pattern():
-    bare = set()
     for old_module, changes in MAPPING.items():
         for change in changes:
             new_module, members = change
             members = alternates(members)
-            yield """import_name< 'import' (module=%r
-                                  | dotted_as_names< any* module=%r any* >) >
-                  """ % (old_module, old_module)
-            yield """import_from< 'from' mod_member=%r 'import'
-                       ( member=%s | import_as_name< member=%s 'as' any > |
+            yield """import_name< 'import' (module={!r}
+                                  | dotted_as_names< any* module={!r} any* >) >
+                  """.format(
+                old_module, old_module
+            )
+            yield """import_from< 'from' mod_member={!r} 'import'
+                       ( member={} | import_as_name< member={} 'as' any > |
                          import_as_names< members=any*  >) >
-                  """ % (old_module, members, members)
+                  """.format(
+                old_module, members, members
+            )
             yield """import_from< 'from' module_star=%r 'import' star='*' >
                   """ % old_module
             yield """import_name< 'import'
                                   dotted_as_name< module_as=%r 'as' any > >
                   """ % old_module
             # bare_with_attr has a special significance for FixImports.match().
-            yield """power< bare_with_attr=%r trailer< '.' member=%s > any* >
-                  """ % (old_module, members)
+            yield """power< bare_with_attr={!r} trailer< '.' member={} > any* >
+                  """.format(
+                old_module, members
+            )
 
 
 class FixUrllibSix(FixImports):
-
     def build_pattern(self):
         return "|".join(build_pattern())
 
     def transform_import(self, node, results):
         """Transform for the basic import case. Replaces the old
-           import name with a comma separated list of its
-           replacements.
+        import name with a comma separated list of its
+        replacements.
         """
         import_mod = results.get("module")
         pref = import_mod.prefix
@@ -101,8 +153,8 @@ class FixUrllibSix(FixImports):
 
     def transform_member(self, node, results):
         """Transform for imports of specific module elements. Replaces
-           the module to be imported from with the appropriate new
-           module.
+        the module to be imported from with the appropriate new
+        module.
         """
         mod_member = results.get("mod_member")
         pref = mod_member.prefix
@@ -132,12 +184,10 @@ class FixUrllibSix(FixImports):
             for member in members:
                 # we only care about the actual members
                 if member.type == syms.import_as_name:
-                    as_name = member.children[2].value
                     member_name = member.children[0].value
                 else:
                     member_name = member.value
-                    as_name = None
-                if member_name != u",":
+                if member_name != ",":
                     for change in MAPPING[mod_member.value]:
                         if member_name in change[1]:
                             if change[0] not in mod_dict:
@@ -147,13 +197,17 @@ class FixUrllibSix(FixImports):
             new_nodes = []
             indentation = find_indentation(node)
             first = True
+
             def handle_name(name, prefix):
                 if name.type == syms.import_as_name:
-                    kids = [Name(name.children[0].value, prefix=prefix),
-                            name.children[1].clone(),
-                            name.children[2].clone()]
+                    kids = [
+                        Name(name.children[0].value, prefix=prefix),
+                        name.children[1].clone(),
+                        name.children[2].clone(),
+                    ]
                     return [Node(syms.import_as_name, kids)]
                 return [Name(name.value, prefix=prefix)]
+
             for module in modules:
                 elts = mod_dict[module]
                 names = []
@@ -187,8 +241,7 @@ class FixUrllibSix(FixImports):
                 new_name = change[0]
                 break
         if new_name:
-            module_dot.replace(Name(new_name,
-                                    prefix=module_dot.prefix))
+            module_dot.replace(Name(new_name, prefix=module_dot.prefix))
         else:
             self.cannot_convert(node, "This is an invalid module element")
 

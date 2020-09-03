@@ -18,13 +18,13 @@ Some fixers rely on the latest release of the `six project`_ to work
 If you wish to turn off these fixers to avoid an external dependency on ``six``,
 then use the ``--no-six`` flag.
 
-Fixers use the API defined by 2to3. For details of how this works, and how to
-implement your own fixers, see `Extending 2to3 with your own fixers, at
-python3porting.com <http://python3porting.com/fixers.html>`_.
-``python-modernize`` will try to load fixers whose full dotted-path is specified
+Fixers use the API defined by fissix. For details of how this works, and how to
+implement your own fixers, see `Creating a fixer, at python3porting.com
+<https://web.archive.org/web/20200903114908/python3porting.com/fixers.html#creating-a-fixer>`_.
+``python -m modernize`` will try to load fixers whose full dotted-path is specified
 as a ``-f`` argument, but will fail if they are not found. By default, fixers
 will not be found in the current directory; use ``--fixers-here`` to make
-``python-modernize`` look for them there, or see the `Python tutorial on
+``python -m modernize`` look for them there, or see the `Python tutorial on
 modules <https://docs.python.org/3/tutorial/modules.html>`_ (in particular,
 the parts on the `search path
 <https://docs.python.org/3/tutorial/modules.html#the-module-search-path>`_
@@ -55,13 +55,13 @@ The `six project`_ provides the ``six`` module which contains various tidbits in
 helping to support Python 2/3 code. All ``six``-related fixers assume the latest
 version of ``six`` is installed.
 
-.. 2to3fixer:: basestring
+.. attribute:: basestring
 
    Replaces all references to :func:`basestring` with :data:`six.string_types`.
 
    .. versionadded:: 0.4
 
-.. 2to3fixer:: dict_six
+.. attribute:: dict_six
 
    Fixes various methods on the ``dict`` type for getting all keys, values, or
    items. E.g.::
@@ -79,13 +79,13 @@ version of ``six`` is installed.
    Care is taken to only call ``list()`` when not in an iterating context
    (e.g. not the iterable for a ``for`` loop).
 
-.. 2to3fixer:: filter
+.. attribute:: filter
 
    When a call to :func:`filter <python2:filter>` is discovered, ``from six.moves import filter`` is
    added to the module. Wrapping the use in a call to ``list()`` is done when
    necessary.
 
-.. 2to3fixer:: imports_six
+.. attribute:: imports_six
 
    Uses :mod:`six.moves` to fix various renamed modules, e.g.::
 
@@ -139,7 +139,7 @@ version of ``six`` is installed.
 
    .. versionadded:: 0.4
 
-.. 2to3fixer:: input_six
+.. attribute:: input_six
 
    Changes::
 
@@ -154,18 +154,18 @@ version of ``six`` is installed.
 
    .. versionadded:: 0.4
 
-.. 2to3fixer:: int_long_tuple
+.. attribute:: int_long_tuple
 
    Changes ``(int, long)`` or ``(long, int)`` to :data:`six.integer_types`.
 
    .. versionadded:: 0.4
 
-.. 2to3fixer:: map
+.. attribute:: map
 
    If a call to :func:`map <python2:map>` is discovered, ``from six.moves import map`` is added to
    the module. Wrapping the use in a call to ``list()`` is done when necessary.
 
-.. 2to3fixer:: metaclass
+.. attribute:: metaclass
 
    Changes::
 
@@ -181,22 +181,22 @@ version of ``six`` is installed.
    .. seealso::
       :func:`six.with_metaclass`
 
-.. 2to3fixer:: nonzero
+.. attribute:: nonzero
 
    Changes all definitions of :func:`__nonzero__ <python2:__nonzero__>` to
    :func:`__bool__ <python3:__bool__>`, adding an alias that maintains PY2
    compatibility.
 
-.. 2to3fixer:: raise_six
+.. attribute:: raise_six
 
    Changes ``raise E, V, T`` to ``six.reraise(E, V, T)``.
 
-.. 2to3fixer:: unicode_type
+.. attribute:: unicode_type
 
    Changes all reference of :func:`unicode <python2:unicode>` to
    :data:`six.text_type`.
 
-.. 2to3fixer:: urllib_six
+.. attribute:: urllib_six
 
    Changes::
 
@@ -208,12 +208,12 @@ version of ``six`` is installed.
        from six.moves.urllib.parse import quote_plus
        quote_plus('hello world')
 
-.. 2to3fixer:: unichr
+.. attribute:: unichr
 
    Changes all reference of :func:`unichr <python2:unichr>` to
    :data:`six.unichr`.
 
-.. 2to3fixer:: xrange_six
+.. attribute:: xrange_six
 
    Changes::
 
@@ -229,70 +229,70 @@ version of ``six`` is installed.
    Care is taken not to call ``list()`` when ``range()`` is used in an iterating
    context.
 
-.. 2to3fixer:: zip
+.. attribute:: zip
 
    If :func:`zip <python2:zip>` is called, ``from six.moves import zip`` is added to the module.
    Wrapping the use in a call to ``list()`` is done when necessary.
 
 
-``2to3`` fixers
-+++++++++++++++
+``fissix`` fixers
++++++++++++++++++
 
-Some `fixers from lib2to3 <https://docs.python.org/3/library/2to3.html#fixers>`_
+Some :doc:`fixers from fissix <fissix:fixers>`
 in Python's standard library are run by default unmodified as their
 transformations are Python 2 compatible.
 
-- :2to3fixer:`apply <python:apply>`
-- :2to3fixer:`except <python:except>`
-- :2to3fixer:`exec <python:exec>`
-- :2to3fixer:`execfile <python:execfile>`
-- :2to3fixer:`exitfunc <python:exitfunc>`
-- :2to3fixer:`funcattrs <python:funcattrs>`
-- :2to3fixer:`has_key <python:has_key>`
-- :2to3fixer:`idioms <python:idioms>`
-- :2to3fixer:`long <python:long>`
-- :2to3fixer:`methodattrs <python:methodattrs>`
-- :2to3fixer:`ne <python:ne>`
-- :2to3fixer:`numliterals <python:numliterals>`
-- :2to3fixer:`operator <python:operator>`
-- :2to3fixer:`paren <python:paren>`
-- :2to3fixer:`reduce <python:reduce>`
-- :2to3fixer:`repr <python:repr>`
-- :2to3fixer:`set_literal <python:set_literal>`
-- :2to3fixer:`standarderror <python:standarderror>`
-- :2to3fixer:`sys_exc <python:sys_exc>`
-- :2to3fixer:`throw <python:throw>`
-- :2to3fixer:`tuple_params <python:tuple_params>`
-- :2to3fixer:`types <python:types>`
-- :2to3fixer:`ws_comma <python:ws_comma>`
-- :2to3fixer:`xreadlines <python:xreadlines>`
+- :attr:`apply <fissix:apply>`
+- :attr:`except <fissix:except>`
+- :attr:`exec <fissix:exec>`
+- :attr:`execfile <fissix:execfile>`
+- :attr:`exitfunc <fissix:exitfunc>`
+- :attr:`funcattrs <fissix:funcattrs>`
+- :attr:`has_key <fissix:has_key>`
+- :attr:`idioms <fissix:idioms>`
+- :attr:`long <fissix:long>`
+- :attr:`methodattrs <fissix:methodattrs>`
+- :attr:`ne <fissix:ne>`
+- :attr:`numliterals <fissix:numliterals>`
+- :attr:`operator <fissix:operator>`
+- :attr:`paren <fissix:paren>`
+- :attr:`reduce <fissix:reduce>`
+- :attr:`repr <fissix:repr>`
+- :attr:`set_literal <fissix:set_literal>`
+- :attr:`standarderror <fissix:standarderror>`
+- :attr:`sys_exc <fissix:sys_exc>`
+- :attr:`throw <fissix:throw>`
+- :attr:`tuple_params <fissix:tuple_params>`
+- :attr:`types <fissix:types>`
+- :attr:`ws_comma <fissix:ws_comma>`
+- :attr:`xreadlines <fissix:xreadlines>`
 
 Fixers with no dependencies
 +++++++++++++++++++++++++++
 
-.. 2to3fixer:: file
+.. attribute:: file
 
    Changes all calls to :func:`file <python2:file>` to :func:`open <python2:open>`.
 
    .. versionadded:: 0.4
 
-.. 2to3fixer:: import
+.. attribute:: import
 
    Changes implicit relative imports to explicit relative imports and adds
    ``from __future__ import absolute_import``.
 
    .. versionadded:: 0.4
 
-.. 2to3fixer:: next
+.. attribute:: next
 
    Changes all method calls from ``x.next()`` to ``next(x)``.
 
-.. 2to3fixer:: print
+.. attribute:: print
 
    Changes all usage of the ``print`` statement to use the :func:`print` function
    and adds ``from __future__ import print_function``.
 
-.. 2to3fixer:: raise
+.. attribute:: raise
 
    Changes comma-based ``raise`` statements from::
 
@@ -311,9 +311,9 @@ Opt-in
 To specify an opt-in fixer while also running all the default fixers, make sure
 to specify the ``-f default`` or ``--fix=default`` option, e.g.::
 
-    python-modernize -f default -f libmodernize.fixes.fix_open
+    python -m modernize -f default -f libmodernize.fixes.fix_open
 
-.. 2to3fixer:: classic_division
+.. attribute:: classic_division
 
    When a use of the division operator -- ``/`` -- is found, add
    ``from __future__ import division`` and change the operator to ``//``.
@@ -322,7 +322,7 @@ to specify the ``-f default`` or ``--fix=default`` option, e.g.::
 
    This is intended for use in programs where ``/`` is conventionally only used
    for integer division, or where it is intended to do a manual pass after running
-   python-modernize to look for cases that should not have been changed to ``//``.
+   ``python -m modernize`` to look for cases that should not have been changed to ``//``.
    The results of division on non-integers may differ after running this fixer:
    for example, ``3.5 / 2 == 1.75``, but ``3.5 // 2 == 1.0``.
 
@@ -334,7 +334,7 @@ to specify the ``-f default`` or ``--fix=default`` option, e.g.::
 
    .. versionadded:: 1.0
 
-.. 2to3fixer:: open
+.. attribute:: open
 
    When a call to :func:`open <python2:open>` is discovered, add ``from io import open`` at the top
    of the module so as to use :func:`io.open` instead. This fixer is opt-in because it

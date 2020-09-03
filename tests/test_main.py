@@ -1,22 +1,28 @@
+from __future__ import generator_stop
+
 import sys
+
 try:
     from StringIO import StringIO  # Python 2
 except ImportError:
     from io import StringIO  # Python 3
 
-from libmodernize.main import main as modernize_main
 from utils import check_on_input
+
+from libmodernize.main import main as modernize_main
+
 
 def test_list_fixers():
     sio = StringIO()
     real_stdout = sys.stdout
     sys.stdout = sio
     try:
-        exitcode = modernize_main(['-l'])
+        exitcode = modernize_main(["-l"])
     finally:
         sys.stdout = real_stdout
     assert exitcode == 0, exitcode
-    assert 'xrange_six' in sio.getvalue()
+    assert "xrange_six" in sio.getvalue()
+
 
 NO_SIX_SAMPLE = """\
 a = range(10)
@@ -37,12 +43,15 @@ class B(six.with_metaclass(Meta, object)):
 
 
 def test_no_six():
-    check_on_input(NO_SIX_SAMPLE, NO_SIX_SAMPLE,
-                   extra_flags=['--no-six'],
-                   expected_return_code=0)
+    check_on_input(
+        NO_SIX_SAMPLE, NO_SIX_SAMPLE, extra_flags=["--no-six"], expected_return_code=0
+    )
 
 
 def test_enforce():
-    check_on_input(NO_SIX_SAMPLE, EXPECTED_SIX_RESULT,
-                   extra_flags=['--enforce'],
-                   expected_return_code=2)
+    check_on_input(
+        NO_SIX_SAMPLE,
+        EXPECTED_SIX_RESULT,
+        extra_flags=["--enforce"],
+        expected_return_code=2,
+    )

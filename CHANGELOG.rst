@@ -1,5 +1,20 @@
-Unreleased
-==========
+Version 0.8rc2-dev
+==================
+
+Unreleased.
+
+* add ``modernize`` console_script
+* move project to https://github.com/PyCQA/modernize/
+
+Version 0.8rc1
+==============
+
+Released 2020-07-20.
+
+* use fissix instead of deprecated lib2to3
+
+Version 0.5-0.7
+===============
 
 * Added the opt-in classic_division fixer.
 * Updated the ``dict_six`` fixer to support ``six.viewitems()`` and friends.
@@ -48,7 +63,7 @@ Released 2014-10-14.
   Python 2.6, such as the ``except ... as`` construct, but this was not
   documented.)
 
-.. _Documentation: http://python-modernize.readthedocs.org/en/latest/
+.. _Documentation: https://modernize.readthedocs.org/en/latest/
 
 
 Version 0.3
@@ -59,7 +74,7 @@ Released 2014-08-12.
 * New fixer for ``raise E, V, T``, changed to ``six.reraise(E, V, T)``.
 * New fixer for metaclasses, using ``six.with_metaclass``.
 * Avoid adding redundant parentheses to ``print(x)``.
-* python-modernize can now be installed and run on Python 3.
+* modernize can now be installed and run on Python 3.
 * Fixed a bug where ``__future__`` imports were added multiple times.
 * Fixed a bug where fixer for ``zip()`` was recognising ``map()``.
 * The default is now to leave Unicode literals unchanged.

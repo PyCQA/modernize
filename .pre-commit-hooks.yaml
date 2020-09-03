@@ -1,7 +1,12 @@
--   id: python-modernize
-    name: python-modernize
-    description: Modernizes Python code for eventual Python 3 migration.
-    entry: python-modernize
-    args: [--write, --fix=default, --nobackups]
-    language: python
-    types: [python]
+- &modernize
+  id: modernize
+  name: modernize
+  description: Modernizes Python code for eventual Python 3 migration.
+  entry: modernize
+  args: [--write, --fix=default, --nobackups]
+  language: python
+  types: [python]
+- <<: *modernize
+  id: python-modernize
+  name: modernize (deprecated)
+  description: "Deprecated in favour of `id: modernize`"
