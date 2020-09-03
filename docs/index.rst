@@ -1,7 +1,7 @@
 :tocdepth: 3
 
-Python-Modernize
-////////////////
+Modernize
+/////////
 
 .. toctree::
    :maxdepth: 2
@@ -18,13 +18,13 @@ This library is a very thin wrapper around ``fissix`` to utilize it
 to make Python 2 code more modern with the intention of eventually
 porting it over to Python 3.
 
-The ``python-modernize`` command works like `2to3
+The ``python -m modernize`` command works like `2to3
 <https://docs.python.org/3/library/2to3.html>`_. Here's how you'd rewrite a
 single file::
 
-    python-modernize -w example.py
+    python -m modernize -w example.py
 
-See the ``LICENSE`` file for the license of ``python-modernize``.
+See the ``LICENSE`` file for the license of ``python -m modernize``.
 Using this tool does not affect licensing of the modernized code.
 
 The `project website`_ can be found on GitHub and the PyPI project name is
@@ -59,4 +59,4 @@ Indices and tables
 
 
 .. _modernize: https://pypi.python.org/pypi/modernize
-.. _project website: https://github.com/python-modernize/python-modernize
+.. _project website: https://github.com/pycqa/modernize
