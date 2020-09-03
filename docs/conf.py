@@ -45,7 +45,7 @@ master_doc = "index"
 
 # General information about the project.
 project = "modernize"
-copyright = "2014, python-modernize team"
+copyright = "2014, python-modernize team; 2020 pycqa/modernize team"
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -205,7 +205,7 @@ latex_documents = [
         "index",
         "modernize.tex",
         "modernize Documentation",
-        "python-modernize team",
+        "pycqa/modernize team",
         "manual",
     )
 ]
@@ -236,7 +236,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ("index", "modernize", "modernize Documentation", ["python-modernize team"], 1)
+    ("index", "modernize", "modernize Documentation", ["pycqa/modernize team"], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -253,7 +253,7 @@ texinfo_documents = [
         "index",
         "modernize",
         "modernize Documentation",
-        "python-modernize team",
+        "pycqa/modernize team",
         "modernize",
         "One line description of project.",
         "Miscellaneous",

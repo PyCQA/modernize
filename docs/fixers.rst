@@ -21,10 +21,10 @@ then use the ``--no-six`` flag.
 Fixers use the API defined by 2to3. For details of how this works, and how to
 implement your own fixers, see `Extending 2to3 with your own fixers, at
 python3porting.com <http://python3porting.com/fixers.html>`_.
-``python-modernize`` will try to load fixers whose full dotted-path is specified
+``python -m modernize`` will try to load fixers whose full dotted-path is specified
 as a ``-f`` argument, but will fail if they are not found. By default, fixers
 will not be found in the current directory; use ``--fixers-here`` to make
-``python-modernize`` look for them there, or see the `Python tutorial on
+``python -m modernize`` look for them there, or see the `Python tutorial on
 modules <https://docs.python.org/3/tutorial/modules.html>`_ (in particular,
 the parts on the `search path
 <https://docs.python.org/3/tutorial/modules.html#the-module-search-path>`_
@@ -305,7 +305,7 @@ Opt-in
 To specify an opt-in fixer while also running all the default fixers, make sure
 to specify the ``-f default`` or ``--fix=default`` option, e.g.::
 
-    python-modernize -f default -f libmodernize.fixes.fix_open
+    python -m modernize -f default -f libmodernize.fixes.fix_open
 
 .. 2to3fixer:: classic_division
 
@@ -316,7 +316,7 @@ to specify the ``-f default`` or ``--fix=default`` option, e.g.::
 
    This is intended for use in programs where ``/`` is conventionally only used
    for integer division, or where it is intended to do a manual pass after running
-   python-modernize to look for cases that should not have been changed to ``//``.
+   ``python -m odernize`` to look for cases that should not have been changed to ``//``.
    The results of division on non-integers may differ after running this fixer:
    for example, ``3.5 / 2 == 1.75``, but ``3.5 // 2 == 1.0``.
 
