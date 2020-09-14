@@ -78,10 +78,6 @@ singledispatch==3.4.0.3; python_version < "3.4" \
   --hash sha256:5b06af87df13818d14f08a028e42f566640aef80805c3b50c5056b086e3c2b9c \
   --hash sha256:833b46966687b3de7f438c761ac475213e53b306740f1abfaa86e1d1aae56aa8 \
   # ^ from importlib-resources
-six==1.15.0 \
-  --hash sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259 \
-  --hash sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced \
-  # ^ from packaging, pathlib2, singledispatch
 typing==3.7.4.3; python_version < "3.5" \
   --hash sha256:1187fb9c82fd670d10aa07bbb6cfcfe4bdda42d6fab8d5134f04e8c4d0b71cc9 \
   --hash sha256:283d868f5071ab9ad873e5e52268d611e851c870a2ba354193026f2dfb29d8b5 \
@@ -118,10 +114,10 @@ cfgv==3.2.0 \
   --hash sha256:32e43d604bbe7896fe7c248a9c2276447dbef840feb28fe20494f62af110211d \
   --hash sha256:cf22deb93d4bcf92f345a5c3cd39d3d41d6340adc60c78bbbd6588c384fda6a1 \
   # ^ from pre-commit
-colorama==0.4.3; sys_platform == "win32" or sys_platform == "win32" \
+colorama==0.4.3; sys_platform == "win32" or sys_platform == "win32" or platform_system == "Windows" \
   --hash sha256:7d73d2a99753107a36ac6b455ee49046802e59d9d076ef8e47b61499fa29afff \
   --hash sha256:e96da0d330793e2cb9485e9ddfd918d456036c7149416295932478192f4436a1 \
-  # ^ from pytest, sphinx
+  # ^ from pytest, sphinx, tox
 docopt==0.6.2 \
   --hash sha256:49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491 \
   # ^ from coveralls
@@ -137,10 +133,10 @@ imagesize==1.2.0 \
   --hash sha256:6965f19a6a2039c7d48bca7dba2473069ff854c36ae6f19d2cde309d998228a1 \
   --hash sha256:b1f6b5a4eab1f73479a50fb79fcf729514a900c341d8503d62a62dbc4127a2b1 \
   # ^ from sphinx
-importlib-metadata==1.7.0; python_version < "3.8" or python_version < "3.8" or python_version < "3.8" \
+importlib-metadata==1.7.0; python_version < "3.8" or python_version < "3.8" or python_version < "3.8" or python_version < "3.8" \
   --hash sha256:90bb658cdbbf6d1735b6341ce708fc7024a3e14e99ffdc5783edea9f9b077f83 \
   --hash sha256:dc15b2969b4ce36305c51eebe62d418ac7791e9a157911d58bfb1f9ccd8e2070 \
-  # ^ from pluggy, pre-commit, pytest
+  # ^ from pluggy, pre-commit, pytest, tox
 importlib-resources==3.0.0; python_version < "3.7" \
   --hash sha256:19f745a6eca188b490b1428c8d1d4a0d2368759f32370ea8fb89cad2ab1106c3 \
   --hash sha256:d028f66b66c0d5732dae86ba4276999855e162a749c92620a38c1d779ed138a7 \
@@ -164,7 +160,7 @@ nodeenv==1.5.0 \
 packaging==20.4 \
   --hash sha256:4357f74f47b9c12db93624a82154e9b120fa8293699949152b22065d556079f8 \
   --hash sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181 \
-  # ^ from pytest, sphinx
+  # ^ from pytest, sphinx, tox
 pathlib2==2.3.5; python_version < "3.6" or python_version < "3" or python_version < "3" \
   --hash sha256:0ec8205a157c80d7acc301c0b18fbd5d44fe655968f5d947b6ecef5290fc35db \
   --hash sha256:6cd9a47b597b37cc57de1c05e56fb1a1c9cc9fab04fe78c29acd090418529868 \
@@ -172,11 +168,11 @@ pathlib2==2.3.5; python_version < "3.6" or python_version < "3" or python_versio
 pluggy==0.13.1 \
   --hash sha256:15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0 \
   --hash sha256:966c145cd83c96502c3c3868f50408687b38434af77734af1e9ca461a4081d2d \
-  # ^ from pytest
+  # ^ from pytest, tox
 py==1.9.0 \
   --hash sha256:366389d1db726cd2fcfc79732e75410e5fe4d31db13692115529d34069a043c2 \
   --hash sha256:9ca6883ce56b4e8da7e79ac18787889fa5206c79dcc67fb065376cd2fe03f342 \
-  # ^ from pytest
+  # ^ from pytest, tox
 pygments==2.7.0 \
   --hash sha256:2594e8fdb06fef91552f86f4fd3a244d148ab24b66042036e64f29a291515048 \
   --hash sha256:2df50d16b45b977217e02cba6c8422aaddb859f3d0570a88e09b00eafae89c6e \
@@ -202,6 +198,10 @@ setuptools==50.3.0 \
   --hash sha256:39060a59d91cf5cf403fa3bacbb52df4205a8c3585e0b9ba4b30e0e19d4c4b18 \
   --hash sha256:c77b3920663a435c9450d9d971c48f5a7478fca8881b2cd2564e59f970f03536 \
   # ^ from sphinx
+six==1.15.0 \
+  --hash sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259 \
+  --hash sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced \
+  # ^ from packaging, pathlib2, singledispatch, tox
 snowballstemmer==2.0.0 \
   --hash sha256:209f257d7533fdb3cb73bdbd24f436239ca3b2fa67d56f6ff88e86be08cc5ef0 \
   --hash sha256:df3bac3df4c2c01363f3dd2cfa78cce2840a79b9f1c2d2de9ce8d31683992f52 \
@@ -233,11 +233,11 @@ sphinxcontrib-serializinghtml==1.1.4 \
 toml==0.10.1 \
   --hash sha256:926b612be1e5ce0634a2ca03470f95169cf16f939018233a670519cb4ac58b0f \
   --hash sha256:bda89d5935c2eac546d648028b9901107a595863cb36bae0c73ac804a9b4ce88 \
-  # ^ from pre-commit, pytest
+  # ^ from pre-commit, pytest, tox
 virtualenv==20.0.31 \
   --hash sha256:43add625c53c596d38f971a465553f6318decc39d98512bc100fa1b1e839c8dc \
   --hash sha256:e0305af10299a7fb0d69393d8f04cb2965dda9351140d11ac8db4e5e3970451b \
-  # ^ from pre-commit
+  # ^ from pre-commit, tox
 coverage==5.3 \
   --hash sha256:0203acd33d2298e19b57451ebb0bed0ab0c602e5cf5a818591b4918b1f97d516 \
   --hash sha256:0f313707cdecd5cd3e217fc68c78a960b616604b559e9ea60cc16795c4304259 \
@@ -285,7 +285,7 @@ distlib==0.3.1 \
 filelock==3.0.12 \
   --hash sha256:18d82244ee114f543149c66a6e0c14e9c4f8a1044b5cdaadd0f82159d6a6ff59 \
   --hash sha256:929b7d63ec5b7d6b71b0fa5ac14e030b3f70b75747cef1b10da9b879fef15836 \
-  # ^ from modernize
+  # ^ from modernize, tox
 fissix==20.8.0 \
   --hash sha256:d6e80a64ac9baff328b8b1b180002eb8b488bf2db0c3c555ef51750ee005571a \
   --hash sha256:fb6659bc2158a04cb1a6e45e1c287b5e9fd4f7c3123ef4ac26614e832ab73a17 \
@@ -305,4 +305,8 @@ pytest-cov==2.10.1 \
 sphinx==3.2.1 \
   --hash sha256:321d6d9b16fa381a5306e5a0b76cd48ffbc588e6340059a729c6fdd66087e0e8 \
   --hash sha256:ce6fd7ff5b215af39e2fcd44d4a321f6694b4530b6f2b2109b64d120773faea0 \
+  # ^ from modernize
+tox==3.20.0 \
+  --hash sha256:e6318f404aff16522ff5211c88cab82b39af121735a443674e4e2e65f4e4637b \
+  --hash sha256:eb629ddc60e8542fd4a1956b2462e3b8771d49f1ff630cecceacaa0fbfb7605a \
   # ^ from modernize
