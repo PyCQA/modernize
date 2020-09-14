@@ -54,7 +54,7 @@ def tmp_requirements(hashed_reqs):
     with tmp_path(suffix=__spec__.name) as tmp:
         requirements = tmp / "requirements.txt"
         requirements.write_text(hashed_reqs)
-        yield ("-r", requirements)
+        yield ("-r", os.fsdecode(requirements))
 
 
 def main(argv=sys.argv):
