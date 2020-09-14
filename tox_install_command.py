@@ -2,6 +2,7 @@ from __future__ import generator_stop
 
 import contextlib
 import hashlib
+import os
 import pathlib
 import re
 import shutil
@@ -30,7 +31,7 @@ def maybe_hash_path_requirement(arg):
 
     otherwise return None.
     """
-    if not arg.startswith("/"):
+    if os.sep not in arg:
         return None
 
     fixed_path = pathlib.Path(_EXTRAS_RE.sub(string=arg, repl=""))
