@@ -41,7 +41,7 @@ jobs:
 
       - name: Install
         run: |
-          pip install -crequirements.lock tox
+          pip install -c "requirements.lock" tox
 
       - name: tox
         env:
