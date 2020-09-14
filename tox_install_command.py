@@ -65,9 +65,10 @@ def main(argv=sys.argv):
     # missing hashes
     not_hashed_reqs = [arg for (arg, hashed) in processed_args if not hashed]
 
-    with tmp_requirements(hashed_reqs) if hashed_reqs else contextlib.nullcontext(
-        ()
-    ) as requirements:
+    with contextlib.ExitStack() as stack:
+        requirements = (
+            stack.enter_context(tmp_requirements(hashed_reqs)) if hashed_reqs else ()
+        )
         # pip does not process `--hash` args unless in a requirements.txt
         subprocess.run(
             [
