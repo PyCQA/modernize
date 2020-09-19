@@ -1,62 +1,80 @@
-from __future__ import absolute_import
+from __future__ import generator_stop
 
 from utils import check_on_input
 
-
-INPUT = ("""\
+INPUT = (
+    """\
 input()
-""", """\
+""",
+    """\
 from __future__ import absolute_import
 from six.moves import input
 eval(input())
-""")
+""",
+)
 
-INPUT_ARGS = ("""\
+INPUT_ARGS = (
+    """\
 input('hello')
-""", """\
+""",
+    """\
 from __future__ import absolute_import
 from six.moves import input
 eval(input('hello'))
-""")
+""",
+)
 
-RAW_INPUT = ("""\
+RAW_INPUT = (
+    """\
 raw_input()
-""", """\
+""",
+    """\
 from __future__ import absolute_import
 from six.moves import input
 input()
-""")
+""",
+)
 
-RAW_INPUT_TRAILER = ("""\
+RAW_INPUT_TRAILER = (
+    """\
 raw_input()[0]
-""", """\
+""",
+    """\
 from __future__ import absolute_import
 from six.moves import input
 input()[0]
-""")
+""",
+)
 
-RAW_INPUT_INPUT = ("""\
+RAW_INPUT_INPUT = (
+    """\
 raw_input()
 input()
-""", """\
+""",
+    """\
 from __future__ import absolute_import
 from six.moves import input
 input()
 eval(input())
-""")
+""",
+)
 
 
 def test_input():
     check_on_input(*INPUT)
 
+
 def test_input_args():
     check_on_input(*INPUT_ARGS)
+
 
 def test_raw_input():
     check_on_input(*RAW_INPUT)
 
+
 def test_raw_input_trailer():
     check_on_input(*RAW_INPUT_TRAILER)
+
 
 def test_raw_input_input():
     check_on_input(*RAW_INPUT_INPUT)
