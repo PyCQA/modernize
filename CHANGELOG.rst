@@ -1,7 +1,5 @@
-Version 0.8rc2-dev
-==================
-
-Unreleased.
+0.8rc2 (unreleased)
+===================
 
 Features
 --------
