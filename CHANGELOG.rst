@@ -1,7 +1,30 @@
 0.8rc5 (unreleased)
 ===================
 
-- Nothing changed yet.
+Features
+--------
+
+* add ``modernize`` console_script
+
+Breaking
+--------
+* use ``fissix`` instead of deprecated ``lib2to3``  https://github.com/PyCQA/modernize/pull/203
+  modernize itself will no-longer run under Python 2, or Python <3.6, but will
+  always be able to process Python 2 code.
+
+Bugfixes
+--------
+* Fix for ``dict.viewitems()``, ``dict.iteritems()`` etc in chained calls https://github.com/PyCQA/modernize/pull/181
+* Fix for SLASHEQUAL ``/=`` in fix_classic_divivion https://github.com/PyCQA/modernize/pull/197
+
+Docs/tests/meta
+---------------
+* Travis CI: Add Python 3.7, 3.8 and more flake8 tests https://github.com/PyCQA/modernize/pull/199
+* ``six`` documentation has moved to https://six.readthedocs.io/ https://github.com/PyCQA/modernize/pull/198
+* Fix typo in help string for --enforce option https://github.com/PyCQA/modernize/pull/191
+* move project to https://github.com/PyCQA/modernize/  https://github.com/PyCQA/modernize/pull/220 https://github.com/PyCQA/modernize/pull/215
+* switch from Travis CI to Github Actions https://github.com/PyCQA/modernize/pull/224
+* use tox, pre-commit, pyupgrade and black https://github.com/PyCQA/modernize/pull/216
 
 
 0.8rc4 (2020-09-27)
