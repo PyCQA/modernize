@@ -28,8 +28,6 @@ fissix_fix_names = {
     "fissix.fixes.fix_xreadlines",
 }
 
-lib2to3_fix_names = fissix_fix_names
-
 # fixes that involve using six
 six_fix_names = {
     "libmodernize.fixes.fix_basestring",
