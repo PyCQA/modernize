@@ -64,6 +64,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: ubuntu-latest_3.8_dist
+          path: dist
+
+      - name: Display structure of donwloaded files
+        run: ls -R
 
       - name: Publish package
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
