@@ -10,7 +10,7 @@ from __future__ import generator_stop
 from fissix import fixer_base
 from fissix.fixer_util import Call, Comma, Name
 
-from libmodernize import touch_import
+import libmodernize
 
 
 class FixRaiseSix(fixer_base.BaseFix):
@@ -28,7 +28,7 @@ class FixRaiseSix(fixer_base.BaseFix):
         exc.prefix = ""
         val.prefix = tb.prefix = " "
 
-        touch_import(None, "six", node)
+        libmodernize.touch_import(None, "six", node)
         return Call(
             Name("six.reraise"), [exc, Comma(), val, Comma(), tb], prefix=node.prefix
         )

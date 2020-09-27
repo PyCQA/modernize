@@ -13,7 +13,7 @@ from __future__ import generator_stop
 from fissix import fixer_base
 from fissix.fixer_util import Call, Name
 
-from libmodernize import touch_import
+import libmodernize
 
 
 class FixInputSix(fixer_base.ConditionalFix):
@@ -31,7 +31,7 @@ class FixInputSix(fixer_base.ConditionalFix):
         if self.should_skip(node):
             return
 
-        touch_import("six.moves", "input", node)
+        libmodernize.touch_import("six.moves", "input", node)
         name = results["name"]
         if name.value == "raw_input":
             name.replace(Name("input", prefix=name.prefix))

@@ -29,7 +29,7 @@ from fissix import fixer_base
 from fissix.fixer_util import Call, Comma, Leaf, Name, Node, syms
 from fissix.pygram import token
 
-from libmodernize import touch_import
+import libmodernize
 
 # Author: Jack Diederich, Daniel Neuhäuser
 
@@ -198,7 +198,7 @@ class FixMetaclass(fixer_base.BaseFix):
         else:
             raise ValueError("Unexpected class definition")  # pragma: no cover
 
-        touch_import(None, "six", node)
+        libmodernize.touch_import(None, "six", node)
 
         metaclass = last_metaclass.children[0].children[2].clone()
         metaclass.prefix = ""
