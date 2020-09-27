@@ -1,4 +1,4 @@
-0.8rc4 (unreleased)
+0.8rc4 (2020-09-27)
 ===================
 
 - Nothing changed yet.
