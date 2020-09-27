@@ -1,0 +1,86 @@
+[build-system]
+requires = [ "setuptools >= 35.0.2", "wheel >= 0.29.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.isort]
+profile = "black"
+add_imports="from __future__ import generator_stop"
+
+[tool.pytest.ini_options]
+addopts = [
+  "--strict-config",
+  "--strict-markers",
+  "--cov",
+  "--cov-fail-under=91.53",
+  "--cov-report=term-missing:skip-covered",
+]
+xfail_strict = true
+junit_family = "xunit2"
+filterwarnings = ["error"]
+
+[tool.coverage.run]
+branch = true
+source_pkgs = [
+    "modernize",
+    "libmodernize",
+]
+source = ["tests"]
+
+[tool.coverage.paths]
+source = [
+    ".",
+    ".tox/*/lib/*/site-packages/",
+    '.tox\\*\\Lib\\site-packages\\',
+]
+
+
+[tool.tox]
+legacy_tox_ini = """
+; tox configuration file for running tests on local dev env and Travis CI.
+;
+; The local dev environment will be executed against latest released Twisted.
+; The coverage is reported only and local dev and not on Travis-CI as there
+; we have separate reported (ex codecov.io)
+
+[tox]
+envlist =
+    py{36,37,38},lint
+minversion=3.20.0
+requires=
+    virtualenv >= 20.0.31
+    tox-wheel >= 0.5.0
+
+[testenv]
+extras = test
+commands = pytest {posargs}
+wheel = True
+wheel_pep517 = True
+wheel_build_env = build
+
+[testenv:build]
+# empty environment to build universal wheel once per tox invocation
+# https://github.com/ionelmc/tox-wheel#build-configuration
+
+[testenv:coveralls]
+passenv = GITHUB_*
+deps =
+  coveralls
+  coverage>=5.3
+commands = coveralls
+
+[testenv:lint]
+deps = pre-commit
+commands = pre-commit run --all-files --show-diff-on-failure {posargs}
+skip_install = true
+
+
+[testenv:release]
+deps = pep517
+whitelist_externals =
+    cp
+    rm
+commands =
+    rm -rf {toxinidir}/dist
+    cp -r {distdir} {toxinidir}/dist # copy the wheel built by tox-wheel
+    {envpython} -m pep517.build --source --out-dir={toxinidir}/dist {toxinidir}
+"""
