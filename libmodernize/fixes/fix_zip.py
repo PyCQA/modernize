@@ -3,9 +3,8 @@
 
 from __future__ import generator_stop
 
+from fissix import fixer_util
 from fissix.fixes import fix_zip
-
-import libmodernize
 
 
 class FixZip(fix_zip.FixZip):
@@ -16,5 +15,5 @@ class FixZip(fix_zip.FixZip):
         result = super().transform(node, results)
         # Always use six.moves.zip so that even Python 2.7 gets performance
         # boost from using itertools in iterator contexts.
-        libmodernize.touch_import("six.moves", "zip", node)
+        fixer_util.touch_import("six.moves", "zip", node)
         return result

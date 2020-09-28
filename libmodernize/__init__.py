@@ -84,10 +84,6 @@ def add_future(node, symbol):
     root.insert_child(idx, Node(syms.simple_stmt, children))
 
 
-def touch_import(package, name, node):
-    fixer_util.touch_import(package, name, node)
-
-
 def is_listcomp(node):
     def _is_listcomp(node):
         return (

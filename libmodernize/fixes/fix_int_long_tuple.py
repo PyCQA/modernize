@@ -2,8 +2,6 @@ from __future__ import generator_stop
 
 from fissix import fixer_base, fixer_util
 
-import libmodernize
-
 
 class FixIntLongTuple(fixer_base.BaseFix):
 
@@ -17,6 +15,6 @@ class FixIntLongTuple(fixer_base.BaseFix):
     """
 
     def transform(self, node, results):
-        libmodernize.touch_import(None, "six", node)
+        fixer_util.touch_import(None, "six", node)
         pair = results["pair"]
         pair.replace(fixer_util.Name("six.integer_types", prefix=pair.prefix))

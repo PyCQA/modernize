@@ -8,14 +8,12 @@ from __future__ import generator_stop
 from fissix import fixer_util, pytree
 from fissix.fixes import fix_dict
 
-import libmodernize
-
 
 class FixDictSix(fix_dict.FixDict):
     def transform_iter(self, node, results):
         """Call six.(iter|view)items() and friends."""
         # Make sure six is imported.
-        libmodernize.touch_import(None, "six", node)
+        fixer_util.touch_import(None, "six", node)
 
         # Copy of self.transform() from fissix.fix_dict with some changes to
         # use the six.* methods.
