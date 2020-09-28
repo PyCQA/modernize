@@ -1,6 +1,33 @@
 [build-system]
-requires = [ "setuptools >= 35.0.2", "wheel >= 0.29.0"]
-build-backend = "setuptools.build_meta"
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "modernize"
+author = "Armin Ronacher"
+author-email = "armin.ronacher@active-4.com"
+maintainer = "PyCQA"
+maintainer-email = "code-quality@python.org"
+home-page = "https://github.com/PyCQA/modernize"
+classifiers = [
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+]
+description-file = "README.rst"
+requires = ["fissix"]
+requires-python = "~=3.6"
+
+[tool.flit.metadata.requires-extra]
+docs = ["sphinx~=3.2"]
+test = ["pytest", "pytest-cov", "coverage>=5.3"]
+
+[tool.flit.scripts]
+modernize = "modernize.main:main"
+python-modernize = "modernize.main:main"
 
 [tool.isort]
 profile = "black"
