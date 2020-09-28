@@ -3,10 +3,8 @@
 from __future__ import generator_stop
 
 # Local imports
-from fissix import fixer_base
+from fissix import fixer_base, fixer_util
 from fissix.fixer_util import BlankLine, syms, token
-
-import libmodernize
 
 # This is a derived work of Lib/lib2to3/fixes/fix_itertools_imports.py. That file
 # is under the copyright of the Python Software Foundation and licensed
@@ -50,7 +48,7 @@ class FixItertoolsImportsSix(fixer_base.BaseFix):
                 "izip_longest",
             ):
                 child.value = None
-                libmodernize.touch_import("six.moves", member_name[1:], node)
+                fixer_util.touch_import("six.moves", member_name[1:], node)
                 child.remove()
 
         # Make sure the import statement is still sane

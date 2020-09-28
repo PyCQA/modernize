@@ -28,31 +28,29 @@ fissix_fix_names = {
     "fissix.fixes.fix_xreadlines",
 }
 
-lib2to3_fix_names = fissix_fix_names
-
 # fixes that involve using six
 six_fix_names = {
-    "libmodernize.fixes.fix_basestring",
-    "libmodernize.fixes.fix_dict_six",
-    "libmodernize.fixes.fix_filter",
-    "libmodernize.fixes.fix_imports_six",
-    "libmodernize.fixes.fix_itertools_six",
-    "libmodernize.fixes.fix_itertools_imports_six",
-    "libmodernize.fixes.fix_input_six",
-    "libmodernize.fixes.fix_int_long_tuple",
-    "libmodernize.fixes.fix_map",
-    "libmodernize.fixes.fix_metaclass",
-    "libmodernize.fixes.fix_raise_six",
-    "libmodernize.fixes.fix_unicode",
-    "libmodernize.fixes.fix_unicode_type",
-    "libmodernize.fixes.fix_urllib_six",
-    "libmodernize.fixes.fix_unichr",
-    "libmodernize.fixes.fix_xrange_six",
-    "libmodernize.fixes.fix_zip",
+    "modernize.fixes.fix_basestring",
+    "modernize.fixes.fix_dict_six",
+    "modernize.fixes.fix_filter",
+    "modernize.fixes.fix_imports_six",
+    "modernize.fixes.fix_itertools_six",
+    "modernize.fixes.fix_itertools_imports_six",
+    "modernize.fixes.fix_input_six",
+    "modernize.fixes.fix_int_long_tuple",
+    "modernize.fixes.fix_map",
+    "modernize.fixes.fix_metaclass",
+    "modernize.fixes.fix_raise_six",
+    "modernize.fixes.fix_unicode",
+    "modernize.fixes.fix_unicode_type",
+    "modernize.fixes.fix_urllib_six",
+    "modernize.fixes.fix_unichr",
+    "modernize.fixes.fix_xrange_six",
+    "modernize.fixes.fix_zip",
 }
 
 # Fixes that are opt-in only.
 opt_in_fix_names = {
-    "libmodernize.fixes.fix_classic_division",
-    "libmodernize.fixes.fix_open",
+    "modernize.fixes.fix_classic_division",
+    "modernize.fixes.fix_open",
 }

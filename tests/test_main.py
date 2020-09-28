@@ -1,27 +1,30 @@
 from __future__ import generator_stop
 
-import sys
-
-try:
-    from StringIO import StringIO  # Python 2
-except ImportError:
-    from io import StringIO  # Python 3
+import contextlib
+import io
 
 from utils import check_on_input
 
-from libmodernize.main import main as modernize_main
+from modernize.__main__ import main as modernize_main
 
 
 def test_list_fixers():
-    sio = StringIO()
-    real_stdout = sys.stdout
-    sys.stdout = sio
-    try:
-        exitcode = modernize_main(["-l"])
-    finally:
-        sys.stdout = real_stdout
-    assert exitcode == 0, exitcode
-    assert "xrange_six" in sio.getvalue()
+    stdout = io.StringIO()
+    with contextlib.redirect_stdout(stdout):
+        returncode = modernize_main(["-l"])
+    assert returncode == 0
+    assert "xrange_six" in stdout.getvalue()
+
+
+def test_nofix_fixers(tmp_path):
+    stdout = io.StringIO()
+    stderr = io.StringIO()
+    with contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
+        returncode = modernize_main(["--nofix=ham", str(tmp_path)])
+
+    assert returncode == 2
+    assert stderr.getvalue() == "Error: fix 'ham' was not found\n"
+    assert stdout.getvalue() == ""
 
 
 NO_SIX_SAMPLE = """\

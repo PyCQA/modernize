@@ -3,7 +3,7 @@ from __future__ import generator_stop
 from fissix.fixer_util import syms
 from fissix.fixes import fix_import
 
-import libmodernize
+from .. import utils
 
 
 class FixImport(fix_import.FixImport):
@@ -23,5 +23,5 @@ class FixImport(fix_import.FixImport):
             return
 
         # If there are any non-future imports, add absolute_import
-        libmodernize.add_future(node, "absolute_import")
+        utils.add_future(node, "absolute_import")
         return super().transform(node, results)

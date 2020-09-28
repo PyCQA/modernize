@@ -5,6 +5,7 @@ Python           _              _
   |_|_|_\\___/\\__,_\\___|_| |_||_|_/__\\___|\
 """
 
+from __future__ import generator_stop
 
 import logging
 import optparse
@@ -14,8 +15,8 @@ import sys
 from fissix import refactor
 from fissix.main import StdoutRefactoringTool, warn
 
-from libmodernize import __version__
-from libmodernize.fixes import fissix_fix_names, opt_in_fix_names, six_fix_names
+from . import __version__
+from .fixes import fissix_fix_names, opt_in_fix_names, six_fix_names
 
 usage = (
     __doc__
@@ -124,7 +125,7 @@ def main(args=None):
         "Useful for enforcing Python 3 compatibility.",
     )
 
-    fixer_pkg = "libmodernize.fixes"
+    fixer_pkg = "modernize.fixes"
     avail_fixes = set(refactor.get_fixers_from_package(fixer_pkg))
     avail_fixes.update(fissix_fix_names)
 
@@ -184,12 +185,12 @@ def main(args=None):
 
     # Remove unicode fixers depending on command line options
     if options.six_unicode:
-        unwanted_fixes.add("libmodernize.fixes.fix_unicode_future")
+        unwanted_fixes.add("modernize.fixes.fix_unicode_future")
     elif options.future_unicode:
-        unwanted_fixes.add("libmodernize.fixes.fix_unicode")
+        unwanted_fixes.add("modernize.fixes.fix_unicode")
     else:
-        unwanted_fixes.add("libmodernize.fixes.fix_unicode")
-        unwanted_fixes.add("libmodernize.fixes.fix_unicode_future")
+        unwanted_fixes.add("modernize.fixes.fix_unicode")
+        unwanted_fixes.add("modernize.fixes.fix_unicode_future")
 
     if options.no_six:
         unwanted_fixes.update(six_fix_names)

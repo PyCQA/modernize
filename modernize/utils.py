@@ -5,10 +5,8 @@ from fissix.pgen2 import token
 from fissix.pygram import python_symbols as syms
 from fissix.pytree import Leaf, Node
 
-__version__ = "0.8.1.dev0"
 
-
-def check_future_import(node):
+def _check_future_import(node):
     """If this is a future import, return set of symbols that are imported,
     else return None."""
     # node should be the import statement here
@@ -64,7 +62,7 @@ def add_future(node, symbol):
         ):
             # skip over docstring
             continue
-        names = check_future_import(node)
+        names = _check_future_import(node)
         if not names:
             # not a future statement; need to insert before this
             break
@@ -82,10 +80,6 @@ def add_future(node, symbol):
 
     children = [import_, fixer_util.Newline()]
     root.insert_child(idx, Node(syms.simple_stmt, children))
-
-
-def touch_import(package, name, node):
-    fixer_util.touch_import(package, name, node)
 
 
 def is_listcomp(node):

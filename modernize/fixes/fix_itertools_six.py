@@ -16,10 +16,8 @@
 from __future__ import generator_stop
 
 # Local imports
-from fissix import fixer_base
+from fissix import fixer_base, fixer_util
 from fissix.fixer_util import Name
-
-import libmodernize
 
 
 class FixItertoolsSix(fixer_base.BaseFix):
@@ -50,7 +48,7 @@ class FixItertoolsSix(fixer_base.BaseFix):
             # function (to be consistant with the second part of the pattern)
             dot.remove()
             func.parent.replace(func)
-            libmodernize.touch_import("six.moves", func.value[1:], node)
+            fixer_util.touch_import("six.moves", func.value[1:], node)
 
         prefix = prefix or func.prefix
         func.replace(Name(func.value[1:], prefix=prefix))

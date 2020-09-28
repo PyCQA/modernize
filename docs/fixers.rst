@@ -305,7 +305,7 @@ Opt-in
 To specify an opt-in fixer while also running all the default fixers, make sure
 to specify the ``-f default`` or ``--fix=default`` option, e.g.::
 
-    python -m modernize -f default -f libmodernize.fixes.fix_open
+    python -m modernize -f default -f modernize.fixes.fix_open
 
 .. attribute:: classic_division
 

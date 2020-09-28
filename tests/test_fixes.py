@@ -2,10 +2,10 @@ from __future__ import generator_stop
 
 from fissix import refactor
 
-from libmodernize import fixes
+from modernize import fixes
 
 FISSIX_FIXES_PKG = "fissix.fixes"
-LIBMODERNIZE_FIXES_PKG = "libmodernize.fixes"
+MODERNIZE_FIXES_PKG = "modernize.fixes"
 
 
 def check_existence(prefix, module_names):
@@ -26,11 +26,11 @@ def test_fissix_fix_names():
 
 
 def test_six_fix_names():
-    check_existence(LIBMODERNIZE_FIXES_PKG, fixes.six_fix_names)
+    check_existence(MODERNIZE_FIXES_PKG, fixes.six_fix_names)
 
 
 def test_fixers_importable():
-    fixers = refactor.get_fixers_from_package(LIBMODERNIZE_FIXES_PKG)
+    fixers = refactor.get_fixers_from_package(MODERNIZE_FIXES_PKG)
     for module_name in fixers:
         try:
             __import__(module_name)

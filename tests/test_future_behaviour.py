@@ -8,7 +8,7 @@ import tempfile
 
 from utils import check_on_input
 
-from libmodernize.main import main as modernize_main
+from modernize.__main__ import main as modernize_main
 
 SINGLE_PRINT_CONTENT = """
 print 'world'

@@ -1,9 +1,7 @@
 from __future__ import generator_stop
 
-from fissix import fixer_base
+from fissix import fixer_base, fixer_util
 from fissix.fixer_util import is_probably_builtin
-
-import libmodernize
 
 
 class FixUnichr(fixer_base.ConditionalFix):
@@ -16,4 +14,4 @@ class FixUnichr(fixer_base.ConditionalFix):
         if self.should_skip(node):
             return
         if is_probably_builtin(node):
-            libmodernize.touch_import("six", "unichr", node)
+            fixer_util.touch_import("six", "unichr", node)
