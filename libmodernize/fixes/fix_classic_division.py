@@ -3,7 +3,7 @@ from __future__ import generator_stop
 from fissix import fixer_base, pytree
 from fissix.pgen2 import token
 
-import libmodernize
+from .. import utils
 
 
 class FixClassicDivision(fixer_base.BaseFix):
@@ -21,7 +21,7 @@ class FixClassicDivision(fixer_base.BaseFix):
     def transform(self, node, results):
         if self.skip:
             return
-        libmodernize.add_future(node, "division")
+        utils.add_future(node, "division")
 
         if node.value == "/":
             return pytree.Leaf(token.DOUBLESLASH, "//", prefix=node.prefix)
