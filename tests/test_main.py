@@ -9,7 +9,7 @@ except ImportError:
 
 from utils import check_on_input
 
-from libmodernize.main import main as modernize_main
+from modernize.main import main as modernize_main
 
 
 def test_list_fixers():

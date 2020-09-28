@@ -34,11 +34,11 @@ def test_optional():
 
 def test_fix_classic_division():
     check_on_input(
-        *CLASSIC_DIVISION, extra_flags=["-f", "libmodernize.fixes.fix_classic_division"]
+        *CLASSIC_DIVISION, extra_flags=["-f", "modernize.fixes.fix_classic_division"]
     )
 
 
 def test_new_division():
     check_on_input(
-        *NEW_DIVISION, extra_flags=["-f", "libmodernize.fixes.fix_classic_division"]
+        *NEW_DIVISION, extra_flags=["-f", "modernize.fixes.fix_classic_division"]
     )

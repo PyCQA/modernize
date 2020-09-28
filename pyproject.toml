@@ -20,10 +20,7 @@ filterwarnings = ["error"]
 
 [tool.coverage.run]
 branch = true
-source_pkgs = [
-    "modernize",
-    "libmodernize",
-]
+source_pkgs = ["modernize"]
 source = ["tests"]
 
 [tool.coverage.paths]

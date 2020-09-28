@@ -42,11 +42,11 @@ A note about handling text literals
   along with Python 2.
 - Alternatively, there is the ``--six-unicode`` flag which will wrap Unicode
   literals with the six helper function ``six.u()`` using the
-  ``libmodernize.fixes.fix_unicode`` fixer. This is useful if you want
+  ``modernize.fixes.fix_unicode`` fixer. This is useful if you want
   to support Python 3.1 and Python 3.2 without bigger changes.
 - The last alternative is the ``--future-unicode`` flag which
   imports the ``unicode_literals`` from the ``__future__`` module using the
-  ``libmodernize.fixes.fix_unicode_future`` fixer.
+  ``modernize.fixes.fix_unicode_future`` fixer.
   This requires Python 2.6 and later, and will require that you
   mark bytestrings with ``b''`` and native strings in ``str('')``
   or something similar that survives the transformation.

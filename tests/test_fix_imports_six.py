@@ -10,7 +10,7 @@ except ImportError:
 
 from utils import check_on_input
 
-from libmodernize.fixes import fix_imports_six
+from modernize.fixes import fix_imports_six
 
 MOVED_MODULE = (
     """\
