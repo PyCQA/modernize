@@ -38,7 +38,7 @@ addopts = [
   "--strict-config",
   "--strict-markers",
   "--cov",
-  "--cov-fail-under=91.53",
+  "--cov-fail-under=92.11",
   "--cov-report=term-missing:skip-covered",
 ]
 xfail_strict = true

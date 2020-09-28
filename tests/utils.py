@@ -4,7 +4,7 @@ import os.path
 import shutil
 import tempfile
 
-from modernize.main import main as modernize_main
+from modernize.__main__ import main as modernize_main
 
 
 def check_on_input(
