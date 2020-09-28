@@ -5,6 +5,7 @@ Python           _              _
   |_|_|_\\___/\\__,_\\___|_| |_||_|_/__\\___|\
 """
 
+from __future__ import generator_stop
 
 import logging
 import optparse
