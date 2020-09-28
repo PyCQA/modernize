@@ -15,8 +15,8 @@ import sys
 from fissix import refactor
 from fissix.main import StdoutRefactoringTool, warn
 
-from modernize import __version__
-from modernize.fixes import fissix_fix_names, opt_in_fix_names, six_fix_names
+from . import __version__
+from .fixes import fissix_fix_names, opt_in_fix_names, six_fix_names
 
 usage = (
     __doc__
