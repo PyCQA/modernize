@@ -22,7 +22,17 @@ requires = ["fissix"]
 requires-python = "~=3.6"
 
 [tool.flit.metadata.requires-extra]
-docs = ["sphinx~=3.2"]
+docs = [
+  "alabaster~=0.7.12",
+  "commonmark~=0.9.1",
+  "docutils~=0.16.0",
+  "mock~=4.0",
+  "pillow~=7.2",
+  "readthedocs-sphinx-ext~=2.1",
+  "recommonmark~=0.6.0",
+  "sphinx~=3.2",
+  "sphinx-rtd-theme~=0.5.0",
+]
 test = ["pytest", "pytest-cov", "coverage>=5.3"]
 
 [tool.flit.scripts]
