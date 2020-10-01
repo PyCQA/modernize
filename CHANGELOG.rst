@@ -1,5 +1,5 @@
-0.8.1 (unreleased)
-==================
+0.9rc0 (2020-10-01)
+===================
 
 - move all code under the ``modernize`` namespace.
 - use flit to create PyPI distributions.
