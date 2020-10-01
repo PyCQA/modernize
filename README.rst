@@ -5,6 +5,20 @@
       | '  \/ _ \/ _` / -_) '_| ' \| |_ / -_)
       |_|_|_\___/\__,_\___|_| |_||_|_/__\___|
 
+
+.. image:: https://img.shields.io/coveralls/github/PyCQA/modernize?label=coveralls&logo=coveralls
+    :alt: Coveralls
+    :target: https://coveralls.io/github/PyCQA/modernize
+.. image:: https://img.shields.io/readthedocs/modernize?logo=read-the-docs
+    :alt: Read the Docs
+    :target: https://modernize.readthedocs.io/en/latest/
+.. image:: https://img.shields.io/github/workflow/status/PyCQA/modernize/CI?label=GitHub%20Actions&logo=github
+    :alt: GitHub Actions
+    :target: https://github.com/PyCQA/modernize
+.. image:: https://img.shields.io/pypi/v/modernize?logo=pypi
+    :alt: PyPI
+    :target: https://pypi.org/project/modernize/
+
 This library is a very thin wrapper around `fissix
 <https://github.com/jreese/fissix>`_, a fork of lib2to3, to utilize it
 to make Python 2 code more modern with the intention of eventually
@@ -29,13 +43,3 @@ Python 2.5 or lower.
 
 See the ``LICENSE`` file for the license of ``modernize``.
 Using this tool does not affect licensing of the modernized code.
-
-.. image:: https://readthedocs.org/projects/modernize/badge/
-    :target: https://readthedocs.org/projects/modernize/?badge=latest
-    :alt: Documentation Status
-
-.. image:: https://api.travis-ci.org/pycqa/modernize.svg?branch=master
-    :target: https://travis-ci.org/pycqa/modernize
-
-.. image:: https://coveralls.io/repos/pycqa/modernize/badge.png?branch=master
-    :target: https://coveralls.io/r/pycqa/modernize?branch=master
