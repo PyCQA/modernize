@@ -35,8 +35,8 @@ repos:
       - id: check-yaml
       - id: mixed-line-ending
 
-  - repo: https://github.com/prettier/prettier
-    rev: 2.1.1
+  - repo: https://github.com/prettier/pre-commit
+    rev: v2.1.2
     hooks:
       - id: prettier
         args: [--prose-wrap=always, --print-width=88]
