@@ -13,18 +13,26 @@ Purpose of the project
 ======================
 
 .. TODO Explain WHY someone would want to have their code be Python 2/3 compatible
-
-This library is a very thin wrapper around ``fissix`` to utilize it
+This library is a very thin wrapper around `fissix
+<https://github.com/jreese/fissix>`_, a fork of lib2to3, to utilize it
 to make Python 2 code more modern with the intention of eventually
 porting it over to Python 3.
 
-The ``python -m modernize`` command works like `fissix
-<https://github.com/jreese/fissix>`_. Here's how you'd rewrite a
+The ``python -m modernize`` command works like
+``python -m fissix``, see `fissix <https://github.com/jreese/fissix>`_.
+Here's how you'd rewrite a
 single file::
 
     python -m modernize -w example.py
 
-See the ``LICENSE`` file for the license of ``python -m modernize``.
+It does not guarantee, but it attempts to spit out a codebase compatible
+with Python 2.6+ or Python 3. The code that it generates has a runtime
+dependency on `six <https://pypi.python.org/pypi/six>`_, unless the
+``--no-six`` option is used. Version 1.9.0 or later of ``six`` is
+recommended. Some of the fixers output code that is not compatible with
+Python 2.5 or lower.
+
+See the ``LICENSE`` file for the license of ``modernize``.
 Using this tool does not affect licensing of the modernized code.
 
 The `project website`_ can be found on GitHub and the PyPI project name is
