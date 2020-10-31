@@ -19,10 +19,12 @@
     :alt: PyPI
     :target: https://pypi.org/project/modernize/
 
+Modernize is a Python program that reads Python 2 source code
+and applies a series of fixers to transform it into source code
+that is valid on both Python 3 and Python 2.7.
+
 This library is a very thin wrapper around `fissix
-<https://github.com/jreese/fissix>`_, a fork of lib2to3, to utilize it
-to make Python 2 code more modern with the intention of eventually
-porting it over to Python 3.
+<https://github.com/jreese/fissix>`_, a fork of lib2to3.
 
 The ``python -m modernize`` command works like
 ``python -m fissix``, see `fissix <https://github.com/jreese/fissix>`_.
