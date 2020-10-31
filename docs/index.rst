@@ -35,6 +35,10 @@ dependency on `six <https://pypi.python.org/pypi/six>`_, unless the
 recommended. Some of the fixers output code that is not compatible with
 Python 2.5 or lower.
 
+Once your project is ready to run in production on Python 3 it's
+recommended to drop Python 2.7 support using
+`pyupgrade <https://pypi.org/project/pyupgrade/>`_
+
 See the ``LICENSE`` file for the license of ``modernize``.
 Using this tool does not affect licensing of the modernized code.
 
