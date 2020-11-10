@@ -44,7 +44,7 @@ class FixItertoolsSix(fixer_base.BaseFix):
             # Remove the 'itertools'
             prefix = it.prefix
             it.remove()
-            # Replace the node wich contains ('.', 'function') with the
+            # Replace the node which contains ('.', 'function') with the
             # function (to be consistant with the second part of the pattern)
             dot.remove()
             func.parent.replace(func)
