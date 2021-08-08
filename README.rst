@@ -54,3 +54,8 @@ Using this tool does not affect licensing of the modernized code.
 
 This library is a very thin wrapper around `fissix
 <https://github.com/jreese/fissix>`_, a fork of lib2to3.
+
+
+.. image:: https://badges.gitter.im/PyCQA/modernize.svg
+   :alt: Join the chat at https://gitter.im/PyCQA/modernize
+   :target: https://gitter.im/PyCQA/modernize?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
