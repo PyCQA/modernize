@@ -1,14 +1,13 @@
 [build-system]
-requires = ["flit_core >=2,<4"]
+requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
-[tool.flit.metadata]
-module = "modernize"
-author = "Armin Ronacher"
-author-email = "armin.ronacher@active-4.com"
-maintainer = "PyCQA"
-maintainer-email = "code-quality@python.org"
-home-page = "https://github.com/PyCQA/modernize"
+[project]
+name = "modernize"
+readme = "README.rst"
+requires-python = "~=3.6"
+authors = [{name = "Armin Ronacher", email = "armin.ronacher@active-4.com"}]
+maintainers = [{name = "PyCQA", email = "code-quality@python.org"}]
 classifiers = [
     "License :: OSI Approved :: BSD License",
     "Programming Language :: Python",
@@ -18,11 +17,10 @@ classifiers = [
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
 ]
-description-file = "README.rst"
-requires = ["fissix"]
-requires-python = "~=3.6"
+dependencies = ["fissix"]
+dynamic = ["version", "description"]
 
-[tool.flit.metadata.requires-extra]
+[project.optional-dependencies]
 docs = [
   "alabaster~=0.7.12",
   "commonmark~=0.9.1",
@@ -36,7 +34,11 @@ docs = [
 ]
 test = ["pytest", "pytest-cov", "coverage>=5.3"]
 
-[tool.flit.scripts]
+[project.urls]
+Development = "https://github.com/PyCQA/modernize"
+Documentation = "https://modernize.readthedocs.io"
+
+[project.scripts]
 modernize = "modernize.main:main"
 python-modernize = "modernize.main:main"
 
@@ -67,7 +69,6 @@ source = [
     ".tox/*/lib/*/site-packages/",
     '.tox\\*\\Lib\\site-packages\\',
 ]
-
 
 [tool.tox]
 legacy_tox_ini = """
