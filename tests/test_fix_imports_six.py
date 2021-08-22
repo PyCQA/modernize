@@ -1,7 +1,5 @@
 from __future__ import generator_stop
 
-import sys
-import unittest
 
 try:
     from six.moves import tkinter
@@ -10,7 +8,6 @@ except ImportError:
 
 from utils import check_on_input
 
-from modernize.fixes import fix_imports_six
 
 MOVED_MODULE = (
     """\

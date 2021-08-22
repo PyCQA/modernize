@@ -100,7 +100,9 @@ def test_two_files_on_single_run():
         for input_name in input_names:
             futs = _check_for_multiple_futures(input_name, TWO_PRINTS_CONTENT)
             if not futs:
-                raise Exception("File {0} got no from __future__ (but it should)")  # pragma: no cover
+                raise Exception(
+                    "File {0} got no from __future__ (but it should)"
+                )  # pragma: no cover
     finally:
         shutil.rmtree(tmpdirname)
 

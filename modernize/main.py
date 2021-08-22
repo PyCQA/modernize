@@ -134,7 +134,9 @@ def main(args=None):
     flags = {}
     options, args = parser.parse_args(args)
     if not options.write and options.no_diffs:
-        warn("Not writing files and not printing diffs; that's not very useful.")  # pragma: no cover
+        warn(
+            "Not writing files and not printing diffs; that's not very useful."
+        )  # pragma: no cover
     if not options.write and options.nobackups:
         parser.error("Can't use '-n' without '-w'.")  # pragma: no cover
     if options.list_fixes:
@@ -148,7 +150,9 @@ def main(args=None):
         if not args:  # pragma: no branch
             return 0
     if not args:
-        print("At least one file or directory argument required.", file=sys.stderr)  # pragma: no cover
+        print(
+            "At least one file or directory argument required.", file=sys.stderr
+        )  # pragma: no cover
         print("Use --help to show usage.", file=sys.stderr)  # pragma: no cover
         return 2  # pragma: no cover
     if "-" in args:

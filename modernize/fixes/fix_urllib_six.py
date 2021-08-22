@@ -173,7 +173,9 @@ class FixUrllibSix(FixImports):
             if new_name:
                 mod_member.replace(Name(new_name, prefix=pref))
             else:
-                self.cannot_convert(node, "This is an invalid module element")  # pragma: no cover
+                self.cannot_convert(
+                    node, "This is an invalid module element"
+                )  # pragma: no cover
 
         # Multiple members being imported
         else:
@@ -216,7 +218,9 @@ class FixUrllibSix(FixImports):
                     names.append(Comma())
                 names.extend(handle_name(elts[-1], pref))
                 new = FromImport(module, names)
-                if not first or node.parent.prefix.endswith(indentation):  # pragma: no branch
+                if not first or node.parent.prefix.endswith(
+                    indentation
+                ):  # pragma: no branch
                     new.prefix = indentation
                 new_nodes.append(new)
                 first = False
@@ -243,7 +247,9 @@ class FixUrllibSix(FixImports):
         if new_name:
             module_dot.replace(Name(new_name, prefix=module_dot.prefix))
         else:
-            self.cannot_convert(node, "This is an invalid module element")  # pragma: no cover
+            self.cannot_convert(
+                node, "This is an invalid module element"
+            )  # pragma: no cover
 
     def transform(self, node, results):
         if results.get("module"):
