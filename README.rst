@@ -6,9 +6,6 @@
       |_|_|_\___/\__,_\___|_| |_||_|_/__\___|
 
 
-.. image:: https://img.shields.io/coveralls/github/PyCQA/modernize?label=coveralls&logo=coveralls
-    :alt: Coveralls
-    :target: https://coveralls.io/github/PyCQA/modernize
 .. image:: https://img.shields.io/readthedocs/modernize?logo=read-the-docs
     :alt: Read the Docs
     :target: https://modernize.readthedocs.io/en/latest/
