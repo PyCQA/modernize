@@ -13,11 +13,11 @@ def check_existence(prefix, module_names):
     dotted_prefix = prefix + "."
     for module_name in module_names:
         if not module_name.startswith(dotted_prefix):
-            msg = f"{module_name!r} does not start with {prefix!r}"
-            raise AssertionError(msg)
+            msg = f"{module_name!r} does not start with {prefix!r}"  # pragma: no cover
+            raise AssertionError(msg)  # pragma: no cover
         try:
             __import__(module_name)
-        except ImportError:
+        except ImportError:  # pragma: no cover
             raise AssertionError(f"{module_name!r} cannot be imported")
 
 
@@ -34,5 +34,5 @@ def test_fixers_importable():
     for module_name in fixers:
         try:
             __import__(module_name)
-        except ImportError:
+        except ImportError:  # pragma: no cover
             raise AssertionError(f"{module_name!r} cannot be imported")

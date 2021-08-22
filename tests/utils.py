@@ -31,7 +31,7 @@ def check_on_input(
 
             if check_return_code and expected_return_code is not None:
                 if expected_return_code != return_code:
-                    raise AssertionError(
+                    raise AssertionError(  # pragma: no cover
                         "Actual return code: %s\nExpected return code: %s"
                         % (return_code, expected_return_code)
                     )
@@ -41,7 +41,7 @@ def check_on_input(
 
             if check_return_code and expected_return_code is not None:
                 if expected_return_code != return_code:
-                    raise AssertionError(
+                    raise AssertionError(  # pragma: no cover
                         "Actual return code: %s\nExpected return code: %s"
                         % (return_code, expected_return_code)
                     )
@@ -49,11 +49,11 @@ def check_on_input(
             output_content = ""
             with open(test_input_name) as output_file:
                 for line in output_file:
-                    if line:
+                    if line:  # pragma: no branch
                         output_content += line
 
             if output_content != expected_content:
-                raise AssertionError(
+                raise AssertionError(  # pragma: no cover
                     "%s\nInput:\n%sOutput:\n%s\nExpecting:\n%s"
                     % (
                         which_check,

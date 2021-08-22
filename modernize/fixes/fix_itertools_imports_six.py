@@ -33,12 +33,12 @@ class FixItertoolsImportsSix(fixer_base.BaseFix):
         for child in children[::2]:
             if child.type == token.NAME:
                 name_node = child
-            elif child.type == token.STAR:
+            elif child.type == token.STAR:  # pragma: no cover
                 # Just leave the import as is.
                 return
             else:
-                assert child.type == syms.import_as_name
-                name_node = child.children[0]
+                assert child.type == syms.import_as_name  # pragma: no cover
+                name_node = child.children[0]  # pragma: no cover
             member_name = name_node.value
             if member_name in (
                 "imap",
@@ -61,7 +61,7 @@ class FixItertoolsImportsSix(fixer_base.BaseFix):
                 remove_comma ^= True
 
         while children and children[-1].type == token.COMMA:
-            children.pop().remove()
+            children.pop().remove()  # pragma: no cover
 
         # If there are no imports left, just get rid of the entire statement
         if (

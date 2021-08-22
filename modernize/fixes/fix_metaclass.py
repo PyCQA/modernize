@@ -117,7 +117,7 @@ def find_metas(cls_node):
     for i, simple_node in list(enumerate(node.children)):
         if simple_node.type == syms.simple_stmt and simple_node.children:
             expr_node = simple_node.children[0]
-            if expr_node.type == syms.expr_stmt and expr_node.children:
+            if expr_node.type == syms.expr_stmt and expr_node.children:  # pragma: no branch
                 # Check if the expr_node is a simple assignment.
                 left_node = expr_node.children[0]
                 if isinstance(left_node, Leaf) and left_node.value == "__metaclass__":
@@ -143,7 +143,7 @@ def fixup_indent(suite):
         node = kids.pop()
         if isinstance(node, Leaf) and node.type != token.DEDENT:
             if node.prefix:
-                node.prefix = ""
+                node.prefix = ""  # pragma: no cover
             return
         else:
             kids.extend(node.children[::-1])

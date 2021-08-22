@@ -163,17 +163,17 @@ class FixUrllibSix(FixImports):
         # Simple case with only a single member being imported
         if member:
             # this may be a list of length one, or just a node
-            if isinstance(member, list):
+            if isinstance(member, list):  # pragma: no branch
                 member = member[0]
             new_name = None
-            for change in MAPPING[mod_member.value]:
-                if member.value in change[1]:
+            for change in MAPPING[mod_member.value]:  # pragma: no branch
+                if member.value in change[1]:  # pragma: no branch
                     new_name = change[0]
                     break
             if new_name:
                 mod_member.replace(Name(new_name, prefix=pref))
             else:
-                self.cannot_convert(node, "This is an invalid module element")
+                self.cannot_convert(node, "This is an invalid module element")  # pragma: no cover
 
         # Multiple members being imported
         else:
@@ -216,7 +216,7 @@ class FixUrllibSix(FixImports):
                     names.append(Comma())
                 names.extend(handle_name(elts[-1], pref))
                 new = FromImport(module, names)
-                if not first or node.parent.prefix.endswith(indentation):
+                if not first or node.parent.prefix.endswith(indentation):  # pragma: no branch
                     new.prefix = indentation
                 new_nodes.append(new)
                 first = False
@@ -234,16 +234,16 @@ class FixUrllibSix(FixImports):
         module_dot = results.get("bare_with_attr")
         member = results.get("member")
         new_name = None
-        if isinstance(member, list):
+        if isinstance(member, list):  # pragma: no branch
             member = member[0]
-        for change in MAPPING[module_dot.value]:
+        for change in MAPPING[module_dot.value]:  # pragma: no branch
             if member.value in change[1]:
                 new_name = change[0]
                 break
         if new_name:
             module_dot.replace(Name(new_name, prefix=module_dot.prefix))
         else:
-            self.cannot_convert(node, "This is an invalid module element")
+            self.cannot_convert(node, "This is an invalid module element")  # pragma: no cover
 
     def transform(self, node, results):
         if results.get("module"):
@@ -255,5 +255,5 @@ class FixUrllibSix(FixImports):
         # Renaming and star imports are not supported for these modules.
         elif results.get("module_star"):
             self.cannot_convert(node, "Cannot handle star imports.")
-        elif results.get("module_as"):
+        elif results.get("module_as"):  # pragma: no branch
             self.cannot_convert(node, "This module is now multiple modules")

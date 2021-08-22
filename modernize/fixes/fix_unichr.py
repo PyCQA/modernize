@@ -12,6 +12,6 @@ class FixUnichr(fixer_base.ConditionalFix):
 
     def transform(self, node, results):
         if self.should_skip(node):
-            return
+            return  # pragma: no cover
         if is_probably_builtin(node):
             fixer_util.touch_import("six", "unichr", node)
