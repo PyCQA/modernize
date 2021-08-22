@@ -49,7 +49,7 @@ addopts = [
   "--strict-config",
   "--strict-markers",
   "--cov",
-  "--cov-fail-under=92.11",
+  "--cov-fail-under=100",
   "--cov-report=term-missing:skip-covered",
 ]
 xfail_strict = true
@@ -96,13 +96,6 @@ wheel_build_env = build
 [testenv:build]
 # empty environment to build universal wheel once per tox invocation
 # https://github.com/ionelmc/tox-wheel#build-configuration
-
-[testenv:coveralls]
-passenv = GITHUB_*
-deps =
-  coveralls
-  coverage>=5.3
-commands = coveralls
 
 [testenv:lint]
 deps = pre-commit

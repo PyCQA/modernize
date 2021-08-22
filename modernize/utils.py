@@ -11,7 +11,7 @@ def _check_future_import(node):
     else return None."""
     # node should be the import statement here
     if not (node.type == syms.simple_stmt and node.children):
-        return set()
+        return set()  # pragma: no cover
     node = node.children[0]
     # now node is the import_from node
     if not (
@@ -23,7 +23,7 @@ def _check_future_import(node):
 
     if node.children[3].type == token.LPAR:
         # from __future__ import (..
-        node = node.children[4]
+        node = node.children[4]  # pragma: no cover
     else:
         # from __future__ import ...
         node = node.children[3]
@@ -35,15 +35,15 @@ def _check_future_import(node):
         for n in node.children:
             if n.type == token.NAME:
                 result.add(n.value)
-            elif n.type == syms.import_as_name:
-                n = n.children[0]
-                assert n.type == token.NAME
-                result.add(n.value)
+            elif n.type == syms.import_as_name:  # pragma: no cover
+                n = n.children[0]  # pragma: no cover
+                assert n.type == token.NAME  # pragma: no cover
+                result.add(n.value)  # pragma: no cover
         return result
     elif node.type == syms.import_as_name:
-        node = node.children[0]
-        assert node.type == token.NAME
-        return {node.value}
+        node = node.children[0]  # pragma: no cover
+        assert node.type == token.NAME  # pragma: no cover
+        return {node.value}  # pragma: no cover
     elif node.type == token.NAME:
         return {node.value}
     else:  # pragma: no cover
@@ -54,7 +54,7 @@ def add_future(node, symbol):
 
     root = fixer_util.find_root(node)
 
-    for idx, node in enumerate(root.children):
+    for idx, node in enumerate(root.children):  # pragma: no branch
         if (
             node.type == syms.simple_stmt
             and len(node.children) > 0

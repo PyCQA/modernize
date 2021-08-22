@@ -54,7 +54,7 @@ def _check_for_multiple_futures(file_name, source_content):
             result_content += line
     for future, how_many in counts.items():
         if how_many > 1:
-            raise Exception(
+            raise Exception(  # pragma: no cover
                 f"The same future repeated more than once ({how_many} times):\n"
                 f"{future}\n\n* Input file:\n{source_content}\n\n"
                 f"* Output file:\n{result_content}\n"
@@ -100,7 +100,9 @@ def test_two_files_on_single_run():
         for input_name in input_names:
             futs = _check_for_multiple_futures(input_name, TWO_PRINTS_CONTENT)
             if not futs:
-                raise Exception("File {0} got no from __future__ (but it should)")
+                raise Exception(
+                    "File {0} got no from __future__ (but it should)"
+                )  # pragma: no cover
     finally:
         shutil.rmtree(tmpdirname)
 
