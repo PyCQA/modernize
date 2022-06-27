@@ -17,9 +17,9 @@ CAVEATS:
    any client code would have to be changed as well, we don't automate
    this.
 """
-# Author: Collin Winter, Armin Ronacher
-from __future__ import generator_stop
 
+
+# Author: Collin Winter, Armin Ronacher
 from fissix.fixes import fix_raise
 
 

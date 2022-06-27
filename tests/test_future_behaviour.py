@@ -1,6 +1,5 @@
 # Tests for problem with multiple futures added to single file
 
-from __future__ import generator_stop
 
 import os
 import shutil

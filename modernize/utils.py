@@ -1,5 +1,3 @@
-from __future__ import generator_stop
-
 from fissix import fixer_util
 from fissix.pgen2 import token
 from fissix.pygram import python_symbols as syms

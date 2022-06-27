@@ -1,5 +1,3 @@
-from __future__ import generator_stop
-
 from fissix import fixer_base
 from fissix.fixer_util import Name
 

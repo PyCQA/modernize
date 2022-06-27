@@ -2,7 +2,6 @@
 Fixer for iterkeys() -> six.iterkeys(), and similarly for iteritems and itervalues.
 """
 
-from __future__ import generator_stop
 
 # Local imports
 from fissix import fixer_util, pytree

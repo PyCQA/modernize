@@ -1,6 +1,5 @@
 """ Fixer for imports of itertools.(imap|ifilter|izip|ifilterfalse) """
 
-from __future__ import generator_stop
 
 # Local imports
 from fissix import fixer_base, fixer_util

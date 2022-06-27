@@ -1,5 +1,3 @@
-from __future__ import generator_stop
-
 from utils import check_on_input
 
 ZIP_CALL_NO_ARGS = (

@@ -1,5 +1,3 @@
-from __future__ import generator_stop
-
 from fissix import refactor
 
 from modernize import fixes

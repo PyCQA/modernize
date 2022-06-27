@@ -2,6 +2,8 @@
    This is a copy of Lib/lib2to3/fixes/fix_urllib.py, but modified to point to the
    six.moves locations for new libraries instead of the Python 3 locations.
 """
+
+
 # This is a derived work of Lib/lib2to3/fixes/fix_urllib.py. That file
 # is under the copyright of the Python Software Foundation and licensed
 # under the Python Software Foundation License 2.
@@ -10,8 +12,6 @@
 #
 #     Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
 #     2011, 2012, 2013 Python Software Foundation. All rights reserved.
-from __future__ import generator_stop
-
 from fissix.fixer_util import (
     Comma,
     FromImport,

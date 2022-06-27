@@ -3,9 +3,9 @@
 raise E, V, T -> six.reraise(E, V, T)
 
 """
-# Author : Markus Unterwaditzer
-from __future__ import generator_stop
 
+
+# Author : Markus Unterwaditzer
 # Local imports
 from fissix import fixer_base, fixer_util
 from fissix.fixer_util import Call, Comma, Name

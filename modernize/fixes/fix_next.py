@@ -1,6 +1,5 @@
 """Fixer for it.next() -> next(it)"""
 
-from __future__ import generator_stop
 
 # Local imports
 from fissix import fixer_base
