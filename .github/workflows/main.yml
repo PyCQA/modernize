@@ -18,10 +18,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set Up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -31,7 +31,7 @@ jobs:
           echo "::set-output name=dir::$(pip cache dir)"
 
       - name: pip cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ steps.pip-cache.outputs.dir }}
           key:
@@ -47,10 +47,10 @@ jobs:
       - name: tox
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: tox -e py,lint,coveralls,release
+        run: tox -e py,lint,release  # coveralls
 
       - name: upload dist
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.os }}_${{ matrix.python-version}}_dist
           path: dist
@@ -61,7 +61,7 @@ jobs:
     needs: [tox]
     steps:
       - name: Download dists for PyPI
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: ubuntu-latest_3.8_dist
           path: dist
