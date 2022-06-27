@@ -47,7 +47,13 @@ jobs:
       - name: tox
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: tox -e py,lint,release # coveralls
+        run: tox -e py,lint,release
+
+      - uses: codecov/codecov-action@v2
+        with:
+          name: ${{ matrix.os }}_${{ matrix.python-version}}
+          fail_ci_if_error: true
+          verbose: true
 
       - name: upload dist
         uses: actions/upload-artifact@v3
