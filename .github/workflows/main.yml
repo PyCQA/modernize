@@ -47,7 +47,7 @@ jobs:
       - name: tox
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: tox -e py,lint,release  # coveralls
+        run: tox -e py,lint,release # coveralls
 
       - name: upload dist
         uses: actions/upload-artifact@v3
