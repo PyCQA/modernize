@@ -45,7 +45,7 @@ class FixItertoolsSix(fixer_base.BaseFix):
             prefix = it.prefix
             it.remove()
             # Replace the node which contains ('.', 'function') with the
-            # function (to be consistant with the second part of the pattern)
+            # function (to be consistent with the second part of the pattern)
             dot.remove()
             func.parent.replace(func)
             fixer_util.touch_import("six.moves", func.value[1:], node)
