@@ -12,7 +12,6 @@ from fissix.fixer_util import Call, Comma, Name
 
 
 class FixRaiseSix(fixer_base.BaseFix):
-
     BM_compatible = True
     PATTERN = """
     raise_stmt< 'raise' exc=any ',' val=any ',' tb=any >

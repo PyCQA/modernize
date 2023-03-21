@@ -9,7 +9,6 @@ from .. import utils
 
 
 class FixMap(fix_map.FixMap):
-
     skip_on = "six.moves.map"
 
     def transform(self, node, results):

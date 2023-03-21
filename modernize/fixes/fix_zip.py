@@ -7,7 +7,6 @@ from fissix.fixes import fix_zip
 
 
 class FixZip(fix_zip.FixZip):
-
     skip_on = "six.moves.zip"
 
     def transform(self, node, results):

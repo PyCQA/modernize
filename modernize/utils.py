@@ -49,7 +49,6 @@ def _check_future_import(node):
 
 
 def add_future(node, symbol):
-
     root = fixer_util.find_root(node)
 
     for idx, node in enumerate(root.children):

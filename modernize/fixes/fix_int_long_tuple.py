@@ -2,7 +2,6 @@ from fissix import fixer_base, fixer_util
 
 
 class FixIntLongTuple(fixer_base.BaseFix):
-
     run_order = 4  # Must run before fix_long.
 
     PATTERN = """

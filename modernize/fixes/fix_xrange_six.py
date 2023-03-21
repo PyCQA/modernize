@@ -7,7 +7,6 @@ from fissix.fixes import fix_xrange
 
 
 class FixXrangeSix(fixer_base.ConditionalFix, fix_xrange.FixXrange):
-
     skip_on = "six.moves.range"
 
     def transform(self, node, results):

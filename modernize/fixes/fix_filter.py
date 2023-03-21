@@ -9,7 +9,6 @@ from .. import utils
 
 
 class FixFilter(fix_filter.FixFilter):
-
     skip_on = "six.moves.filter"
 
     def transform(self, node, results):

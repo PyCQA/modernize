@@ -2,7 +2,6 @@ from fissix.fixes import fix_imports
 
 
 class FixImportsSix(fix_imports.FixImports):
-
     mapping = {
         "__builtin__": "six.moves.builtins",
         "_winreg": "six.moves.winreg",

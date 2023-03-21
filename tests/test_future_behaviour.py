@@ -65,7 +65,7 @@ def _check_on_input(file_content, extra_flags=[]):
     try:
         tmpdirname = tempfile.mkdtemp()
         test_input_name = os.path.join(tmpdirname, "input.py")
-        with open(test_input_name, "wt") as input:
+        with open(test_input_name, "w") as input:
             input.write(file_content)
         modernize_main(extra_flags + ["-w", test_input_name])
         _check_for_multiple_futures(test_input_name, file_content)
@@ -93,7 +93,7 @@ def test_two_files_on_single_run():
             os.path.join(tmpdirname, f"input_{idx}.py") for idx in range(0, 3)
         ]
         for input_name in input_names:
-            with open(input_name, "wt") as input:
+            with open(input_name, "w") as input:
                 input.write(TWO_PRINTS_CONTENT)
         modernize_main(["-w"] + input_names)
         for input_name in input_names:

@@ -2,7 +2,7 @@ import sys
 import unittest
 
 try:
-    from six.moves import tkinter
+    import tkinter
 except ImportError:
     tkinter = None
 

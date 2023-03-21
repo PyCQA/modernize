@@ -14,7 +14,6 @@ from fissix.fixer_util import Call, Name
 
 
 class FixInputSix(fixer_base.ConditionalFix):
-
     BM_compatible = True
     order = "pre"
     skip_on = "six.moves.input"
