@@ -17,6 +17,7 @@ classifiers = [
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
 ]
 description-file = "README.rst"
 requires = ["fissix"]
@@ -80,7 +81,7 @@ legacy_tox_ini = """
 
 [tox]
 envlist =
-    py{37,38,39,310},lint
+    py{37,38,39,310,311},lint
 minversion=3.20.1
 isolated_build=true
 requires=
