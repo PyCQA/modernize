@@ -43,9 +43,3 @@ class FixDictSix(fix_dict.FixDict):
             return super().transform(node, results)
         else:
             return self.transform_iter(node, results)
-
-    def in_special_context(self, node, isiter):
-        # Redefined from parent class to make "for x in d.items()" count as
-        # in special context; fissix only counts for loops as special context
-        # for the iter* methods.
-        return super().in_special_context(node, True)
