@@ -38,11 +38,11 @@ list(x.{type}())
 DICT_IN_LOOP = (
     """\
 for k in x.items():
-    pass
+    del x[k]
 """,
     """\
-for k in x.items():
-    pass
+for k in list(x.items()):
+    del x[k]
 """,
 )
 
