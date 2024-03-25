@@ -1,34 +1,34 @@
 repos:
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.7.4
+    rev: v3.15.2
     hooks:
       - id: pyupgrade
         args: ["--py36-plus"]
 
   - repo: https://github.com/psf/black
-    rev: 20.8b1
+    rev: 24.3.0
     hooks:
       - id: black
         args: ["--target-version", "py36"]
 
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.8.4
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.0.0
     hooks:
       - id: flake8
         additional_dependencies: [flake8-2020]
 
   - repo: https://github.com/pycqa/isort
-    rev: 5.7.0
+    rev: 5.13.2
     hooks:
       - id: isort
 
   - repo: https://github.com/pre-commit/pygrep-hooks
-    rev: v1.7.0
+    rev: v1.10.0
     hooks:
       - id: python-check-blanket-noqa
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.4.0
+    rev: v4.5.0
     hooks:
       - id: check-merge-conflict
       - id: check-toml
@@ -36,13 +36,13 @@ repos:
       - id: mixed-line-ending
 
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v2.2.1
+    rev: v4.0.0-alpha.8
     hooks:
       - id: prettier
         args: [--prose-wrap=always, --print-width=88]
 
-  - repo: https://github.com/myint/autoflake
-    rev: v1.4
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.3.1
     hooks:
       - id: autoflake
         args:
