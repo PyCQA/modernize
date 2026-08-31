@@ -1,7 +1,8 @@
 """Fix changes imports of urllib which are now incompatible.
-   This is a copy of Lib/lib2to3/fixes/fix_urllib.py, but modified to point to the
-   six.moves locations for new libraries instead of the Python 3 locations.
+This is a copy of Lib/lib2to3/fixes/fix_urllib.py, but modified to point to the
+six.moves locations for new libraries instead of the Python 3 locations.
 """
+
 # This is a derived work of Lib/lib2to3/fixes/fix_urllib.py. That file
 # is under the copyright of the Python Software Foundation and licensed
 # under the Python Software Foundation License 2.
@@ -110,15 +111,11 @@ def build_pattern():
             members = alternates(members)
             yield """import_name< 'import' (module={!r}
                                   | dotted_as_names< any* module={!r} any* >) >
-                  """.format(
-                old_module, old_module
-            )
+                  """.format(old_module, old_module)
             yield """import_from< 'from' mod_member={!r} 'import'
                        ( member={} | import_as_name< member={} 'as' any > |
                          import_as_names< members=any*  >) >
-                  """.format(
-                old_module, members, members
-            )
+                  """.format(old_module, members, members)
             yield """import_from< 'from' module_star=%r 'import' star='*' >
                   """ % old_module
             yield """import_name< 'import'
@@ -126,9 +123,7 @@ def build_pattern():
                   """ % old_module
             # bare_with_attr has a special significance for FixImports.match().
             yield """power< bare_with_attr={!r} trailer< '.' member={} > any* >
-                  """.format(
-                old_module, members
-            )
+                  """.format(old_module, members)
 
 
 class FixUrllibSix(FixImports):
