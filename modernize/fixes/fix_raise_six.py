@@ -3,6 +3,7 @@
 raise E, V, T -> six.reraise(E, V, T)
 
 """
+
 # Author : Markus Unterwaditzer
 from __future__ import generator_stop
 
