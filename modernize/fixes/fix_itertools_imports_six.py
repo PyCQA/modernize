@@ -1,4 +1,4 @@
-""" Fixer for imports of itertools.(imap|ifilter|izip|ifilterfalse) """
+"""Fixer for imports of itertools.(imap|ifilter|izip|ifilterfalse)"""
 
 from __future__ import generator_stop
 
@@ -20,9 +20,7 @@ class FixItertoolsImportsSix(fixer_base.BaseFix):
     BM_compatible = True
     PATTERN = """
               import_from< 'from' 'itertools' 'import' imports=any >
-              """ % (
-        locals()
-    )
+              """ % (locals())
 
     def transform(self, node, results):
         imports = results["imports"]
