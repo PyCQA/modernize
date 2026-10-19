@@ -1,10 +1,11 @@
-""" Fixer for itertools.(imap|ifilter|izip) -->
-    (six.moves.map|six.moves.filter|six.moves.zip) and
-    itertools.ifilterfalse --> six.moves.filterfalse (bugs 2360-2363)
-    imports from itertools are fixed in fix_itertools_imports_six.py
-    If itertools is imported as something else (ie: import itertools as it;
-    it.izip(spam, eggs)) method calls will not get fixed.
-    """
+"""Fixer for itertools.(imap|ifilter|izip) -->
+(six.moves.map|six.moves.filter|six.moves.zip) and
+itertools.ifilterfalse --> six.moves.filterfalse (bugs 2360-2363)
+imports from itertools are fixed in fix_itertools_imports_six.py
+If itertools is imported as something else (ie: import itertools as it;
+it.izip(spam, eggs)) method calls will not get fixed.
+"""
+
 # This is a derived work of Lib/lib2to3/fixes/fix_itertools_import.py. That file
 # is under the copyright of the Python Software Foundation and licensed
 # under the Python Software Foundation License 2.
@@ -29,9 +30,7 @@ class FixItertoolsSix(fixer_base.BaseFix):
                      dot='.' func=%(it_funcs)s > trailer< '(' [any] ')' > >
               |
               power< func=%(it_funcs)s trailer< '(' [any] ')' > >
-              """ % (
-        locals()
-    )
+              """ % (locals())
 
     # Needs to be run after fix_(map|zip|filter)
     run_order = 6
