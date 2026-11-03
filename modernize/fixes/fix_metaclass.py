@@ -1,19 +1,20 @@
 """Fixer for __metaclass__ = X -> (six.with_metaclass(X)) methods.
 
-   The various forms of classdef (inherits nothing, inherits once, inherits
-   many) don't parse the same in the CST, so we look at ALL classes for
-   a __metaclass__ and if we find one normalize the inherits to all be
-   an arglist.
+The various forms of classdef (inherits nothing, inherits once, inherits
+many) don't parse the same in the CST, so we look at ALL classes for
+a __metaclass__ and if we find one normalize the inherits to all be
+an arglist.
 
-   For one-liner classes ('class X: pass') there is no indent/dedent so
-   we normalize those into having a suite.
+For one-liner classes ('class X: pass') there is no indent/dedent so
+we normalize those into having a suite.
 
-   Moving the __metaclass__ into the classdef can also cause the class
-   body to be empty so there is some special casing for that as well.
+Moving the __metaclass__ into the classdef can also cause the class
+body to be empty so there is some special casing for that as well.
 
-   This fixer also tries very hard to keep original indenting and spacing
-   in all those corner cases.
+This fixer also tries very hard to keep original indenting and spacing
+in all those corner cases.
 """
+
 # This is a derived work of Lib/lib2to3/fixes/fix_metaclass.py. That file
 # is under the copyright of the Python Software Foundation and licensed
 # under the Python Software Foundation License 2.
