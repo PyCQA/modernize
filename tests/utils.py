@@ -23,7 +23,7 @@ def check_on_input(
     tmpdirname = tempfile.mkdtemp()
     try:
         test_input_name = os.path.join(tmpdirname, "input.py")
-        with open(test_input_name, "wt") as input_file:
+        with open(test_input_name, "w") as input_file:
             input_file.write(input_content)
 
         def _check(this_input_content, which_check, check_return_code=True):

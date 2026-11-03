@@ -18,15 +18,11 @@ from fissix.main import StdoutRefactoringTool, warn
 from . import __version__
 from .fixes import fissix_fix_names, opt_in_fix_names, six_fix_names
 
-usage = (
-    __doc__
-    + """\
+usage = __doc__ + """\
  %s
 
 Usage: modernize [options] file|dir ...
-"""
-    % __version__
-)
+""" % __version__
 
 
 def format_usage(usage):
